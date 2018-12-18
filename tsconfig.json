@@ -4,7 +4,7 @@
     "declarationDir": "./dist",
     "experimentalDecorators": true,
     "jsx": "react",
-    "lib": ["ES2015", "dom"],
+    "lib": ["es2015", "dom"],
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./dist",
