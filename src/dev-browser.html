@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Forces</title>
+  <style>
+    canvas {
+      display: block;
+      width: 480px;
+      height: 270px;
+      outline: 1px solid lightgray;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onLoad="run()">
+
+  <canvas id="canvas" width="480" height="270"></canvas>
+  <br/>
+  <button id="button-zoom-in">Zoom in</button>
+  <button id="button-zoom-out">Zoom out</button>
+  <br/>
+  <button id="button-time-1s">Time 1s = 1s</button>
+  <button id="button-time-1m">Time 1s = 1m</button>
+  <button id="button-time-1h">Time 1s = 1h</button>
+  <button id="button-time-3h">Time 1s = 3h</button>
+  <br/>
+  <button id="button-up">Up</button>
+  <button id="button-down">Down</button>
+  <button id="button-left">Left</button>
+  <button id="button-right">right</button>
+
+  <pre id="log"></pre>
+
+  <script>
+    var ctx;
+    var logElement;
+    var example;
+    var previousTime;
+
+    function animationFrame() {
+      var currentTime = example.getTime();
+      var dt = previousTime === null ? 0 : currentTime - previousTime;
+
+      example.timeTick(dt);
+
+      previousTime = currentTime;
+      requestAnimationFrame(animationFrame);
+    }
+
+    function run() {
+      ctx = document.getElementById('canvas').getContext('2d');
+      logElement = document.getElementById('log');
+      example = new SimpleForces.Example001(ctx, logElement);
+      previousTime = null;
+
+      // example.renderer.camera = example.rodSurface;
+      // document.addEventListener('click', () => example.render(0.01));
+
+      animationFrame();
+    }
+  </script>
+  <!-- you can access distribution version via: <script src="https://unpkg.com/simple-forces"></script> -->
+</body>
+</html>
