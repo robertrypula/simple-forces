@@ -7,7 +7,7 @@ export class SimplePoint {
     public position: Complex,
     public velocity: Complex,
     public force: Complex = Complex.create()
-  ) {}
+  ) { }
 
   public transform(origin: SimplePoint, unitAngle: number): SimplePoint {
     const rotation = Complex.createPolar(-unitAngle);

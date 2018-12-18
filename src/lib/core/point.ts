@@ -20,7 +20,7 @@ export class Point {
     public position: Complex = Complex.create(),
     public mass: number = 1,
     public velocity: Complex = Complex.create()
-  ) {}
+  ) { }
 
   public cloneAsSimplePoint(): SimplePoint {
     return new SimplePoint(

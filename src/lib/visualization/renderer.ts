@@ -9,7 +9,7 @@ export class Renderer {
   public constructor(
     protected ctx: CanvasRenderingContext2D,
     protected world: World
-  ) {}
+  ) { }
 
   public render(): void {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -38,7 +38,7 @@ export class Renderer {
 
   protected renderPoints(): void {
     this.world.points.forEach((point: Point) => {
-      const p =  point.positionToRender;
+      const p = point.positionToRender;
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);

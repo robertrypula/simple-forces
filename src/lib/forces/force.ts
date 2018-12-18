@@ -23,7 +23,7 @@ export abstract class Force {
   protected constructor(
     public readonly forceType: ForceType,
     public readonly forceManager: ForceManager
-  ) {}
+  ) { }
 
   public abstract calculateForce(point: Point): void;
 }
@@ -33,7 +33,7 @@ export abstract class Force {
 export abstract class ForceManager {
   protected constructor(
     public world: World
-  ) {}
+  ) { }
 
   protected forEachWorldPoint(handler: (point: Point, isNotAware: boolean) => void) {
     this.world.points.forEach((point: Point) => {

@@ -17,7 +17,7 @@ export class Complex {
   public constructor(
     public x: number = 0,
     public y: number = 0
-  ) {}
+  ) { }
 
   public add(x: Complex): Complex {
     this.x += x.x;

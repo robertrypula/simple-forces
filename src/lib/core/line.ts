@@ -1,6 +1,6 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { SpringForceManager} from '..';
+import { SpringForceManager } from '..';
 import { ThrustForceManager } from '..';
 import { SurfaceReactionForceManager } from '..';
 import { Complex } from './complex';

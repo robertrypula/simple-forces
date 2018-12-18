@@ -10,5 +10,5 @@ export class Angle {
     public world: World,
     public lineA: Line,
     public lineB: Line
-  ) {}
+  ) { }
 }
