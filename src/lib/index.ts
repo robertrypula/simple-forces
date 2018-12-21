@@ -3,6 +3,7 @@
 export * from './version';
 
 export * from './build-in-examples/example-001';
+export * from './build-in-examples/example-002';
 export * from './build-in-examples/example-core';
 export * from './core/angle';
 export * from './core/complex';

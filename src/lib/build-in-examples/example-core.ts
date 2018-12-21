@@ -14,7 +14,7 @@ export abstract class ExampleCore {
     this.renderer = new Renderer(this.ctx, this.world);
   }
 
-  public log(data: string): void {
+  protected log(data: string): void {
     this.logElement.innerHTML = data;
   }
 }

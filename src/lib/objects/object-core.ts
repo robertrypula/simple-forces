@@ -10,15 +10,28 @@ export abstract class ObjectCore {
     public world: World
   ) { }
 
-  public translate(v: Complex): void {
+  public translate(amount: Complex): ObjectCore {
     this.points.forEach((point: Point) => {
-      point.position.add(v);
+      point.position.add(amount);
     });
+
+    return this;
   }
 
-  public updateStaticFlagInAllPoints(isStatic: boolean): void {
+  public rotate(amount: Complex): ObjectCore {
+    this.points.forEach((point: Point) => {
+      point.position.multiply(amount);
+      point.velocity.multiply(amount);
+    });
+
+    return this;
+  }
+
+  public updateStaticFlagInAllPoints(isStatic: boolean): ObjectCore {
     this.points.forEach((point: Point) => {
       point.isStatic = isStatic;
     });
+
+    return this;
   }
 }

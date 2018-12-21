@@ -20,6 +20,8 @@ export class Example001 extends ExampleCore {
 
   public createScene(): void {
     this.earth = new Earth(this.world);
+    this.earth.translate(Complex.create(0, -Earth.RADIUS));    // move earth below the world's origin
+
     this.axis = new Axis(this.world);
 
     this.createBoxWithLine();
@@ -53,7 +55,7 @@ export class Example001 extends ExampleCore {
 
     const rodA = this.world.createPoint(Complex.create(-0.6, -0.4), 1, Complex.create(0.05, 0.45));
     const rodB = this.world.createPoint(Complex.create(0.1, -0.6), 1, Complex.create(-0.05, 0.25));
-    const ball = this.world.createPoint(Complex.create(-0.1, -0.1), 1, Complex.create(0.6, -0.6));
+    const ball = this.world.createPoint(Complex.create(-0.03, 0.0), 1, Complex.create(0.0, -0.6));
 
     this.rodSurface = this.world.createLine(rodA, rodB);
 
@@ -66,15 +68,15 @@ export class Example001 extends ExampleCore {
     // this.rodSurface.createSurfaceReactionForce();
   }
 
-  public timeTick(dt: number): void { // TODO move to core class
+  public timeTick(dt: number): void {
     const timeBefore = getTime();
 
     this.world.calculatePhysics(dt);
     this.renderer.render();
 
     this.log(
-      dt.toFixed(3) + '\n' +
-      (getTime() - timeBefore).toFixed(3) + '\n'
+      'Diff between frames:' + dt.toFixed(3) + 's\n' +
+      'Physics/render time: ' + (getTime() - timeBefore).toFixed(3) + 's\n'
     );
   }
 }

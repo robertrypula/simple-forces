@@ -6,8 +6,8 @@
   <style>
     canvas {
       display: block;
-      width: 480px;
-      height: 270px;
+      width: 1800px;
+      height: 600px;
       outline: 1px solid lightgray;
     }
   </style>
@@ -15,7 +15,7 @@
 </head>
 <body onLoad="run()">
 
-  <canvas id="canvas" width="480" height="270"></canvas>
+  <canvas id="canvas" width="1800" height="600"></canvas>
   <br/>
   <button id="button-zoom-in">Zoom in</button>
   <button id="button-zoom-out">Zoom out</button>
@@ -52,11 +52,13 @@
     function run() {
       ctx = document.getElementById('canvas').getContext('2d');
       logElement = document.getElementById('log');
-      example = new SimpleForces.Example001(ctx, logElement);
+      example = new SimpleForces.Example002(ctx, logElement);
       previousTime = null;
 
       // example.renderer.camera = example.rodSurface;
-      // document.addEventListener('click', () => example.render(0.01));
+      document.addEventListener('click', () => {
+        console.log(example.world.points);
+      });
 
       requestAnimationFrame(animationFrame);
     }
