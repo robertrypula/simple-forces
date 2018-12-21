@@ -12,7 +12,7 @@ export class Renderer {
   public constructor(
     protected ctx: CanvasRenderingContext2D,
     protected world: World
-  ) {}
+  ) { }
 
   public render(): void {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);

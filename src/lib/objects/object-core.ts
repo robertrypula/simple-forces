@@ -8,7 +8,7 @@ export abstract class ObjectCore {
 
   protected constructor(
     public world: World
-  ) {}
+  ) { }
 
   public translate(v: Complex): void {
     this.points.forEach((point: Point) => {
