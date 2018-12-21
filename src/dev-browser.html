@@ -36,12 +36,13 @@
     var ctx;
     var logElement;
     var example;
-    var previousTime;
+    var previousTime = null;
 
     function animationFrame() {
-      var currentTime = example.getTime();
+      var currentTime = SimpleForces.getTime();
       var dt = previousTime === null ? 0 : currentTime - previousTime;
 
+      dt = 0.016;  // TODO only in development, constant delta
       example.timeTick(dt);
 
       previousTime = currentTime;
@@ -57,7 +58,7 @@
       // example.renderer.camera = example.rodSurface;
       // document.addEventListener('click', () => example.render(0.01));
 
-      animationFrame();
+      requestAnimationFrame(animationFrame);
     }
   </script>
   <!-- you can access distribution version via: <script src="https://unpkg.com/simple-forces"></script> -->

@@ -1,15 +1,18 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Line, Point, World } from '..';
+import { Complex } from '../complex';
+import { Line } from '../line';
+import { Point } from '../point';
+import { World } from '../world';
 
 export class Renderer {
-  public zoom: number = 140;
+  public zoom: number = 110;
   public camera: Line;
 
   public constructor(
     protected ctx: CanvasRenderingContext2D,
     protected world: World
-  ) { }
+  ) {}
 
   public render(): void {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);

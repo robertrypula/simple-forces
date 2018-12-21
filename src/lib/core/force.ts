@@ -1,7 +1,8 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex } from '..';
-import { Point, World } from '..';
+import { Complex } from './complex';
+import { Point } from './point';
+import { World } from './world';
 
 export enum ForceType {
   Drag = 'Drag',

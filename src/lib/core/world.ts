@@ -1,8 +1,8 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Force } from '..';
 import { Angle } from './angle';
 import { Complex } from './complex';
+import { Force } from './force';
 import { Line } from './line';
 import { Point } from './point';
 
@@ -14,7 +14,7 @@ export class World {
   public timeWarp: number = 1;
   public internalSteps: number = 100;
 
-  public calculatePhysics(dt: number = 0.010): void {
+  public calculatePhysics(dt: number): void {
     dt *= this.timeWarp;
 
     for (let i = 0; i < this.internalSteps; i++) {
@@ -61,35 +61,27 @@ export class World {
   }
 
   protected calculatePhysicsInternal(dt: number): void {
-    this.points.forEach((point: Point) => {
-      if (!point.isStatic) {
+    this.points
+      .filter((point: Point) => !point.isStatic)
+      .forEach((point: Point) => {
         point.forces.forEach((force: Force) => {
           force.calculateForce(point);
         });
-      }
-    });
+      });
 
-    this.points.forEach((point: Point) => {
-      if (!point.isStatic) {
+    this.points
+      .filter((point: Point) => !point.isStatic)
+      .forEach((point: Point) => {
         point.force.reset();
         point.forces.forEach((force) => {
           point.force.add(force.vector);
         });
 
         point.acceleration = point.force.clone().divideScalar(point.mass);
-
         point.position
-          .add(
-            point.velocity.clone().multiplyScalar(dt)
-          )
-          .add(
-            point.acceleration.clone().multiplyScalar(dt * dt / 2)
-          );
-
-        point.velocity.add(
-          point.acceleration.clone().multiplyScalar(dt)
-        );
-      }
-    });
+          .add(point.velocity.clone().multiplyScalar(dt))
+          .add(point.acceleration.clone().multiplyScalar(dt * dt / 2));
+        point.velocity.add(point.acceleration.clone().multiplyScalar(dt));
+      });
   }
 }

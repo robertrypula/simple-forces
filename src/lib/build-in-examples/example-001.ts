@@ -1,9 +1,14 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, ExampleCore, Line } from '..';
+import { Complex, getTime, Line } from '..';
+import { Axis } from '../objects/axis';
+import { Earth } from '../objects/earth';
+import { ExampleCore } from './example-core';
 
 export class Example001 extends ExampleCore {
   public rodSurface: Line;
+  public earth: Earth;
+  public axis: Axis;
 
   public constructor(
     ctx: CanvasRenderingContext2D,
@@ -14,8 +19,8 @@ export class Example001 extends ExampleCore {
   }
 
   public createScene(): void {
-    // this.createEarth();
-    // this.createAxis();
+    this.earth = new Earth(this.world);
+    this.axis = new Axis(this.world);
 
     this.createBoxWithLine();
 
@@ -25,7 +30,7 @@ export class Example001 extends ExampleCore {
 
   public createBoxWithLine(): void {
     const leftBottom = this.world.createPoint(Complex.create(-1.2, -0.8));
-    const rightBottom = this.world.createPoint(Complex.create(1.2, -0.8));
+    const rightBottom = this.world.createPoint(Complex.create(1.7, -0.8));
     const leftTop = this.world.createPoint(Complex.create(-1.2, 0.8));
     const rightTop = this.world.createPoint(Complex.create(1.4, 0.65));
 
@@ -61,15 +66,15 @@ export class Example001 extends ExampleCore {
     // this.rodSurface.createSurfaceReactionForce();
   }
 
-  public timeTick(dt: number): void {
-    const timeBefore = this.getTime();
+  public timeTick(dt: number): void { // TODO move to core class
+    const timeBefore = getTime();
 
     this.world.calculatePhysics(dt);
     this.renderer.render();
 
     this.log(
       dt.toFixed(3) + '\n' +
-      (this.getTime() - timeBefore).toFixed(3) + '\n'
+      (getTime() - timeBefore).toFixed(3) + '\n'
     );
   }
 }

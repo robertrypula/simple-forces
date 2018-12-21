@@ -1,6 +1,10 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Force, ForceManager, ForceType, Line, Point, World } from '..';
+import { Complex } from '../complex';
+import { Force, ForceManager, ForceType } from '../force';
+import { Line } from '../line';
+import { Point } from '../point';
+import { World } from '../world';
 
 /*tslint:disable:max-classes-per-file*/
 

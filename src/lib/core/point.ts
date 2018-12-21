@@ -1,8 +1,8 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Force } from '..';
-import { GravityForceManager } from '..';
 import { Complex } from './complex';
+import { Force } from './force';
+import { GravityForceManager } from './forces/gravity';
 import { SimplePoint } from './simple-point';
 import { World } from './world';
 
