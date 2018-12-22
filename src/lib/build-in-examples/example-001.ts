@@ -1,14 +1,16 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, getTime, Line } from '..';
+import { Complex, getTime, Line, Point } from '..';
 import { Axis } from '../objects/axis';
 import { Earth } from '../objects/earth';
 import { ExampleCore } from './example-core';
 
 export class Example001 extends ExampleCore {
   public rodSurface: Line;
-  public earth: Earth;
   public axis: Axis;
+  public earth: Earth;
+
+  public ball: Point;
 
   public constructor(
     ctx: CanvasRenderingContext2D,
@@ -28,6 +30,8 @@ export class Example001 extends ExampleCore {
 
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
+
+    // this.world.timeWarp = 0.1;
   }
 
   public createBoxWithLine(): void {
@@ -55,13 +59,13 @@ export class Example001 extends ExampleCore {
 
     const rodA = this.world.createPoint(Complex.create(-0.6, -0.4), 1, Complex.create(0.05, 0.45));
     const rodB = this.world.createPoint(Complex.create(0.1, -0.6), 1, Complex.create(-0.05, 0.25));
-    const ball = this.world.createPoint(Complex.create(-0.03, 0.0), 1, Complex.create(0.0, -0.6));
+    this.ball = this.world.createPoint(Complex.create(-0.03, 0.0), 1, Complex.create(0.0, 0.0));
 
     this.rodSurface = this.world.createLine(rodA, rodB);
 
     rodA.name = 'rodA';
     rodB.name = 'rodB';
-    ball.name = 'ball';
+    this.ball.name = 'ball';
     this.rodSurface.name = 'rodSurface';
 
     this.rodSurface.createSpringForce();
@@ -75,8 +79,9 @@ export class Example001 extends ExampleCore {
     this.renderer.render();
 
     this.log(
-      'Diff between frames:' + dt.toFixed(3) + 's\n' +
-      'Physics/render time: ' + (getTime() - timeBefore).toFixed(3) + 's\n'
+      'Diff between frames: ' + dt.toFixed(3) + ' s\n' +
+      'Physics/render time: ' + (getTime() - timeBefore).toFixed(3) + ' s\n' +
+      'Ball position: ' + this.ball.position.x.toFixed(3) + ' ' + this.ball.position.y.toFixed(3)
     );
   }
 }

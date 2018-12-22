@@ -22,7 +22,7 @@ export * from './tools';
 /* TODO:
   + 0.20 kod tworenia obiektów do osobnego katalogu
   + 0.05 katalog utilities: getTime
-  - 0.50 dodanie exampla appollo (pozwoli przetestować zmiany z nastepnego punktu)
+  + 0.50 dodanie exampla appollo (pozwoli przetestować zmiany z nastepnego punktu)
   - 0.25 dev-* na demo-*
   - 1.00 fix na nieprzetwazanie tych samych sil
 

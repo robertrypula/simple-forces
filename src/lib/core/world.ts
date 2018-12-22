@@ -78,6 +78,9 @@ export class World {
         });
 
         point.acceleration = point.force.clone().divideScalar(point.mass);
+
+        // TODO double check formulas with 'Velocity Verlet' (probably velocity is calculated incorrectly)
+        // https://en.wikipedia.org/wiki/Verlet_integration
         point.position
           .add(point.velocity.clone().multiplyScalar(dt))
           .add(point.acceleration.clone().multiplyScalar(dt * dt / 2));
