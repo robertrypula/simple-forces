@@ -40,7 +40,7 @@ export class Example002 extends ExampleCore {
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
 
-    this.world.internalSteps = 1000;
+    this.world.internalSteps = 10000;
     this.renderer.zoom = 0.000001 * 1.5;
     // this.renderer.zoom = 0.00001 * 1.5;
     this.world.timeWarp = 3600 * 2;            // 1 second -> 2 hours

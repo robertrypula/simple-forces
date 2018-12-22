@@ -34,8 +34,8 @@ export class SpringForce extends Force {
 // ----------------------------------------------------------------
 
 export class SpringForceManager extends ForceManager {
-  public k: number = 12.1;
-  public b: number = 12.1;
+  public k: number = 200;
+  public b: number = 1;
 
   public constructor(
     world: World,

@@ -57,8 +57,8 @@ export class Example001 extends ExampleCore {
     const top = this.world.createLine(rightTop, leftTop);
     top.createSurfaceReactionForce();
 
-    const rodA = this.world.createPoint(Complex.create(-0.6, -0.4), 1, Complex.create(0.05, 0.45));
-    const rodB = this.world.createPoint(Complex.create(0.1, -0.6), 1, Complex.create(-0.05, 0.25));
+    const rodA = this.world.createPoint(Complex.create(-0.6, -0.4), 0.1, Complex.create(0.05, 0.45));
+    const rodB = this.world.createPoint(Complex.create(0.1, -0.6), 0.1, Complex.create(-0.05, 0.25));
     this.ball = this.world.createPoint(Complex.create(-0.03, 0.0), 1, Complex.create(0.0, 0.0));
 
     this.rodSurface = this.world.createLine(rodA, rodB);

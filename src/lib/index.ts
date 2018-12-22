@@ -4,6 +4,7 @@ export * from './version';
 
 export * from './build-in-examples/example-001';
 export * from './build-in-examples/example-002';
+export * from './build-in-examples/example-003';
 export * from './build-in-examples/example-core';
 export * from './core/angle';
 export * from './core/complex';
@@ -24,7 +25,6 @@ export * from './tools';
   + 0.05 katalog utilities: getTime
   + 0.50 dodanie exampla appollo (pozwoli przetestować zmiany z nastepnego punktu)
   + 0.25 dev-* na demo-*
-  - 1.00 fix na nieprzetwazanie tych samych sil
 
   - klawiszologia i przekazanie ich do example do dalszej analizy - klawisze w enumie
     - arrows: WSAD
@@ -36,12 +36,13 @@ export * from './tools';
 
   - mozliwosc generowania obiektów:
     - box
-    - koło
+    + koło
     - spaceship apollo
     - rocket
     - car
 
   - mozliwosc zmiany aktywnego pojazdu (example core), to zmieni też kamerę
+  - 1.00 fix na nieprzetwazanie tych samych sil
   - wrapper na contextu2d i obiektu do loga
   - platforms: terminal, browser
 */
