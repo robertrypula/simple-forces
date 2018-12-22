@@ -33,11 +33,11 @@ function getConfig(env) {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        filename: 'dev-browser.html',
+        filename: 'demo-browser.html',
         hash: true,
         minify: false,
-        template: './src/dev-browser.html',
-        excludeAssets: [/^dev\-node.*.js/]      // https://github.com/jantimon/html-webpack-plugin#filtering-chunks
+        template: './src/demo-browser.html',
+        excludeAssets: [/^demo\-node.*.js/]      // https://github.com/jantimon/html-webpack-plugin#filtering-chunks
       }),
       new HtmlWebpackExcludeAssetsPlugin(),       // https://stackoverflow.com/a/50830422
       new webpack.DefinePlugin({
@@ -52,7 +52,7 @@ function fillDev(config) {
   config.mode = 'development';
   config.entry = {
     [`${packageName}-v${version}`]: './src/lib/index.ts',
-    [`dev-node`]: './src/dev-node.ts'
+    [`demo-node`]: './src/demo-node.ts'
   };
 
   config.devtool = 'inline-source-map';
@@ -63,7 +63,7 @@ function fillDev(config) {
     compress: true,
     port: 8000,
     hot: false,
-    openPage: 'dist/dev-browser.html',
+    openPage: 'dist/demo-browser.html',
     overlay: {
       warnings: true,
       errors: true
@@ -83,8 +83,8 @@ function fillProd(config) {
     new CopyWebpackPlugin(
       [
         {
-          from: path.resolve(__dirname) + '/src/dev-node-vanilla.js',
-          to: path.resolve(__dirname) + '/dist/dev-node-vanilla.js',
+          from: path.resolve(__dirname) + '/src/demo-node-vanilla.js',
+          to: path.resolve(__dirname) + '/dist/demo-node-vanilla.js',
           toType: 'file'
         }
       ]
