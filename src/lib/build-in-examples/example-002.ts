@@ -1,11 +1,11 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { getTime } from '..';
 import { Apollo } from '../objects/apollo';
 import { Axis } from '../objects/axis';
 import { Earth } from '../objects/earth';
 import { Iss } from '../objects/iss';
 import { Moon } from '../objects/moon';
+import { format } from '../tools';
 import { ExampleCore } from './example-core';
 
 export class Example002 extends ExampleCore {
@@ -53,29 +53,21 @@ export class Example002 extends ExampleCore {
   }
 
   public timeTick(dt: number): void {
-    const timeBefore = getTime();
-
-    this.world.calculatePhysics(dt);
-    this.renderer.render();
-
     this.log(
-      'Diff between frames: ' + dt.toFixed(3) + ' s\n' +
-      'Physics/render time: ' + (getTime() - timeBefore).toFixed(3) + ' s\n' +
+      this.timeTickWithLog(dt) +
       this.spacecraftLog() +
-      'Moon Distance: ' + (this.moon.center.position.getMagnitude() / 1e6).toFixed(2) + ' thousands km\n'
+      'Moon Distance: ' + this.moon.center.position.toStringMagnitude(2, 1e6) + ' thousands km\n'
     );
   }
 
   public spacecraftLog() {
     const apolloPosition = this.apollo.center.position;
     const apolloAltitudeEarth = apolloPosition.getMagnitude() - Earth.RADIUS;
-    const apolloAltitudeEarthFormatted = (apolloAltitudeEarth / 1e6).toFixed(3);
     const apolloAltitudeMoon = apolloPosition.clone().subtract(this.moon.center.position).getMagnitude() - Moon.RADIUS;
-    const apolloAltitudeMoonFormatted = (apolloAltitudeMoon / 1e6).toFixed(3);
 
     return '' +
       'Iss altitude: ' + ((this.iss.center.position.getMagnitude() - Earth.RADIUS) / 1e3).toFixed(2) + ' km\n' +
-      'Apollo altitude (Earth): ' + apolloAltitudeEarthFormatted + ' thousands km\n' +
-      'Apollo altitude (Moon): ' + apolloAltitudeMoonFormatted + ' thousands km\n';
+      'Apollo altitude (Earth): ' + format(apolloAltitudeEarth, 3, 1e6) + ' thousands km\n' +
+      'Apollo altitude (Moon): ' + format(apolloAltitudeMoon, 3, 1e6) + ' thousands km\n';
   }
 }

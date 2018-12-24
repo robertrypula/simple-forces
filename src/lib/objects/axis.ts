@@ -24,7 +24,7 @@ export class Axis extends ObjectCore {
     this.origin.name = 'Axis origin';
     this.axisX.name = 'Axis X';
     this.axisY.name = 'Axis Y';
-    this.updateStaticFlagInAllPoints(true);
+    this.setIsStatic(true);
 
     this.lines.push(
       this.axisXLine = this.world.createLine(this.origin, this.axisX),

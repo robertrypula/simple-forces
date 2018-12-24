@@ -131,4 +131,12 @@ export class Complex {
 
     return this;
   }
+
+  public toStringMagnitude(toFixed: number = 3, factor: number = 1): string {
+    return (this.getMagnitude() / factor).toFixed(toFixed);
+  }
+
+  public toStringXY(toFixed: number = 3, factor: number = 1): string {
+    return (this.x / factor).toFixed(toFixed) + ' ' + (this.y / factor).toFixed(toFixed);
+  }
 }

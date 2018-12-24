@@ -7,8 +7,8 @@ import { ObjectCore } from './object-core';
 // https://ssd.jpl.nasa.gov/horizons.cgi
 
 export class Earth extends ObjectCore {
-  public static readonly MASS = 5.97219e24;
-  public static readonly RADIUS = 6378100;
+  public static readonly MASS = 5.97219e24;     // https://en.wikipedia.org/wiki/Earth_mass
+  public static readonly RADIUS = 6371e3;       // https://en.wikipedia.org/wiki/Earth_radius
   public center: Point;
 
   public constructor(world: World) {

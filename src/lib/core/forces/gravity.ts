@@ -8,7 +8,7 @@ import { World } from '../world';
 /*tslint:disable:max-classes-per-file*/
 
 export class GravityForce extends Force {
-  public static readonly G = 6.674e-11;
+  public static readonly G = 6.674e-11;      // https://en.wikipedia.org/wiki/Gravitational_constant
 
   public constructor(
     public point: Point,

@@ -1,6 +1,6 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Renderer, World } from '..';
+import { format, getTime, Renderer, World } from '..';
 
 export abstract class ExampleCore {
   public world: World;
@@ -15,6 +15,20 @@ export abstract class ExampleCore {
   }
 
   protected log(data: string): void {
-    this.logElement.innerHTML = data;
+    if (this.logElement) {
+      this.logElement.innerHTML = data;
+    }
+  }
+
+  protected timeTickWithLog(dt: number): string {
+    const timeBefore = getTime();
+
+    this.world.calculatePhysics(dt);
+    this.renderer.render();
+
+    return (
+      'Diff between frames: ' + format(dt, 3) + ' s\n' +
+      'Physics/render time: ' + format(getTime() - timeBefore, 3) + ' s\n'
+    );
   }
 }

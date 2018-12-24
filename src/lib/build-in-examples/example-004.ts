@@ -1,10 +1,10 @@
 // Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
 
-import { Wheel } from '../objects/wheel';
+import { Spacecraft } from '../objects/spacecraft';
 import { ExampleEarthSurface } from './example-earth-surface';
 
-export class Example003 extends ExampleEarthSurface {
-  public wheel: Wheel;
+export class Example004 extends ExampleEarthSurface {
+  public spacecraft: Spacecraft;
 
   public constructor(
     ctx: CanvasRenderingContext2D,
@@ -17,12 +17,10 @@ export class Example003 extends ExampleEarthSurface {
   public createScene(): void {
     this.createEarthSurfaceEnvironment();
 
-    this.wheel = new Wheel(this.world);
+    this.spacecraft = new Spacecraft(this.world);
 
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
-
-    // this.world.timeWarp = 0.2;
   }
 
   public timeTick(dt: number): void {

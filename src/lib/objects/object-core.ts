@@ -27,7 +27,7 @@ export abstract class ObjectCore {
     return this;
   }
 
-  public updateStaticFlagInAllPoints(isStatic: boolean): ObjectCore {
+  public setIsStatic(isStatic: boolean): ObjectCore {
     this.points.forEach((point: Point) => {
       point.isStatic = isStatic;
     });

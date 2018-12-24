@@ -22,16 +22,22 @@ export class Line {
     this.length = pointB.position.clone().subtract(pointA.position).getMagnitude();
   }
 
-  public createThrustForce(): void {
+  public createThrustForce(): Line {
     this.thrustForceManager = new ThrustForceManager(this.world, this);
+
+    return this;
   }
 
-  public createSpringForce(): void {
+  public createSpringForce(): Line {
     this.springForceManager = new SpringForceManager(this.world, this);
+
+    return this;
   }
 
-  public createSurfaceReactionForce(): void {
+  public createSurfaceReactionForce(): Line {
     this.surfaceReactionForceManager = new SurfaceReactionForceManager(this.world, this);
+
+    return this;
   }
 
   public getDirection(): Complex {
@@ -40,5 +46,12 @@ export class Line {
 
   public getUnitAngle(): number {
     return this.getDirection().getUnitAngle();
+  }
+
+  public setIsStatic(isStatic: boolean): Line {
+    this.pointA.isStatic = isStatic;
+    this.pointB.isStatic = isStatic;
+
+    return this;
   }
 }

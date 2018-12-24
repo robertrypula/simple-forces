@@ -12,15 +12,14 @@ export class Renderer {
   public constructor(
     protected ctx: CanvasRenderingContext2D,
     protected world: World
-  ) { }
+  ) {}
 
   public render(): void {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-
     if (!this.ctx) {
-      throw new Error('Please provide HTML5 canvas context');
+      return;
     }
 
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.vertexShader();
     this.renderLines();
     this.renderPoints();
