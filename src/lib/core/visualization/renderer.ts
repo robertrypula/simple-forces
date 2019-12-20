@@ -7,7 +7,7 @@ import { World } from '../world';
 
 export class Renderer {
   public zoom: number = 110;
-  public camera: Line;
+  public camera: Line | Point;
 
   public constructor(
     protected ctx: CanvasRenderingContext2D,
@@ -41,11 +41,13 @@ export class Renderer {
   protected renderPoints(): void {
     this.world.points.forEach((point: Point) => {
       const p = point.positionToRender;
+      const radius = point.radius !== null ? point.radius * this.zoom : 2;
+      const color = point.radius !== null ? '#ad8f2d' : '#2dad8f';
 
       this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
-      this.ctx.fillStyle = '#2dad8f';
-      this.ctx.fill();
+      this.ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);
+      this.ctx.strokeStyle = color;
+      this.ctx.stroke();
     });
   }
 
@@ -54,9 +56,21 @@ export class Renderer {
       this.ctx.canvas.clientWidth / 2,
       this.ctx.canvas.clientHeight / 2
     );
-    const unitAngle = this.camera ? this.camera.getUnitAngle() : 0;
-    const cameraPosition = this.camera ? this.camera.pointA.position : Complex.create();
-    const rotation = Complex.createPolar(-unitAngle);
+    let cameraPosition: Complex;
+    let rotation: Complex;
+
+    if (!this.camera) {
+      cameraPosition = Complex.create();
+      rotation = Complex.createPolar();
+    } else if (this.camera instanceof Line) {
+      let unitAngle = this.camera.getUnitAngle();
+
+      cameraPosition = this.camera.pointA.position;
+      rotation = Complex.createPolar(-unitAngle);
+    } else {
+      cameraPosition = this.camera.position;
+      rotation = Complex.createPolar();
+    }
 
     this.world.points.forEach((point: Point) => {
       point.positionToRender = viewportCenter

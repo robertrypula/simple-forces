@@ -14,6 +14,7 @@ export class Point {
   public isStatic: boolean = false;
   public name: string;
   public gravityForceManager: GravityForceManager;
+  public radius: number = null;
 
   public constructor(
     public world: World,

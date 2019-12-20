@@ -8,7 +8,7 @@ import { ObjectCore } from './object-core';
 
 export class Moon extends ObjectCore {
   public static readonly MASS = 7.34767309e22;
-  public static readonly RADIUS = 1737;
+  public static readonly RADIUS = 1737e3;
   public static readonly PERIGEE = 362.6e6;
   public static readonly PERIGEE_VELOCITY = 1077.2;  // TODO fine-tune orbital velocity
   public center: Point;
@@ -34,6 +34,7 @@ export class Moon extends ObjectCore {
 
     this.center.name = 'Moon';
     this.center.isStatic = true;
+    this.center.radius = Moon.RADIUS;
     this.center.createGravityForce();
   }
 }

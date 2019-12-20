@@ -23,6 +23,7 @@ export class Earth extends ObjectCore {
 
     this.center.name = 'Moon';
     this.center.isStatic = true;
+    this.center.radius = Earth.RADIUS;
     this.center.createGravityForce();
   }
 }

@@ -22,6 +22,9 @@ export class Example001 extends ExampleEarthSurface {
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
     // this.world.timeWarp = 0.1;
+
+
+    // this.renderer.zoom = 0.01;
   }
 
   public timeTick(dt: number): void {

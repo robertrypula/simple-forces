@@ -16,6 +16,8 @@ export class Example002 extends ExampleCore {
   public apollo: Apollo;
   public iss: Iss;
 
+  public closestMoonApproach: number = Infinity;
+
   public constructor(
     ctx: CanvasRenderingContext2D,
     logElement: HTMLElement
@@ -41,11 +43,7 @@ export class Example002 extends ExampleCore {
     this.world.refreshSurfaceReactionAwareness();
 
     this.world.internalSteps = 10000;
-    this.renderer.zoom = 0.000001 * 1.5;
-    // this.renderer.zoom = 0.00001 * 1.5;
-    this.world.timeWarp = 3600 * 2;            // 1 second -> 2 hours
-    // this.world.timeWarp = 60 * 60;
-    // this.world.timeWarp = 60 * 5;
+    this.renderer.camera = this.apollo.center;
 
     setInterval(() => {
       this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
@@ -53,21 +51,30 @@ export class Example002 extends ExampleCore {
   }
 
   public timeTick(dt: number): void {
-    this.log(
-      this.timeTickWithLog(dt) +
-      this.spacecraftLog() +
-      'Moon Distance: ' + this.moon.center.position.toStringMagnitude(2, 1e6) + ' thousands km\n'
-    );
-  }
-
-  public spacecraftLog() {
     const apolloPosition = this.apollo.center.position;
     const apolloAltitudeEarth = apolloPosition.getMagnitude() - Earth.RADIUS;
     const apolloAltitudeMoon = apolloPosition.clone().subtract(this.moon.center.position).getMagnitude() - Moon.RADIUS;
 
-    return '' +
+    if (apolloAltitudeEarth < 1e6) {
+      this.world.timeWarp = 30;
+      this.renderer.zoom = 0.0001 * 1.5;
+    } else if (apolloAltitudeMoon < 10e6) {
+      this.world.timeWarp = 60 * 10;
+      this.renderer.zoom = 0.00001 * 1.5;
+    } else {
+      this.world.timeWarp = 3600 * 2;
+      this.renderer.zoom = 0.000001 * 1.5;
+    }
+
+    this.closestMoonApproach = Math.min(this.closestMoonApproach, apolloAltitudeMoon);
+
+    this.log(
+      this.timeTickWithLog(dt) +
       'Iss altitude: ' + ((this.iss.center.position.getMagnitude() - Earth.RADIUS) / 1e3).toFixed(2) + ' km\n' +
       'Apollo altitude (Earth): ' + format(apolloAltitudeEarth, 3, 1e6) + ' thousands km\n' +
-      'Apollo altitude (Moon): ' + format(apolloAltitudeMoon, 3, 1e6) + ' thousands km\n';
+      'Apollo altitude (Moon): ' + format(apolloAltitudeMoon, 3, 1e6) + ' thousands km\n' +
+      'Apollo closest approach to Moon: ' + format(this.closestMoonApproach, 3, 1e6) + ' thousands km\n' +
+      'Moon/Earth center distance: ' + this.moon.center.position.toStringMagnitude(2, 1e6) + ' thousands km\n'
+    );
   }
 }

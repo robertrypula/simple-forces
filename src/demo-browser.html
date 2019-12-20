@@ -9,7 +9,7 @@
       width: 1600px;
       height: 600px;
       outline: 1px solid lightgray;
-      opacity: 0.3;
+      /*opacity: 0.3;*/
     }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +53,7 @@
     function run() {
       ctx = document.getElementById('canvas').getContext('2d');
       logElement = document.getElementById('log');
-      example = new SimpleForces.Example001(ctx, logElement);
+      example = new SimpleForces.Example003(ctx, logElement);
       previousTime = null;
 
       // example.renderer.camera = example.rodSurface;

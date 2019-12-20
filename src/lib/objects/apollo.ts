@@ -8,11 +8,10 @@ export class Apollo extends ObjectCore {
   // https://en.wikipedia.org/wiki/Apollo_8
   // TODO fine-tune perigee
   // TODO fine-tune orbital velocity: wiki says about 7.793e3 & 10.822e3
-  // V 10.950e3 from perigee 184.4e3 it gives apogee at ~491 361 km
   public static readonly MASS = 28870 + 5621 + 23250;
   public static readonly PERIGEE = Earth.RADIUS + 184.4e3;
   public static readonly PERIGEE_VELOCITY = 7.793e3;
-  public static readonly PERIGEE_TLI_VELOCITY = 10.940e3;
+  public static readonly PERIGEE_TLI_VELOCITY = 10.944605e3;   // 9448
   public center: Point;
 
   public constructor(world: World) {
