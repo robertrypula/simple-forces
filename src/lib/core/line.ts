@@ -21,19 +21,19 @@ export class Line {
       .getMagnitude();
   }
 
-  public createThrustForce(): Line {
+  public createThrustForceSource(): Line {
     this.thrustForceManager = new ThrustForceSource(this.world, this);
 
     return this;
   }
 
-  public createSpringForce(): Line {
+  public createSpringForceSource(): Line {
     this.springForceManager = new SpringForceSource(this.world, this);
 
     return this;
   }
 
-  public createSurfaceReactionForce(): Line {
+  public createSurfaceReactionForceSource(): Line {
     this.surfaceReactionForceManager = new SurfaceReactionForceSource(this.world, this);
 
     return this;

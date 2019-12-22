@@ -16,6 +16,6 @@ export abstract class ExampleEarthSurface extends ExampleCore {
       this.world.createPoint(Complex.create(5, -1.5))
     );
     this.earthSurface.setIsStatic(true);
-    this.earthSurface.createSurfaceReactionForce();
+    this.earthSurface.createSurfaceReactionForceSource();
   }
 }

@@ -25,14 +25,14 @@ export class Example003 extends ExampleEarthSurface {
       this.world.createPoint(Complex.create(5, 1.0))
     );
     this.lineA.setIsStatic(true);
-    this.lineA.createSurfaceReactionForce();
+    this.lineA.createSurfaceReactionForceSource();
 
     this.lineLeft = this.world.createLine(
       this.world.createPoint(Complex.create(-5, 2)),
       this.world.createPoint(Complex.create(-5, -1))
     );
     this.lineLeft.setIsStatic(true);
-    this.lineLeft.createSurfaceReactionForce();
+    this.lineLeft.createSurfaceReactionForceSource();
 
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
