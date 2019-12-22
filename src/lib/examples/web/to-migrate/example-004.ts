@@ -1,6 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Spacecraft } from '../objects/spacecraft';
+import { Spacecraft } from '@'; // in your code it would be: ... from 'simple-forces'
 import { ExampleEarthSurface } from '../example-earth-surface';
 
 export class Example004 extends ExampleEarthSurface {

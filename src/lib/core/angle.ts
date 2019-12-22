@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Line } from './line';
-import { World } from './world';
+import { Line } from '@core/line';
+import { World } from '@core/world';
 
 export class Angle {
   public angle: number;

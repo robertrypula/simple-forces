@@ -1,7 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Point, World } from '..';
-import { ObjectCore } from './object-core';
+import { Complex } from '@core/complex';
+import { Point } from '@core/point';
+import { World } from '@core/world';
+import { ObjectCore } from '@objects/object-core';
 
 // Other planets vectors:
 // https://ssd.jpl.nasa.gov/horizons.cgi

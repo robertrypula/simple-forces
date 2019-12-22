@@ -13,7 +13,8 @@
       "@core/*": ["core/*"],
       "@examples/*": ["examples/*"],
       "@objects/*": ["objects/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@visualization/*": ["visualization/*"]
     },
     "sourceMap": true,
     "target": "es5"

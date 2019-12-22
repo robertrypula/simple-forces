@@ -1,6 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { format, getTime, Renderer, World } from './';
+import {
+  format,
+  getTime,
+  Renderer,
+  World
+} from '@'; // in your code it would be: ... from 'simple-forces'
 
 export abstract class ExampleCore {
   public world: World;

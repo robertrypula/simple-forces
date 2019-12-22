@@ -1,11 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex } from './complex';
-import { SpringForceManager } from './forces/spring';
-import { SurfaceReactionForceManager } from './forces/surface-reaction';
-import { ThrustForceManager } from './forces/thrust';
-import { Point } from './point';
-import { World } from './world';
+import { Complex } from '@core/complex';
+import { SpringForceManager } from '@core/forces/spring';
+import { SurfaceReactionForceManager } from '@core/forces/surface-reaction';
+import { ThrustForceManager } from '@core/forces/thrust';
+import { Point } from '@core/point';
+import { World } from '@core/world';
 
 export class Line {
   public length: number;

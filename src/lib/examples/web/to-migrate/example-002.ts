@@ -1,11 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Apollo } from '../objects/apollo';
-import { Axis } from '../objects/axis';
-import { Earth } from '../objects/earth';
-import { Iss } from '../objects/iss';
-import { Moon } from '../objects/moon';
-import { format } from '../tools';
+import { Apollo, Axis, Earth, format, Iss, Moon } from '@'; // in your code it would be: ... from 'simple-forces'
 import { ExampleCore } from '../example-core';
 
 export class Example002 extends ExampleCore {

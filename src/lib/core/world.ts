@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Angle } from './angle';
-import { Complex } from './complex';
-import { Force } from './force';
-import { Line } from './line';
-import { Point } from './point';
+import { Angle } from '@core/angle';
+import { Complex } from '@core/complex';
+import { Force } from '@core/force';
+import { Line } from '@core/line';
+import { Point } from '@core/point';
 
 export class World {
   public points: Point[] = [];

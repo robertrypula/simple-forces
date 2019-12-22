@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex } from './complex';
-import { Force } from './force';
-import { GravityForceManager } from './forces/gravity';
-import { SimplePoint } from './simple-point';
-import { World } from './world';
+import { Complex } from '@core/complex';
+import { Force } from '@core/force';
+import { GravityForceManager } from '@core/forces/gravity';
+import { SimplePoint } from '@core/simple-point';
+import { World } from '@core/world';
 
 export class Point {
   public forces: Force[] = [];

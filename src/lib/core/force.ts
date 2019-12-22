@@ -1,8 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex } from './complex';
-import { Point } from './point';
-import { World } from './world';
+import { Complex } from '@core/complex';
+import { Point } from '@core/point';
+import { World } from '@core/world';
+
+/*tslint:disable:max-classes-per-file*/
 
 export enum ForceType {
   Drag = 'Drag',
@@ -15,8 +17,6 @@ export enum ForceType {
   Thrust = 'Thrust',
   Torque = 'Torque'
 }
-
-/*tslint:disable:max-classes-per-file*/
 
 export abstract class Force {
   public vector: Complex = Complex.create();

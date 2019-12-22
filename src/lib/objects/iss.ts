@@ -1,8 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Point, World } from '..';
-import { Earth } from './earth';
-import { ObjectCore } from './object-core';
+import { Complex } from '@core/complex';
+import { Point } from '@core/point';
+import { World } from '@core/world';
+import { Earth } from '@objects/earth';
+import { ObjectCore } from '@objects/object-core';
 
 export class Iss extends ObjectCore {
   public static readonly MASS = 419725;

@@ -1,6 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex } from './complex';
+import { Complex } from '@core/complex';
 
 export class SimplePoint {
   public constructor(

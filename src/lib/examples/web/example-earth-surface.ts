@@ -1,7 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Line } from './';
-import { Earth } from '../objects/earth';
+import {
+  Complex,
+  Earth,
+  Line
+} from '@'; // in your code it would be: ... from 'simple-forces'
 import { ExampleCore } from './example-core';
 
 export abstract class ExampleEarthSurface extends ExampleCore {

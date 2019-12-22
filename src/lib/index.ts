@@ -6,9 +6,35 @@ export const libraryInfo = {
   version: '0.1.0-rc1'
 };
 
+export * from '@core/angle';
+export * from '@core/complex';
+export * from '@core/force';
+export * from '@core/forces/gravity';
+export * from '@core/forces/spring';
+export * from '@core/forces/surface-reaction';
+export * from '@core/forces/thrust';
+export * from '@core/line';
+export * from '@core/point';
+export * from '@core/simple-point';
+export * from '@core/world';
+export * from '@objects/apollo';
+export * from '@objects/axis';
+export * from '@objects/earth';
+export * from '@objects/iss';
+export * from '@objects/moon';
+export * from '@objects/object-core';
+export * from '@objects/spacecraft';
+export * from '@objects/wheel';
+export * from '@shared/tools';
+export * from '@visualization/renderer';
+
+// ----------------------------------------------------------------------------
+
 import '@examples/web/index.scss';
 export * from '@examples/node/cli';
 export * from '@examples/web/example-000/example-000';
+
+// ----------------------------------------------------------------------------
 
 import { CliNodeExample } from '@examples/node/cli';
 import { argc, argv, isNode } from '@shared/environment-utils';
@@ -20,27 +46,12 @@ let cliNodeExample: CliNodeExample;
 if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
   cliNodeExample = new CliNodeExample();
 }
+
+// ----------------------------------------------------------------------------
+
 /*
-export * from './build-in-examples/example-001';
-export * from './build-in-examples/example-002';
-export * from './build-in-examples/example-003';
-export * from './build-in-examples/example-004';
-export * from './build-in-examples/example-core';
-export * from './core/angle';
-export * from './core/complex';
-export * from './core/force';
-export * from './core/forces/gravity';
-export * from './core/forces/spring';
-export * from './core/forces/surface-reaction';
-export * from './core/forces/thrust';
-export * from './core/line';
-export * from './core/point';
-export * from './core/simple-point';
-export * from './core/visualization/renderer';
-export * from './core/world';
-export * from './tools';
-*/
-/* TODO:
+  TODO:
+
   + 0.20 kod tworenia obiektów do osobnego katalogu
   + 0.05 katalog utilities: getTime
   + 0.50 dodanie exampla appollo (pozwoli przetestować zmiany z nastepnego punktu)
