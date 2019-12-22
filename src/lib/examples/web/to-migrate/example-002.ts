@@ -13,10 +13,7 @@ export class Example002 extends ExampleCore {
 
   public closestMoonApproach: number = Infinity;
 
-  public constructor(
-    ctx: CanvasRenderingContext2D,
-    logElement: HTMLElement
-  ) {
+  public constructor(ctx: CanvasRenderingContext2D, logElement: HTMLElement) {
     super(ctx, logElement);
     this.createScene();
   }
@@ -48,7 +45,11 @@ export class Example002 extends ExampleCore {
   public timeTick(dt: number): void {
     const apolloPosition = this.apollo.center.position;
     const apolloAltitudeEarth = apolloPosition.getMagnitude() - Earth.RADIUS;
-    const apolloAltitudeMoon = apolloPosition.clone().subtract(this.moon.center.position).getMagnitude() - Moon.RADIUS;
+    const apolloAltitudeMoon =
+      apolloPosition
+        .clone()
+        .subtract(this.moon.center.position)
+        .getMagnitude() - Moon.RADIUS;
 
     if (apolloAltitudeEarth < 1e6) {
       this.world.timeWarp = 30;
@@ -65,11 +66,21 @@ export class Example002 extends ExampleCore {
 
     this.log(
       this.timeTickWithLog(dt) +
-      'Iss altitude: ' + ((this.iss.center.position.getMagnitude() - Earth.RADIUS) / 1e3).toFixed(2) + ' km\n' +
-      'Apollo altitude (Earth): ' + format(apolloAltitudeEarth, 3, 1e6) + ' thousands km\n' +
-      'Apollo altitude (Moon): ' + format(apolloAltitudeMoon, 3, 1e6) + ' thousands km\n' +
-      'Apollo closest approach to Moon: ' + format(this.closestMoonApproach, 3, 1e6) + ' thousands km\n' +
-      'Moon/Earth center distance: ' + this.moon.center.position.toStringMagnitude(2, 1e6) + ' thousands km\n'
+        'Iss altitude: ' +
+        ((this.iss.center.position.getMagnitude() - Earth.RADIUS) / 1e3).toFixed(2) +
+        ' km\n' +
+        'Apollo altitude (Earth): ' +
+        format(apolloAltitudeEarth, 3, 1e6) +
+        ' thousands km\n' +
+        'Apollo altitude (Moon): ' +
+        format(apolloAltitudeMoon, 3, 1e6) +
+        ' thousands km\n' +
+        'Apollo closest approach to Moon: ' +
+        format(this.closestMoonApproach, 3, 1e6) +
+        ' thousands km\n' +
+        'Moon/Earth center distance: ' +
+        this.moon.center.position.toStringMagnitude(2, 1e6) +
+        ' thousands km\n'
     );
   }
 }

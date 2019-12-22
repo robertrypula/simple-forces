@@ -10,7 +10,11 @@ export class Wheel extends ObjectCore {
   public center: Point;
 
   public constructor(
-    world: World, radius: number = 1, segments: number = 30, tireSegments: number = 3, mass: number = 1
+    world: World,
+    radius: number = 1,
+    segments: number = 30,
+    tireSegments: number = 3,
+    mass: number = 1
   ) {
     super(world);
     this.create(radius, segments, tireSegments, mass);

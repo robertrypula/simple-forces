@@ -9,10 +9,7 @@ import { World } from '@core/world';
 /*tslint:disable:max-classes-per-file*/
 
 export class SurfaceReactionForce extends Force {
-  public constructor(
-    public line: Line,
-    public forceManager: SurfaceReactionForceManager
-  ) {
+  public constructor(public line: Line, public forceManager: SurfaceReactionForceManager) {
     super(ForceType.SurfaceReaction, forceManager);
   }
 
@@ -41,12 +38,12 @@ export class SurfaceReactionForce extends Force {
       pointAL.force = Complex.create(0, -(forceAmount * (1 - collisionUnitX)));
       pointBL.force = Complex.create(0, -(forceAmount * collisionUnitX));
       this.vector = pointL.transformBack(origin, unitAngle).force;
-      this.line.pointA.forces
-        .find((force: Force) => force.forceManager === this.forceManager)
-        .vector = pointAL.transformBack(origin, unitAngle).force;
-      this.line.pointB.forces
-        .find((force: Force) => force.forceManager === this.forceManager)
-        .vector = pointBL.transformBack(origin, unitAngle).force;
+      this.line.pointA.forces.find(
+        (force: Force) => force.forceManager === this.forceManager
+      ).vector = pointAL.transformBack(origin, unitAngle).force;
+      this.line.pointB.forces.find(
+        (force: Force) => force.forceManager === this.forceManager
+      ).vector = pointBL.transformBack(origin, unitAngle).force;
     } else {
       this.vector.reset();
     }
@@ -77,10 +74,7 @@ export class SurfaceReactionForceManager extends ForceManager {
   public k: number = 500.0;
   public boundingBoxMargin = 0.35;
 
-  public constructor(
-    world: World,
-    public line: Line
-  ) {
+  public constructor(world: World, public line: Line) {
     super(world);
     line.pointA.forces.push(new SurfaceReactionForce(line, this));
     line.pointB.forces.push(new SurfaceReactionForce(line, this));

@@ -8,8 +8,8 @@ import { ObjectCore } from '@objects/object-core';
 
 export class Iss extends ObjectCore {
   public static readonly MASS = 419725;
-  public static readonly PERIGEE = Earth.RADIUS + 400e3;   // TODO fine-tune perigee
-  public static readonly PERIGEE_VELOCITY = 7.66e3;        // TODO fine-tune orbital velocity
+  public static readonly PERIGEE = Earth.RADIUS + 400e3; // TODO fine-tune perigee
+  public static readonly PERIGEE_VELOCITY = 7.66e3; // TODO fine-tune orbital velocity
   public center: Point;
 
   public constructor(world: World) {
@@ -26,9 +26,7 @@ export class Iss extends ObjectCore {
   }
 
   protected create(): void {
-    this.points.push(
-      this.center = this.world.createPoint(Complex.create(0, 0), Iss.MASS)
-    );
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Iss.MASS)));
 
     this.center.name = 'Apollo';
   }

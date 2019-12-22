@@ -13,7 +13,7 @@ export class Apollo extends ObjectCore {
   public static readonly MASS = 28870 + 5621 + 23250;
   public static readonly PERIGEE = Earth.RADIUS + 184.4e3;
   public static readonly PERIGEE_VELOCITY = 7.793e3;
-  public static readonly PERIGEE_TLI_VELOCITY = 10.944605e3;   // 9448
+  public static readonly PERIGEE_TLI_VELOCITY = 10.944605e3; // 9448
   public center: Point;
 
   public constructor(world: World) {
@@ -30,9 +30,7 @@ export class Apollo extends ObjectCore {
   }
 
   protected create(): void {
-    this.points.push(
-      this.center = this.world.createPoint(Complex.create(0, 0), Apollo.MASS)
-    );
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Apollo.MASS)));
 
     this.center.name = 'Apollo';
   }

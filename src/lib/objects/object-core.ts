@@ -9,9 +9,7 @@ export abstract class ObjectCore {
   public points: Point[] = [];
   public lines: Line[] = [];
 
-  protected constructor(
-    public world: World
-  ) { }
+  protected constructor(public world: World) {}
 
   public translate(amount: Complex): ObjectCore {
     this.points.forEach((point: Point) => {

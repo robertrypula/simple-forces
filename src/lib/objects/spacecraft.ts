@@ -9,7 +9,6 @@ export class Spacecraft extends ObjectCore {
     this.create();
   }
 
-  protected create(): void {
-
-  }
+  /*tslint:disable-next-line:no-empty*/
+  protected create(): void {}
 }

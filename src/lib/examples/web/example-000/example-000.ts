@@ -1,7 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import {
-} from '@'; // in your code it would be: ... from 'simple-forces'
+import {} from '@'; // in your code it would be: ... from 'simple-forces'
 import * as domUtils from '@examples/web/dom-utils';
 
 export class Example000 {

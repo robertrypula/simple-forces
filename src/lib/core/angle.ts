@@ -6,9 +6,5 @@ import { World } from '@core/world';
 export class Angle {
   public angle: number;
 
-  public constructor(
-    public world: World,
-    public lineA: Line,
-    public lineB: Line
-  ) { }
+  public constructor(public world: World, public lineA: Line, public lineB: Line) {}
 }

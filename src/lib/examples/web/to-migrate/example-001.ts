@@ -6,10 +6,7 @@ import { ExampleEarthSurface } from '../example-earth-surface';
 export class Example001 extends ExampleEarthSurface {
   public ball: Point;
 
-  public constructor(
-    ctx: CanvasRenderingContext2D,
-    logElement: HTMLElement
-  ) {
+  public constructor(ctx: CanvasRenderingContext2D, logElement: HTMLElement) {
     super(ctx, logElement);
     this.createScene();
   }
@@ -28,9 +25,14 @@ export class Example001 extends ExampleEarthSurface {
   public timeTick(dt: number): void {
     this.log(
       this.timeTickWithLog(dt) +
-      'Ball position: ' + this.ball.position.toStringXY() + '\n' +
-      'Ball velocity: ' + this.ball.velocity.toStringXY() + '\n' +
-      'Ball acceleration: ' + this.ball.acceleration.toStringXY(3)
+        'Ball position: ' +
+        this.ball.position.toStringXY() +
+        '\n' +
+        'Ball velocity: ' +
+        this.ball.velocity.toStringXY() +
+        '\n' +
+        'Ball acceleration: ' +
+        this.ball.acceleration.toStringXY(3)
     );
   }
 }

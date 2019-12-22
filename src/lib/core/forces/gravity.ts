@@ -8,12 +8,9 @@ import { World } from '@core/world';
 /*tslint:disable:max-classes-per-file*/
 
 export class GravityForce extends Force {
-  public static readonly G = 6.674e-11;      // https://en.wikipedia.org/wiki/Gravitational_constant
+  public static readonly G = 6.674e-11; // https://en.wikipedia.org/wiki/Gravitational_constant
 
-  public constructor(
-    public point: Point,
-    public forceManager: GravityForceManager
-  ) {
+  public constructor(public point: Point, public forceManager: GravityForceManager) {
     super(ForceType.Gravity, forceManager);
   }
 
@@ -33,10 +30,7 @@ export class GravityForce extends Force {
 // ----------------------------------------------------------------
 
 export class GravityForceManager extends ForceManager {
-  public constructor(
-    world: World,
-    public point: Point
-  ) {
+  public constructor(world: World, public point: Point) {
     super(world);
   }
 

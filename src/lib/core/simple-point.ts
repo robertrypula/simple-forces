@@ -3,11 +3,7 @@
 import { Complex } from '@core/complex';
 
 export class SimplePoint {
-  public constructor(
-    public position: Complex,
-    public velocity: Complex,
-    public force: Complex = Complex.create()
-  ) { }
+  public constructor(public position: Complex, public velocity: Complex, public force: Complex = Complex.create()) {}
 
   public transform(origin: SimplePoint, unitAngle: number): SimplePoint {
     const rotation = Complex.createPolar(-unitAngle);

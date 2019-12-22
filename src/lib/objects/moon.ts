@@ -12,7 +12,7 @@ export class Moon extends ObjectCore {
   public static readonly MASS = 7.34767309e22;
   public static readonly RADIUS = 1737e3;
   public static readonly PERIGEE = 362.6e6;
-  public static readonly PERIGEE_VELOCITY = 1077.2;  // TODO fine-tune orbital velocity
+  public static readonly PERIGEE_VELOCITY = 1077.2; // TODO fine-tune orbital velocity
   public center: Point;
 
   public constructor(world: World) {
@@ -30,9 +30,7 @@ export class Moon extends ObjectCore {
   }
 
   protected create(): void {
-    this.points.push(
-      this.center = this.world.createPoint(Complex.create(0, 0), Moon.MASS)
-    );
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Moon.MASS)));
 
     this.center.name = 'Moon';
     this.center.isStatic = true;

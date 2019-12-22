@@ -20,9 +20,9 @@ export class Axis extends ObjectCore {
 
   protected create(): void {
     this.points.push(
-      this.origin = this.world.createPoint(),
-      this.axisX = this.world.createPoint(Complex.create(1.0, 0.0)),
-      this.axisY = this.world.createPoint(Complex.create(0.0, 1.0))
+      (this.origin = this.world.createPoint()),
+      (this.axisX = this.world.createPoint(Complex.create(1.0, 0.0))),
+      (this.axisY = this.world.createPoint(Complex.create(0.0, 1.0)))
     );
     this.origin.name = 'Axis origin';
     this.axisX.name = 'Axis X';
@@ -30,8 +30,8 @@ export class Axis extends ObjectCore {
     this.setIsStatic(true);
 
     this.lines.push(
-      this.axisXLine = this.world.createLine(this.origin, this.axisX),
-      this.axisYLine = this.world.createLine(this.origin, this.axisY)
+      (this.axisXLine = this.world.createLine(this.origin, this.axisX)),
+      (this.axisYLine = this.world.createLine(this.origin, this.axisY))
     );
     this.axisXLine.name = 'Axis X line';
     this.axisYLine.name = 'Axis Y line';

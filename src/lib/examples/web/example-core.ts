@@ -1,20 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import {
-  format,
-  getTime,
-  Renderer,
-  World
-} from '@'; // in your code it would be: ... from 'simple-forces'
+import { format, getTime, Renderer, World } from '@'; // in your code it would be: ... from 'simple-forces'
 
 export abstract class ExampleCore {
   public world: World;
   public renderer: Renderer;
 
-  protected constructor(
-    public ctx: CanvasRenderingContext2D,
-    public logElement: HTMLElement
-  ) {
+  protected constructor(public ctx: CanvasRenderingContext2D, public logElement: HTMLElement) {
     this.world = new World();
     this.renderer = new Renderer(this.ctx, this.world);
   }
@@ -32,8 +24,12 @@ export abstract class ExampleCore {
     this.renderer.render();
 
     return (
-      'Diff between frames: ' + format(dt, 3) + ' s\n' +
-      'Physics/render time: ' + format(getTime() - timeBefore, 3) + ' s\n'
+      'Diff between frames: ' +
+      format(dt, 3) +
+      ' s\n' +
+      'Physics/render time: ' +
+      format(getTime() - timeBefore, 3) +
+      ' s\n'
     );
   }
 }

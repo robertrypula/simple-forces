@@ -8,16 +8,10 @@ export class Complex {
   public static createPolar(unitAngle: number = 0, magnitude: number = 1): Complex {
     const radian: number = 2 * Math.PI * unitAngle;
 
-    return this.create(
-      magnitude * Math.cos(radian),
-      magnitude * Math.sin(radian)
-    );
+    return this.create(magnitude * Math.cos(radian), magnitude * Math.sin(radian));
   }
 
-  public constructor(
-    public x: number = 0,
-    public y: number = 0
-  ) { }
+  public constructor(public x: number = 0, public y: number = 0) {}
 
   public add(x: Complex): Complex {
     this.x += x.x;
@@ -27,10 +21,7 @@ export class Complex {
   }
 
   public clone(): Complex {
-    return new Complex(
-      this.x,
-      this.y
-    );
+    return new Complex(this.x, this.y);
   }
 
   public conjugate(): Complex {
@@ -54,17 +45,13 @@ export class Complex {
     const MAGNITUDE_LIMIT = 0.0000001;
     const x = this.x;
     const y = this.y;
-    const quarter = (y >= 0)
-      ? (x >= 0 ? 1 : 2)
-      : (x <= 0 ? 3 : 4);
+    const quarter = y >= 0 ? (x >= 0 ? 1 : 2) : x <= 0 ? 3 : 4;
     let magnitude = this.getMagnitude();
     let angle;
     let unitAngle;
 
     // prevents from dividing by zero
-    magnitude = magnitude < MAGNITUDE_LIMIT
-      ? MAGNITUDE_LIMIT
-      : magnitude;
+    magnitude = magnitude < MAGNITUDE_LIMIT ? MAGNITUDE_LIMIT : magnitude;
 
     //         ^             Legend:
     //  II     *     I        '!' = 0 degrees
@@ -111,9 +98,7 @@ export class Complex {
   }
 
   public normalize(): Complex {
-    this.divideScalar(
-      this.getMagnitude()
-    );
+    this.divideScalar(this.getMagnitude());
 
     return this;
   }

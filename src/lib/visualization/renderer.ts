@@ -9,10 +9,7 @@ export class Renderer {
   public zoom: number = 110;
   public camera: Line | Point;
 
-  public constructor(
-    protected ctx: CanvasRenderingContext2D,
-    protected world: World
-  ) {}
+  public constructor(protected ctx: CanvasRenderingContext2D, protected world: World) {}
 
   public render(): void {
     if (!this.ctx) {
@@ -52,10 +49,7 @@ export class Renderer {
   }
 
   protected vertexShader(): void {
-    const viewportCenter = Complex.create(
-      this.ctx.canvas.clientWidth / 2,
-      this.ctx.canvas.clientHeight / 2
-    );
+    const viewportCenter = Complex.create(this.ctx.canvas.clientWidth / 2, this.ctx.canvas.clientHeight / 2);
     let cameraPosition: Complex;
     let rotation: Complex;
 
@@ -63,7 +57,7 @@ export class Renderer {
       cameraPosition = Complex.create();
       rotation = Complex.createPolar();
     } else if (this.camera instanceof Line) {
-      let unitAngle = this.camera.getUnitAngle();
+      const unitAngle = this.camera.getUnitAngle();
 
       cameraPosition = this.camera.pointA.position;
       rotation = Complex.createPolar(-unitAngle);
@@ -73,16 +67,14 @@ export class Renderer {
     }
 
     this.world.points.forEach((point: Point) => {
-      point.positionToRender = viewportCenter
-        .clone()
-        .add(
-          point.position
-            .clone()
-            .subtract(cameraPosition)
-            .multiply(rotation)
-            .multiplyScalar(this.zoom)
-            .conjugate()
-        );
+      point.positionToRender = viewportCenter.clone().add(
+        point.position
+          .clone()
+          .subtract(cameraPosition)
+          .multiply(rotation)
+          .multiplyScalar(this.zoom)
+          .conjugate()
+      );
     });
   }
 }

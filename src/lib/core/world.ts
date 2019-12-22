@@ -55,8 +55,8 @@ export class World {
   public refreshSurfaceReactionAwareness(): void {
     const surfaceReactionSources = this.lines.filter((line: Line) => line.surfaceReactionForceManager);
 
-    surfaceReactionSources.forEach(
-      (surfaceReactionSource: Line) => surfaceReactionSource.surfaceReactionForceManager.refreshAwareness()
+    surfaceReactionSources.forEach((surfaceReactionSource: Line) =>
+      surfaceReactionSource.surfaceReactionForceManager.refreshAwareness()
     );
   }
 
@@ -73,7 +73,7 @@ export class World {
       .filter((point: Point) => !point.isStatic)
       .forEach((point: Point) => {
         point.force.reset();
-        point.forces.forEach((force) => {
+        point.forces.forEach(force => {
           point.force.add(force.vector);
         });
 
@@ -83,7 +83,7 @@ export class World {
         // https://en.wikipedia.org/wiki/Verlet_integration
         point.position
           .add(point.velocity.clone().multiplyScalar(dt))
-          .add(point.acceleration.clone().multiplyScalar(dt * dt / 2));
+          .add(point.acceleration.clone().multiplyScalar((dt * dt) / 2));
         point.velocity.add(point.acceleration.clone().multiplyScalar(dt));
       });
   }

@@ -14,12 +14,11 @@ export class Line {
   public surfaceReactionForceManager: SurfaceReactionForceManager;
   public name: string;
 
-  public constructor(
-    public world: World,
-    public pointA: Point,
-    public pointB: Point
-  ) {
-    this.length = pointB.position.clone().subtract(pointA.position).getMagnitude();
+  public constructor(public world: World, public pointA: Point, public pointB: Point) {
+    this.length = pointB.position
+      .clone()
+      .subtract(pointA.position)
+      .getMagnitude();
   }
 
   public createThrustForce(): Line {
