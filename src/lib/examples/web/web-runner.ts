@@ -8,7 +8,8 @@ export class WebRunner {
   protected example: ExampleCore;
   protected previousTime: number = null;
 
-  public constructor(protected ExampleFactory: any) { // TODO refactor 'any'
+  public constructor(protected ExampleFactory: any) {
+    // TODO refactor 'any'
     domUtils.getByTagName('html').classList.add('web-runner');
     domUtils.getById('simple-forces-root').innerHTML = require('./web-runner.html');
     this.example = new ExampleFactory(domUtils.getContext2dById('canvas'), domUtils.getById('log'));
