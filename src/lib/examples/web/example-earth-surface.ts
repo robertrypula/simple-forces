@@ -1,6 +1,6 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Line } from '..';
+import { Complex, Line } from './';
 import { Earth } from '../objects/earth';
 import { ExampleCore } from './example-core';
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Forces</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="simple-forces-root">
+      <h1>Simple Forces</h1>
+      <h4>Pick example:</h4>
+      <button type="button" onclick="runExample('Example001')">
+        Example 001
+      </button>
+    </div>
+
+    <script>
+      let example;
+      const runExample = name => {
+        example = SimpleForces && SimpleForces[name] && new SimpleForces[name]();
+      };
+    </script>
+
+    <!-- you can access distribution version via: <script src="https://unpkg.com/simple-forces"></script> -->
+  </body>
+</html>

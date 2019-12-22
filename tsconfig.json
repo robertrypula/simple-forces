@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
+    "baseUrl": "src/lib",
     "declaration": true,
     "declarationDir": "./dist",
-    "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["es2015", "dom"],
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./dist",
+    "paths": {
+      "@": [""],
+      "@core/*": ["core/*"],
+      "@examples/*": ["examples/*"],
+      "@objects/*": ["objects/*"],
+      "@shared/*": ["shared/*"]
+    },
     "sourceMap": true,
     "target": "es5"
-  },
-  "exclude": [],
-  "include": [
-    "src/**/*"
-  ]
+  }
 }

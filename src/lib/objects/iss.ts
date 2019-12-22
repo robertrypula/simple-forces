@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex, Point, World } from '..';
 import { Earth } from './earth';

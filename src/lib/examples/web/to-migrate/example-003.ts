@@ -1,7 +1,7 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Wheel } from '../objects/wheel';
-import { ExampleEarthSurface } from './example-earth-surface';
+import { ExampleEarthSurface } from '../example-earth-surface';
 
 export class Example003 extends ExampleEarthSurface {
   public wheel: Wheel;

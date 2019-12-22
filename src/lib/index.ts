@@ -1,7 +1,26 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-export * from './version';
+export const libraryInfo = {
+  author: 'Robert Rypuła',
+  gitHub: 'https://github.com/robertrypula/simple-forces',
+  version: '0.1.0-rc1'
+};
 
+import '@examples/web/index.scss';
+export * from '@examples/node/cli';
+export * from '@examples/web/example-000/example-000';
+
+import { CliNodeExample } from '@examples/node/cli';
+import { argc, argv, isNode } from '@shared/environment-utils';
+
+let cliNodeExample: CliNodeExample;
+
+// I hope that 'simpleForces.run.nodeExample' argument will never collide
+// with some other node project that will use my library... :)
+if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
+  cliNodeExample = new CliNodeExample();
+}
+/*
 export * from './build-in-examples/example-001';
 export * from './build-in-examples/example-002';
 export * from './build-in-examples/example-003';
@@ -20,7 +39,7 @@ export * from './core/simple-point';
 export * from './core/visualization/renderer';
 export * from './core/world';
 export * from './tools';
-
+*/
 /* TODO:
   + 0.20 kod tworenia obiektów do osobnego katalogu
   + 0.05 katalog utilities: getTime

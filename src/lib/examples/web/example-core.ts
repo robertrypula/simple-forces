@@ -1,6 +1,6 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { format, getTime, Renderer, World } from '..';
+import { format, getTime, Renderer, World } from './';
 
 export abstract class ExampleCore {
   public world: World;

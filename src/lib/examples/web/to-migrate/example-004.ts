@@ -1,7 +1,7 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Spacecraft } from '../objects/spacecraft';
-import { ExampleEarthSurface } from './example-earth-surface';
+import { ExampleEarthSurface } from '../example-earth-surface';
 
 export class Example004 extends ExampleEarthSurface {
   public spacecraft: Spacecraft;

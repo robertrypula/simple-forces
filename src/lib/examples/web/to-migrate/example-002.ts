@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Apollo } from '../objects/apollo';
 import { Axis } from '../objects/axis';
@@ -6,7 +6,7 @@ import { Earth } from '../objects/earth';
 import { Iss } from '../objects/iss';
 import { Moon } from '../objects/moon';
 import { format } from '../tools';
-import { ExampleCore } from './example-core';
+import { ExampleCore } from '../example-core';
 
 export class Example002 extends ExampleCore {
   public axis: Axis;

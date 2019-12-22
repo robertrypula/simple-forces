@@ -1,7 +1,7 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Point } from '..';
-import { ExampleEarthSurface } from './example-earth-surface';
+import { ExampleEarthSurface } from '../example-earth-surface';
 
 export class Example001 extends ExampleEarthSurface {
   public ball: Point;
@@ -22,8 +22,6 @@ export class Example001 extends ExampleEarthSurface {
     this.world.refreshGravityAwareness();
     this.world.refreshSurfaceReactionAwareness();
     // this.world.timeWarp = 0.1;
-
-
     // this.renderer.zoom = 0.01;
   }
 

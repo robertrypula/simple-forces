@@ -1,7 +1,19 @@
-// Copyright (c) 2018 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-describe('Index', () => {
-  it('should work', () => {
-    expect(true).toBe(true);
+import { libraryInfo } from '@';
+
+describe('Index', (): void => {
+  describe('Library info', (): void => {
+    it('should return version', (): void => {
+      expect(libraryInfo.version).toBeTruthy();
+    });
+
+    it('should return author', (): void => {
+      expect(libraryInfo.author).toBeTruthy();
+    });
+
+    it('should return gitHub', (): void => {
+      expect(libraryInfo.gitHub).toBeTruthy();
+    });
   });
 });
