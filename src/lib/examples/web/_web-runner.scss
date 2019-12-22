@@ -1,14 +1,15 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-html.example-000,
-.example-000 body {
+html.web-runner,
+.web-runner body {
+  background-color: white;
 }
 
-.example-000 {
+.web-runner {
   #simple-forces-root {
     canvas {
       display: block;
-      outline: 1px solid red;
+      outline: 1px solid lightgray;
     }
   }
 }

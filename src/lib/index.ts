@@ -6,6 +6,8 @@ export const libraryInfo = {
   version: '0.1.0-rc1'
 };
 
+// ----------------------------------------------------------------------------
+
 export * from '@core/angle';
 export * from '@core/complex';
 export * from '@core/force';
@@ -31,8 +33,13 @@ export * from '@visualization/renderer';
 // ----------------------------------------------------------------------------
 
 import '@examples/web/index.scss';
+
 export * from '@examples/node/cli';
-export * from '@examples/web/example-000/example-000';
+export * from '@examples/web/example-001';
+export * from '@examples/web/example-002';
+export * from '@examples/web/example-003';
+export * from '@examples/web/example-004';
+export * from '@examples/web/web-runner';
 
 // ----------------------------------------------------------------------------
 

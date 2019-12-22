@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Point } from '@'; // in your code it would be: ... from 'simple-forces'
-import { ExampleEarthSurface } from '../example-earth-surface';
+import { ExampleEarthSurface } from './example-earth-surface';
 
 export class Example001 extends ExampleEarthSurface {
   public ball: Point;

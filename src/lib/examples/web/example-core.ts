@@ -11,6 +11,8 @@ export abstract class ExampleCore {
     this.renderer = new Renderer(this.ctx, this.world);
   }
 
+  public abstract timeTick(dt: number): void;
+
   protected log(data: string): void {
     if (this.logElement) {
       this.logElement.innerHTML = data;

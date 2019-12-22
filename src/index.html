@@ -9,15 +9,38 @@
     <div id="simple-forces-root">
       <h1>Simple Forces</h1>
       <h4>Pick example:</h4>
-      <button type="button" onclick="runExample('Example000')">
-        Example 000
+
+      <button type="button" onclick="runExample('Example001')">
+        Example 001 - simple mass falling on Earth
+      </button>
+
+      <button type="button" onclick="runExample('Example002')">
+        Example 002 - Apollo Earth/Moon/Earth free return trajectory
+      </button>
+
+      <button type="button" onclick="runExample('Example003')">
+        Example 003 - wheel (currently still without friction)
+      </button>
+
+      <button type="button" onclick="runExample('Example004')">
+        Example 004 - ship WIP (experiments with controlling object via keyboard)
       </button>
     </div>
 
+    <div>
+      <br/>
+      Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
+    </div>
+
     <script>
-      let example;
+      let webRunner;
       const runExample = name => {
-        example = SimpleForces && SimpleForces[name] && new SimpleForces[name]();
+        const WebRunner = SimpleForces && SimpleForces.WebRunner;
+        const Example = SimpleForces && SimpleForces[name];
+
+        if (WebRunner && Example) {
+          webRunner = new WebRunner(Example);
+        }
       };
     </script>
 
