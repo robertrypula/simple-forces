@@ -47,17 +47,15 @@ export class World {
   }
 
   public refreshGravityAwareness(): void {
-    const gravitySources = this.points.filter((point: Point) => point.gravityForceManager);
-
-    gravitySources.forEach((gravitySource: Point) => gravitySource.gravityForceManager.refreshAwareness());
+    this.points
+      .filter((point: Point) => point.gravityForceSource)
+      .forEach((point: Point) => point.gravityForceSource.refreshAwareness());
   }
 
   public refreshSurfaceReactionAwareness(): void {
-    const surfaceReactionSources = this.lines.filter((line: Line) => line.surfaceReactionForceManager);
-
-    surfaceReactionSources.forEach((surfaceReactionSource: Line) =>
-      surfaceReactionSource.surfaceReactionForceManager.refreshAwareness()
-    );
+    this.lines
+      .filter((line: Line) => line.surfaceReactionForceManager)
+      .forEach((line: Line) => line.surfaceReactionForceManager.refreshAwareness());
   }
 
   protected calculatePhysicsInternal(dt: number): void {

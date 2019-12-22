@@ -1,17 +1,17 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { SpringForceManager } from '@core/forces/spring';
-import { SurfaceReactionForceManager } from '@core/forces/surface-reaction';
-import { ThrustForceManager } from '@core/forces/thrust';
+import { SpringForceSource } from '@core/forces/spring';
+import { SurfaceReactionForceSource } from '@core/forces/surface-reaction';
+import { ThrustForceSource } from '@core/forces/thrust';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
 export class Line {
   public length: number;
-  public thrustForceManager: ThrustForceManager;
-  public springForceManager: SpringForceManager;
-  public surfaceReactionForceManager: SurfaceReactionForceManager;
+  public thrustForceManager: ThrustForceSource;
+  public springForceManager: SpringForceSource;
+  public surfaceReactionForceManager: SurfaceReactionForceSource;
   public name: string;
 
   public constructor(public world: World, public pointA: Point, public pointB: Point) {
@@ -22,19 +22,19 @@ export class Line {
   }
 
   public createThrustForce(): Line {
-    this.thrustForceManager = new ThrustForceManager(this.world, this);
+    this.thrustForceManager = new ThrustForceSource(this.world, this);
 
     return this;
   }
 
   public createSpringForce(): Line {
-    this.springForceManager = new SpringForceManager(this.world, this);
+    this.springForceManager = new SpringForceSource(this.world, this);
 
     return this;
   }
 
   public createSurfaceReactionForce(): Line {
-    this.surfaceReactionForceManager = new SurfaceReactionForceManager(this.world, this);
+    this.surfaceReactionForceManager = new SurfaceReactionForceSource(this.world, this);
 
     return this;
   }

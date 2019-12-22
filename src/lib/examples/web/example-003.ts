@@ -15,8 +15,7 @@ export class Example003 extends ExampleEarthSurface {
 
   public createScene(): void {
     this.createEarthSurfaceEnvironment();
-
-    this.earth.center.radius = null;
+    this.earth.center.radius = null; // due to rounding error the Earth surface is wrongly displayed at that high zoom
 
     this.wheel = new Wheel(this.world);
     this.wheel.translate(Complex.create(2, 3));

@@ -1,9 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
-import { ObjectCore } from '@objects/object-core';
 
 // Other planets vectors:
 // https://ssd.jpl.nasa.gov/horizons.cgi
@@ -21,9 +21,9 @@ export class Earth extends ObjectCore {
   protected create(): void {
     this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Earth.MASS)));
 
-    this.center.name = 'Moon';
+    this.center.name = 'Earth';
     this.center.isStatic = true;
     this.center.radius = Earth.RADIUS;
-    this.center.createGravityForce();
+    this.center.createGravityForceSource();
   }
 }

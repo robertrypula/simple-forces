@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 import { Earth } from '@objects/earth';
-import { ObjectCore } from '@objects/object-core';
 
 export class Iss extends ObjectCore {
   public static readonly MASS = 419725;
@@ -28,6 +28,6 @@ export class Iss extends ObjectCore {
   protected create(): void {
     this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Iss.MASS)));
 
-    this.center.name = 'Apollo';
+    this.center.name = 'Iss';
   }
 }

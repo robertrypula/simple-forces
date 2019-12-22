@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
-import { ObjectCore } from '@objects/object-core';
 
 export class Spacecraft extends ObjectCore {
   public constructor(world: World) {

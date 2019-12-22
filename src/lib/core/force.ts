@@ -7,35 +7,35 @@ import { World } from '@core/world';
 /*tslint:disable:max-classes-per-file*/
 
 export enum ForceType {
-  Drag = 'Drag',
-  Gravity = 'Gravity',
-  Join = 'Joint',
-  Lift = 'Lift',
-  Spring = 'Spring',
-  SurfaceFriction = 'SurfaceFriction',
-  SurfaceReaction = 'SurfaceReaction',
-  Thrust = 'Thrust',
-  Torque = 'Torque'
+  Drag = 'Drag',  // adds 'atmosphere' area that affects lines above the 'source' point (affectedByDrag flag needed?)
+  Gravity = 'Gravity', // adds force that pulls other points towards one source point
+  Join = 'Joint', // keeps defined min/max angle between two lines
+  Lift = 'Lift',  // adds 'atmosphere' area that affects lines above the 'source' point (affectedByLift flag needed?)
+  Spring = 'Spring', // adds
+  SurfaceFriction = 'SurfaceFriction',   // exclude static friction to simplify the code...
+  SurfaceReaction = 'SurfaceReaction', // adds 'collision' force when point enters collision area defined by line
+  Thrust = 'Thrust', // adds local vector to the line reference frame
+  Torque = 'Torque' // adds 'circular' force between floating ends of two connected lines
 }
 
 export abstract class Force {
   public vector: Complex = Complex.create();
 
-  protected constructor(public readonly forceType: ForceType, public readonly forceManager: ForceManager) {}
+  protected constructor(public readonly forceType: ForceType, public readonly forceSource: ForceSource) {}
 
   public abstract calculateForce(point: Point): void;
 }
 
 // ----------------------------------------------------------------
 
-export abstract class ForceManager {
+export abstract class ForceSource {
   protected constructor(public world: World) {}
 
-  protected forEachWorldPoint(handler: (point: Point, isNotAware: boolean) => void) {
-    this.world.points.forEach((point: Point) => {
-      const isNotAware = !point.forces.some(force => force.forceManager === this);
+  protected forEachWorldPointNotYetAwareAboutTheSource(handler: (point: Point) => void) {
+    this.world.points.forEach((point: Point): void => {
+      const pointNotYetAwareAboutTheSource: boolean = !point.forces.some(force => force.forceSource === this);
 
-      handler(point, isNotAware);
+      pointNotYetAwareAboutTheSource && handler(point);
     });
   }
 }

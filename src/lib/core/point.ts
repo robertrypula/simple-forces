@@ -2,7 +2,7 @@
 
 import { Complex } from '@core/complex';
 import { Force } from '@core/force';
-import { GravityForceManager } from '@core/forces/gravity';
+import { GravityForceSource } from '@core/forces/gravity';
 import { SimplePoint } from '@core/simple-point';
 import { World } from '@core/world';
 
@@ -13,7 +13,7 @@ export class Point {
   public positionToRender: Complex;
   public isStatic: boolean = false;
   public name: string;
-  public gravityForceManager: GravityForceManager;
+  public gravityForceSource: GravityForceSource;
   public radius: number = null;
 
   public constructor(
@@ -27,7 +27,7 @@ export class Point {
     return new SimplePoint(this.position.clone(), this.velocity.clone());
   }
 
-  public createGravityForce(): void {
-    this.gravityForceManager = new GravityForceManager(this.world, this);
+  public createGravityForceSource(): void {
+    this.gravityForceSource = new GravityForceSource(this.world, this);
   }
 }

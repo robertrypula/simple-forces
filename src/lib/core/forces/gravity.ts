@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceManager, ForceType } from '@core/force';
+import { Force, ForceSource, ForceType } from '@core/force';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
@@ -10,16 +10,20 @@ import { World } from '@core/world';
 export class GravityForce extends Force {
   public static readonly G = 6.674e-11; // https://en.wikipedia.org/wiki/Gravitational_constant
 
-  public constructor(public point: Point, public forceManager: GravityForceManager) {
-    super(ForceType.Gravity, forceManager);
+  public constructor(public forceSource: GravityForceSource) {
+    super(ForceType.Gravity, forceSource);
   }
 
   public calculateForce(point: Point): void {
-    const sourceDirection = this.point.position.clone().subtract(point.position);
+    const sourceDirection = this.forceSource.point.position.clone().subtract(point.position);
     const r = sourceDirection.getMagnitude();
 
+    // TODO known issue:
+    //  - magnitude of force is calculated twice
+    //    (Moon-Earth acts on each other with the same force but opposite direction)
+
     if (r !== 0) {
-      const forceMagnitude = (GravityForce.G * this.point.mass * point.mass) / Math.pow(r, 2);
+      const forceMagnitude = (GravityForce.G * this.forceSource.point.mass * point.mass) / Math.pow(r, 2);
       this.vector = sourceDirection.normalize().multiplyScalar(forceMagnitude);
     } else {
       this.vector = Complex.create();
@@ -29,16 +33,15 @@ export class GravityForce extends Force {
 
 // ----------------------------------------------------------------
 
-export class GravityForceManager extends ForceManager {
+export class GravityForceSource extends ForceSource {
   public constructor(world: World, public point: Point) {
     super(world);
+    // remember to call refreshGravityAwareness after adding all objects to the world
   }
 
   public refreshAwareness(): void {
-    this.forEachWorldPoint((point: Point, isNotAware: boolean) => {
-      if (isNotAware) {
-        point.forces.push(new GravityForce(this.point, this));
-      }
+    this.forEachWorldPointNotYetAwareAboutTheSource((point: Point): void => {
+      point.forces.push(new GravityForce(this));
     });
   }
 }

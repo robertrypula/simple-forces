@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceManager, ForceType } from '@core/force';
+import { Force, ForceSource, ForceType } from '@core/force';
 import { Line } from '@core/line';
 import { Point } from '@core/point';
 import { World } from '@core/world';
@@ -9,8 +9,8 @@ import { World } from '@core/world';
 /*tslint:disable:max-classes-per-file*/
 
 export class SurfaceReactionForce extends Force {
-  public constructor(public line: Line, public forceManager: SurfaceReactionForceManager) {
-    super(ForceType.SurfaceReaction, forceManager);
+  public constructor(public forceSource: SurfaceReactionForceSource) {
+    super(ForceType.SurfaceReaction, forceSource);
   }
 
   public calculateForce(point: Point): void {
@@ -18,31 +18,33 @@ export class SurfaceReactionForce extends Force {
       return;
     }
 
-    const unitAngle = this.line.getUnitAngle();
-    const origin = this.line.pointA.cloneAsSimplePoint();
+    const unitAngle = this.forceSource.line.getUnitAngle();
+    const origin = this.forceSource.line.pointA.cloneAsSimplePoint();
 
     const pointL = point.cloneAsSimplePoint().transform(origin, unitAngle);
-    const pointAL = this.line.pointA.cloneAsSimplePoint().transform(origin, unitAngle);
-    const pointBL = this.line.pointB.cloneAsSimplePoint().transform(origin, unitAngle);
+    const pointAL = this.forceSource.line.pointA.cloneAsSimplePoint().transform(origin, unitAngle);
+    const pointBL = this.forceSource.line.pointB.cloneAsSimplePoint().transform(origin, unitAngle);
 
     if (
       pointL.position.y < 0 &&
-      pointL.position.y > -this.forceManager.boundingBoxMargin &&
+      pointL.position.y > -this.forceSource.boundingBoxMargin &&
       pointL.position.x <= pointBL.position.x &&
       pointL.position.x >= 0
     ) {
       const collisionUnitX = pointL.position.x / pointBL.position.x;
-      const forceAmount = -pointL.position.y * this.forceManager.k;
+      const forceAmount = -pointL.position.y * this.forceSource.k;
 
       pointL.force = Complex.create(0, forceAmount);
       pointAL.force = Complex.create(0, -(forceAmount * (1 - collisionUnitX)));
       pointBL.force = Complex.create(0, -(forceAmount * collisionUnitX));
       this.vector = pointL.transformBack(origin, unitAngle).force;
-      this.line.pointA.forces.find(
-        (force: Force) => force.forceManager === this.forceManager
+
+      // apply force of collision to the points that define the surface as well
+      this.forceSource.line.pointA.forces.find(
+        (force: Force) => force.forceSource === this.forceSource
       ).vector = pointAL.transformBack(origin, unitAngle).force;
-      this.line.pointB.forces.find(
-        (force: Force) => force.forceManager === this.forceManager
+      this.forceSource.line.pointB.forces.find(
+        (force: Force) => force.forceSource === this.forceSource
       ).vector = pointBL.transformBack(origin, unitAngle).force;
     } else {
       this.vector.reset();
@@ -50,15 +52,16 @@ export class SurfaceReactionForce extends Force {
   }
 
   protected isDefiningSurface(point: Point): boolean {
-    return point === this.line.pointA || point === this.line.pointB;
+    // we skip points that define the surface as they will be handled by point that collides with the surface
+    return point === this.forceSource.line.pointA || point === this.forceSource.line.pointB;
   }
 
   protected isFarFromTheSurface(point: Point): boolean {
     const x = point.position.x;
     const y = point.position.y;
-    const positionA = this.line.pointA.position;
-    const positionB = this.line.pointB.position;
-    const margin = this.forceManager.boundingBoxMargin;
+    const positionA = this.forceSource.line.pointA.position;
+    const positionB = this.forceSource.line.pointB.position;
+    const margin = this.forceSource.boundingBoxMargin;
     const x1 = Math.min(positionA.x, positionB.x) - margin;
     const x2 = Math.max(positionA.x, positionB.x) + margin;
     const y1 = Math.min(positionA.y, positionB.y) - margin;
@@ -70,21 +73,22 @@ export class SurfaceReactionForce extends Force {
 
 // ----------------------------------------------------------------
 
-export class SurfaceReactionForceManager extends ForceManager {
+export class SurfaceReactionForceSource extends ForceSource {
   public k: number = 500.0;
   public boundingBoxMargin = 0.35;
 
   public constructor(world: World, public line: Line) {
     super(world);
-    line.pointA.forces.push(new SurfaceReactionForce(line, this));
-    line.pointB.forces.push(new SurfaceReactionForce(line, this));
+    // NOTE: this is needed as points that defines the surface also 'feels' the force of collision with the surface
+    line.pointA.forces.push(new SurfaceReactionForce(this));
+    line.pointB.forces.push(new SurfaceReactionForce(this));
+
+    // remember to call refreshSurfaceReactionAwareness after adding all objects to the world
   }
 
   public refreshAwareness(): void {
-    this.forEachWorldPoint((point: Point, isNotAware: boolean) => {
-      if (isNotAware) {
-        point.forces.push(new SurfaceReactionForce(this.line, this));
-      }
+    this.forEachWorldPointNotYetAwareAboutTheSource((point: Point) => {
+      point.forces.push(new SurfaceReactionForce(this));
     });
   }
 }

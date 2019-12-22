@@ -16,6 +16,7 @@ export * from '@core/forces/spring';
 export * from '@core/forces/surface-reaction';
 export * from '@core/forces/thrust';
 export * from '@core/line';
+export * from '@core/object-core';
 export * from '@core/point';
 export * from '@core/simple-point';
 export * from '@core/world';
@@ -24,7 +25,6 @@ export * from '@objects/axis';
 export * from '@objects/earth';
 export * from '@objects/iss';
 export * from '@objects/moon';
-export * from '@objects/object-core';
 export * from '@objects/spacecraft';
 export * from '@objects/wheel';
 export * from '@shared/tools';
@@ -59,28 +59,40 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
 /*
   TODO:
 
-  + 0.20 kod tworenia obiektów do osobnego katalogu
-  + 0.05 katalog utilities: getTime
-  + 0.50 dodanie exampla appollo (pozwoli przetestować zmiany z nastepnego punktu)
+  + 0.20 separate dir for objects
+  + 0.05 utilities: getTime
+  + 0.50 Apollo example
   + 0.25 dev-* na demo-*
 
-  - klawiszologia i przekazanie ich do example do dalszej analizy - klawisze w enumie
+  - ability to control via keyboard
     - arrows: WSAD
     - functions: IKJL
     - change vessel: UO
     - zoom: ZX
-    - camera move: TGFH and R refference (world, vessel and vesselInRelationToPoint)
+    - camera move: TGFH and R reference (world, vessel and vesselInRelationToPoint)
     - timeWrap: ?
 
-  - mozliwosc generowania obiektów:
+  - ability to generate objects:
     - box
-    + koło
+    + wheel
     - spaceship apollo
     - rocket
     - car
 
-  - mozliwosc zmiany aktywnego pojazdu (example core), to zmieni też kamerę
-  - 1.00 fix na nieprzetwazanie tych samych sil
-  - wrapper na contextu2d i obiektu do loga
+  - ability to switch active vessel, it should also switch the camera
+  - fix for not calculating the same force twice (for example gravity between moon and earth)
+  - wrapper for context2d i and log
   - platforms: terminal, browser
+
+  TODO 2019.12
+  - move actual rendering on Canvas to web-runner
+  - move log to web-runner
+  - 1 unit of zoom is filling viewport width
+  - timeTick will be refactored as animationFrame(dt, width, aspectRatio)
+  - point will have 'viewportPoint' member with:
+    - radius
+    - position
+  - world will do computation for dataToRender
+    - shader will go to world
+  - example can provide dataToRender and log values (key, value)
 */

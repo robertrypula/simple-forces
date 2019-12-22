@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { getTime } from '@'; // in your code it would be: ... from 'simple-forces'
-import * as domUtils from '@examples/web/dom-utils';
+import * as domUtils from './dom-utils';
 import { ExampleCore } from './example-core';
 
 export class WebRunner {

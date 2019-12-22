@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 import { Earth } from '@objects/earth';
-import { ObjectCore } from '@objects/object-core';
 
 export class Apollo extends ObjectCore {
   // https://en.wikipedia.org/wiki/Apollo_8

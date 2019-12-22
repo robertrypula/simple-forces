@@ -30,7 +30,7 @@ export class Renderer {
       this.ctx.beginPath();
       this.ctx.moveTo(pA.x, pA.y);
       this.ctx.lineTo(pB.x, pB.y);
-      this.ctx.strokeStyle = '#d8dde2';
+      this.ctx.strokeStyle = '#a4aab0';
       this.ctx.stroke();
     });
   }
@@ -39,7 +39,7 @@ export class Renderer {
     this.world.points.forEach((point: Point) => {
       const p = point.positionToRender;
       const radius = point.radius !== null ? point.radius * this.zoom : 2;
-      const color = point.radius !== null ? '#ad8f2d' : '#2dad8f';
+      const color = point.radius !== null ? '#ad8f2d' : '#1f775e';
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);

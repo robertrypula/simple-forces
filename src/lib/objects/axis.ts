@@ -2,9 +2,9 @@
 
 import { Complex } from '@core/complex';
 import { Line } from '@core/line';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
-import { ObjectCore } from '@objects/object-core';
 
 export class Axis extends ObjectCore {
   public origin: Point;

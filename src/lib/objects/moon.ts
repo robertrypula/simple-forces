@@ -1,9 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
-import { ObjectCore } from '@objects/object-core';
 
 // Other planets vectors:
 // https://ssd.jpl.nasa.gov/horizons.cgi
@@ -35,6 +35,6 @@ export class Moon extends ObjectCore {
     this.center.name = 'Moon';
     this.center.isStatic = true;
     this.center.radius = Moon.RADIUS;
-    this.center.createGravityForce();
+    this.center.createGravityForceSource();
   }
 }

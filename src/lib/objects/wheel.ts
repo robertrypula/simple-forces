@@ -2,9 +2,9 @@
 
 import { Complex } from '@core/complex';
 import { Line } from '@core/line';
+import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
-import { ObjectCore } from '@objects/object-core';
 
 export class Wheel extends ObjectCore {
   public center: Point;
@@ -24,6 +24,7 @@ export class Wheel extends ObjectCore {
     const singlePointMass = mass / (segments + 1);
 
     this.center = this.world.createPoint(Complex.create(), singlePointMass);
+    this.center.name = 'Wheel';
 
     for (let i = 0; i < segments; i++) {
       const p: Point = this.world.createPoint(Complex.createPolar(i / segments, radius), singlePointMass);

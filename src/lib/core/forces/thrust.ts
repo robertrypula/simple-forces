@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceManager, ForceType } from '@core/force';
+import { Force, ForceSource, ForceType } from '@core/force';
 import { Line } from '@core/line';
 import { Point } from '@core/point';
 import { World } from '@core/world';
@@ -9,23 +9,26 @@ import { World } from '@core/world';
 /*tslint:disable:max-classes-per-file*/
 
 export class ThrustForce extends Force {
-  public constructor(public line: Line, public forceManager: ThrustForceManager) {
-    super(ForceType.Thrust, forceManager);
+  public constructor(public forceSource: ThrustForceSource) {
+    super(ForceType.Thrust, forceSource);
   }
 
   public calculateForce(point: Point): void {
-    this.vector = this.forceManager.localVector.clone().multiply(Complex.createPolar(this.line.getUnitAngle()));
+    this.vector = this.forceSource.localVector
+      .clone()
+      .multiply(Complex.createPolar(this.forceSource.line.getUnitAngle()));
   }
 }
 
 // ----------------------------------------------------------------
 
-export class ThrustForceManager extends ForceManager {
+export class ThrustForceSource extends ForceSource {
   public localVector = Complex.create();
 
   public constructor(world: World, public line: Line) {
     super(world);
-    line.pointA.forces.push(new ThrustForce(line, this));
-    line.pointB.forces.push(new ThrustForce(line, this));
+    line.pointA.forces.push(new ThrustForce(this));
+    line.pointB.forces.push(new ThrustForce(this));
+    // thrust force interacts only with two 'self' points - no refreshAwareness method is needed
   }
 }
