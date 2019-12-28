@@ -1,11 +1,13 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { getTime } from '@'; // in your code it would be: ... from 'simple-forces'
-import * as domUtils from './dom-utils';
-import { ExampleCore } from './example-core';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { getTime } from '@';
+
+import { AbstractExample } from '@examples/web/abstract-example';
+import * as domUtils from '@examples/web/dom-utils';
 
 export class WebRunner {
-  protected example: ExampleCore;
+  protected example: AbstractExample;
   protected previousTime: number = null;
 
   public constructor(protected ExampleFactory: any) {

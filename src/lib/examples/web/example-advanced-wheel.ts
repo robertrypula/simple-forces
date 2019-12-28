@@ -1,9 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Line, Wheel } from '@'; // in your code it would be: ... from 'simple-forces'
-import { ExampleEarthSurface } from './example-earth-surface';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { Complex, Line, Wheel } from '@';
 
-export class Example003 extends ExampleEarthSurface {
+import { AbstractEarthSurfaceExample } from '@examples/web/abstract-example-earth-surface';
+
+export class ExampleAdvancedWheel extends AbstractEarthSurfaceExample {
   public lineA: Line;
   public lineLeft: Line;
   public wheel: Wheel;

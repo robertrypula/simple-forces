@@ -1,8 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { format, getTime, Renderer, World } from '@'; // in your code it would be: ... from 'simple-forces'
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { format, getTime, Renderer, World } from '@';
 
-export abstract class ExampleCore {
+export abstract class AbstractExample {
   public world: World;
   public renderer: Renderer;
 

@@ -1,10 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Earth, Line } from '@'; // in your code it would be: ... from 'simple-forces'
-import { EARTH_MEAN_RADIUS } from '@core/constants';
-import { ExampleCore } from './example-core';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { Complex, Earth, EARTH_MEAN_RADIUS, Line } from '@';
 
-export abstract class ExampleEarthSurface extends ExampleCore {
+import { AbstractExample } from './abstract-example';
+
+export abstract class AbstractEarthSurfaceExample extends AbstractExample {
   public earth: Earth;
   public earthSurface: Line;
 

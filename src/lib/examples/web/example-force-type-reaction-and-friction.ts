@@ -1,9 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Complex, Line, Point } from '@'; // in your code it would be: ... from 'simple-forces'
-import { ExampleCore } from '@examples/web/example-core';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { Complex, Line, Point } from '@';
 
-export class Example005 extends ExampleCore {
+import { AbstractExample } from '@examples/web/abstract-example';
+
+export class ExampleForceTypeReactionAndFriction extends AbstractExample {
   public lineA: Line;
   public pointA: Point;
 

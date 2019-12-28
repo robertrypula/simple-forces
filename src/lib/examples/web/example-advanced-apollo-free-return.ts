@@ -1,10 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Apollo, Axis, Earth, format, Iss, Moon } from '@'; // in your code it would be: ... from 'simple-forces'
-import { EARTH_MEAN_RADIUS, MOON_MEAN_RADIUS } from '@core/constants';
-import { ExampleCore } from './example-core';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { Apollo, Axis, Earth, EARTH_MEAN_RADIUS, format, Iss, Moon, MOON_MEAN_RADIUS } from '@';
 
-export class Example002 extends ExampleCore {
+import { AbstractExample } from '@examples/web/abstract-example';
+
+export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
   public axis: Axis;
   public earth: Earth;
   public moon: Moon;

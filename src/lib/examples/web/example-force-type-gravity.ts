@@ -1,9 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Point } from '@'; // in your code it would be: ... from 'simple-forces'
-import { ExampleEarthSurface } from './example-earth-surface';
+// in your code replace `from '@';` with `from 'simple-forces';`
+import { Point } from '@';
 
-export class Example001 extends ExampleEarthSurface {
+import { AbstractEarthSurfaceExample } from '@examples/web/abstract-example-earth-surface';
+
+export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
   public ball: Point;
 
   public createScene(): void {
