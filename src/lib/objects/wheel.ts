@@ -30,7 +30,7 @@ export class Wheel extends ObjectCore {
       const p: Point = this.world.createPoint(Complex.createPolar(i / segments, radius), singlePointMass);
       const l: Line = this.world.createLine(this.center, p);
 
-      l.createSpringForceSource();
+      l.createSpringAndDamperForceSource();
       this.lines.push(l);
       this.points.push(p);
     }
@@ -39,7 +39,7 @@ export class Wheel extends ObjectCore {
       for (let j = 1; j <= tireSegments; j++) {
         const l: Line = this.world.createLine(this.points[i], this.points[(i + j) % segments]);
 
-        l.createSpringForceSource();
+        l.createSpringAndDamperForceSource();
         this.lines.push(l);
       }
     }

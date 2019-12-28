@@ -9,7 +9,11 @@ export abstract class ExampleCore {
   protected constructor(public ctx: CanvasRenderingContext2D, public logElement: HTMLElement) {
     this.world = new World();
     this.renderer = new Renderer(this.ctx, this.world);
+    this.createScene();
+    this.world.refreshAwareness();
   }
+
+  public abstract createScene(): void;
 
   public abstract timeTick(dt: number): void;
 

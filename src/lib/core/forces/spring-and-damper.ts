@@ -1,16 +1,17 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceSource, ForceType } from '@core/force';
+import { Force, ForceSource } from '@core/force';
 import { Line } from '@core/line';
+import { ForceType } from '@core/models';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/
 
-export class SpringForce extends Force {
-  public constructor(public forceSource: SpringForceSource) {
-    super(ForceType.Spring, forceSource);
+export class SpringAndDamperForce extends Force {
+  public constructor(public forceSource: SpringAndDamperForceSource) {
+    super(ForceType.SpringAndDamper, forceSource);
   }
 
   public calculateForce(point: Point): void {
@@ -32,14 +33,14 @@ export class SpringForce extends Force {
 
 // ----------------------------------------------------------------
 
-export class SpringForceSource extends ForceSource {
+export class SpringAndDamperForceSource extends ForceSource {
   public k: number = 200;
   public b: number = 1;
 
   public constructor(world: World, public line: Line) {
     super(world);
-    line.pointA.forces.push(new SpringForce(this));
-    line.pointB.forces.push(new SpringForce(this));
+    line.pointA.forces.push(new SpringAndDamperForce(this));
+    line.pointB.forces.push(new SpringAndDamperForce(this));
     // spring force interacts only with two 'self' points - no refreshAwareness method is needed
   }
 }

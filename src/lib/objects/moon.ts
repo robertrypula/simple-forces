@@ -1,18 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { MOON_MASS, MOON_MEAN_RADIUS, MOON_PERIGEE_ALTITUDE, MOON_PERIGEE_VELOCITY } from '@core/constants';
 import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
-// Other planets vectors:
-// https://ssd.jpl.nasa.gov/horizons.cgi
-
 export class Moon extends ObjectCore {
-  public static readonly MASS = 7.34767309e22;
-  public static readonly RADIUS = 1737e3;
-  public static readonly PERIGEE = 362.6e6;
-  public static readonly PERIGEE_VELOCITY = 1077.2; // TODO fine-tune orbital velocity
   public center: Point;
 
   public constructor(world: World) {
@@ -21,8 +15,8 @@ export class Moon extends ObjectCore {
   }
 
   public orbitAroundEarthAtOrigin(perigeeDegreeAngle: number): Moon {
-    this.translate(Complex.create(Moon.PERIGEE, 0));
-    this.center.velocity.y = Moon.PERIGEE_VELOCITY;
+    this.translate(Complex.create(MOON_PERIGEE_ALTITUDE, 0));
+    this.center.velocity.y = MOON_PERIGEE_VELOCITY;
     this.center.isStatic = false;
     this.rotate(Complex.createPolar(perigeeDegreeAngle / 360));
 
@@ -30,11 +24,11 @@ export class Moon extends ObjectCore {
   }
 
   protected create(): void {
-    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Moon.MASS)));
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), MOON_MASS)));
 
     this.center.name = 'Moon';
     this.center.isStatic = true;
-    this.center.radius = Moon.RADIUS;
+    this.center.radius = MOON_MEAN_RADIUS;
     this.center.createGravityForceSource();
   }
 }

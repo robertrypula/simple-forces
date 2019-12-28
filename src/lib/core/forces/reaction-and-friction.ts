@@ -1,16 +1,17 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceSource, ForceType } from '@core/force';
+import { Force, ForceSource } from '@core/force';
 import { Line } from '@core/line';
+import { ForceType } from '@core/models';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/
 
-export class SurfaceReactionForce extends Force {
-  public constructor(public forceSource: SurfaceReactionForceSource) {
-    super(ForceType.SurfaceReaction, forceSource);
+export class ReactionAndFrictionForce extends Force {
+  public constructor(public forceSource: ReactionAndFrictionForceSource) {
+    super(ForceType.ReactionAndFriction, forceSource);
   }
 
   public calculateForce(point: Point): void {
@@ -35,17 +36,13 @@ export class SurfaceReactionForce extends Force {
       const forceAmount = -pointL.position.y * this.forceSource.k;
 
       pointL.force = Complex.create(0, forceAmount);
-      pointAL.force = Complex.create(0, -(forceAmount * (1 - collisionUnitX)));
-      pointBL.force = Complex.create(0, -(forceAmount * collisionUnitX));
       this.vector = pointL.transformBack(origin, unitAngle).force;
 
       // apply force of collision to the points that define the surface as well
-      this.forceSource.line.pointA.forces.find(
-        (force: Force) => force.forceSource === this.forceSource
-      ).vector = pointAL.transformBack(origin, unitAngle).force;
-      this.forceSource.line.pointB.forces.find(
-        (force: Force) => force.forceSource === this.forceSource
-      ).vector = pointBL.transformBack(origin, unitAngle).force;
+      pointAL.force = Complex.create(0, -(forceAmount * (1 - collisionUnitX)));
+      pointBL.force = Complex.create(0, -(forceAmount * collisionUnitX));
+      this.forceSource.pointAForce.vector = pointAL.transformBack(origin, unitAngle).force;
+      this.forceSource.pointBForce.vector = pointBL.transformBack(origin, unitAngle).force;
     } else {
       this.vector.reset();
     }
@@ -73,22 +70,24 @@ export class SurfaceReactionForce extends Force {
 
 // ----------------------------------------------------------------
 
-export class SurfaceReactionForceSource extends ForceSource {
+export class ReactionAndFrictionForceSource extends ForceSource {
   public k: number = 500.0;
   public boundingBoxMargin = 0.35;
+  public pointAForce: ReactionAndFrictionForce; // NOTE: caching references to force speeds up access to it as each
+  public pointBForce: ReactionAndFrictionForce; // point have array of forces and we would need to use slower find()
 
   public constructor(world: World, public line: Line) {
     super(world);
     // NOTE: this is needed as points that defines the surface also 'feels' the force of collision with the surface
-    line.pointA.forces.push(new SurfaceReactionForce(this));
-    line.pointB.forces.push(new SurfaceReactionForce(this));
+    line.pointA.forces.push((this.pointAForce = new ReactionAndFrictionForce(this)));
+    line.pointB.forces.push((this.pointBForce = new ReactionAndFrictionForce(this)));
 
     // remember to call refreshSurfaceReactionAwareness after adding all objects to the world
   }
 
   public refreshAwareness(): void {
     this.forEachWorldPointNotYetAwareAboutTheSource((point: Point) => {
-      point.forces.push(new SurfaceReactionForce(this));
+      point.forces.push(new ReactionAndFrictionForce(this));
     });
   }
 }

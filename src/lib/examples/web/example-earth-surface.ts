@@ -1,6 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex, Earth, Line } from '@'; // in your code it would be: ... from 'simple-forces'
+import { EARTH_MEAN_RADIUS } from '@core/constants';
 import { ExampleCore } from './example-core';
 
 export abstract class ExampleEarthSurface extends ExampleCore {
@@ -9,13 +10,13 @@ export abstract class ExampleEarthSurface extends ExampleCore {
 
   public createEarthSurfaceEnvironment(): void {
     this.earth = new Earth(this.world);
-    this.earth.translate(Complex.create(0, -Earth.RADIUS)); // move earth below the world's origin
+    this.earth.translate(Complex.create(0, -EARTH_MEAN_RADIUS)); // move earth below the world's origin
 
     this.earthSurface = this.world.createLine(
       this.world.createPoint(Complex.create(-5, -1.5)),
       this.world.createPoint(Complex.create(5, -1.5))
     );
     this.earthSurface.setIsStatic(true);
-    this.earthSurface.createSurfaceReactionForceSource();
+    this.earthSurface.createReactionAndFrictionForceSource();
   }
 }

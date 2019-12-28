@@ -1,8 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceSource, ForceType } from '@core/force';
+import { Force, ForceSource } from '@core/force';
 import { Line } from '@core/line';
+import { ForceType } from '@core/models';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 

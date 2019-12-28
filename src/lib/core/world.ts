@@ -46,16 +46,28 @@ export class World {
     return point;
   }
 
+  public refreshAwareness(): void {
+    this.refreshDragAwareness();
+    this.refreshGravityAwareness();
+    this.refreshReactionAndFrictionAwareness();
+  }
+
+  public refreshDragAwareness(): void {
+    this.points
+      .filter((point: Point) => point.dragForceSource)
+      .forEach((point: Point) => point.dragForceSource.refreshAwareness());
+  }
+
   public refreshGravityAwareness(): void {
     this.points
       .filter((point: Point) => point.gravityForceSource)
       .forEach((point: Point) => point.gravityForceSource.refreshAwareness());
   }
 
-  public refreshSurfaceReactionAwareness(): void {
+  public refreshReactionAndFrictionAwareness(): void {
     this.lines
-      .filter((line: Line) => line.surfaceReactionForceManager)
-      .forEach((line: Line) => line.surfaceReactionForceManager.refreshAwareness());
+      .filter((line: Line) => line.reactionAndFrictionForceSource)
+      .forEach((line: Line) => line.reactionAndFrictionForceSource.refreshAwareness());
   }
 
   protected calculatePhysicsInternal(dt: number): void {
@@ -63,7 +75,7 @@ export class World {
       .filter((point: Point) => !point.isStatic)
       .forEach((point: Point) => {
         point.forces.forEach((force: Force) => {
-          force.calculateForce(point);
+          force.calculateForce(point, dt);
         });
       });
 

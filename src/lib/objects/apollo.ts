@@ -1,19 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { APOLLO_MASS, APOLLO_PERIGEE_ALTITUDE, APOLLO_PERIGEE_TLI_VELOCITY, EARTH_MEAN_RADIUS } from '@core/constants';
 import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
-import { Earth } from '@objects/earth';
 
 export class Apollo extends ObjectCore {
-  // https://en.wikipedia.org/wiki/Apollo_8
-  // TODO fine-tune perigee
-  // TODO fine-tune orbital velocity: wiki says about 7.793e3 & 10.822e3
-  public static readonly MASS = 28870 + 5621 + 23250;
-  public static readonly PERIGEE = Earth.RADIUS + 184.4e3;
-  public static readonly PERIGEE_VELOCITY = 7.793e3;
-  public static readonly PERIGEE_TLI_VELOCITY = 10.944605e3; // 9448
   public center: Point;
 
   public constructor(world: World) {
@@ -22,15 +15,15 @@ export class Apollo extends ObjectCore {
   }
 
   public translunarInjectionWithEarthAtOrigin(perigeeDegreeAngle: number): Apollo {
-    this.translate(Complex.create(Apollo.PERIGEE, 0));
-    this.center.velocity.y = Apollo.PERIGEE_TLI_VELOCITY;
+    this.translate(Complex.create(EARTH_MEAN_RADIUS + APOLLO_PERIGEE_ALTITUDE, 0));
+    this.center.velocity.y = APOLLO_PERIGEE_TLI_VELOCITY;
     this.rotate(Complex.createPolar(perigeeDegreeAngle / 360));
 
     return this;
   }
 
   protected create(): void {
-    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Apollo.MASS)));
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), APOLLO_MASS)));
 
     this.center.name = 'Apollo';
   }

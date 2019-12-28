@@ -1,15 +1,15 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Force, ForceSource, ForceType } from '@core/force';
+import { GRAVITATIONAL_CONSTANT } from '@core/constants';
+import { Force, ForceSource } from '@core/force';
+import { ForceType } from '@core/models';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/
 
 export class GravityForce extends Force {
-  public static readonly G = 6.674e-11; // https://en.wikipedia.org/wiki/Gravitational_constant
-
   public constructor(public forceSource: GravityForceSource) {
     super(ForceType.Gravity, forceSource);
   }
@@ -23,7 +23,7 @@ export class GravityForce extends Force {
     //    (Moon-Earth acts on each other with the same force but opposite direction)
 
     if (r !== 0) {
-      const forceMagnitude = (GravityForce.G * this.forceSource.point.mass * point.mass) / Math.pow(r, 2);
+      const forceMagnitude = (this.forceSource.G * this.forceSource.point.mass * point.mass) / Math.pow(r, 2);
       this.vector = sourceDirection.normalize().multiplyScalar(forceMagnitude);
     } else {
       this.vector = Complex.create();
@@ -34,6 +34,8 @@ export class GravityForce extends Force {
 // ----------------------------------------------------------------
 
 export class GravityForceSource extends ForceSource {
+  public G = GRAVITATIONAL_CONSTANT;
+
   public constructor(world: World, public point: Point) {
     super(world);
     // remember to call refreshGravityAwareness after adding all objects to the world

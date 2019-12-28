@@ -8,11 +8,6 @@ export class Example003 extends ExampleEarthSurface {
   public lineLeft: Line;
   public wheel: Wheel;
 
-  public constructor(ctx: CanvasRenderingContext2D, logElement: HTMLElement) {
-    super(ctx, logElement);
-    this.createScene();
-  }
-
   public createScene(): void {
     this.createEarthSurfaceEnvironment();
     this.earth.center.radius = null; // due to rounding error the Earth surface is wrongly displayed at that high zoom
@@ -25,17 +20,14 @@ export class Example003 extends ExampleEarthSurface {
       this.world.createPoint(Complex.create(5, 1.0))
     );
     this.lineA.setIsStatic(true);
-    this.lineA.createSurfaceReactionForceSource();
+    this.lineA.createReactionAndFrictionForceSource();
 
     this.lineLeft = this.world.createLine(
       this.world.createPoint(Complex.create(-5, 2)),
       this.world.createPoint(Complex.create(-5, -1))
     );
     this.lineLeft.setIsStatic(true);
-    this.lineLeft.createSurfaceReactionForceSource();
-
-    this.world.refreshGravityAwareness();
-    this.world.refreshSurfaceReactionAwareness();
+    this.lineLeft.createReactionAndFrictionForceSource();
 
     // this.world.timeWarp = 0.2;
   }

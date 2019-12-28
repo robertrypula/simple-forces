@@ -1,16 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { EARTH_MASS, EARTH_MEAN_RADIUS } from '@core/constants';
 import { ObjectCore } from '@core/object-core';
 import { Point } from '@core/point';
 import { World } from '@core/world';
 
-// Other planets vectors:
-// https://ssd.jpl.nasa.gov/horizons.cgi
-
 export class Earth extends ObjectCore {
-  public static readonly MASS = 5.97219e24; // https://en.wikipedia.org/wiki/Earth_mass
-  public static readonly RADIUS = 6371e3; // https://en.wikipedia.org/wiki/Earth_radius
   public center: Point;
 
   public constructor(world: World) {
@@ -19,11 +15,11 @@ export class Earth extends ObjectCore {
   }
 
   protected create(): void {
-    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), Earth.MASS)));
+    this.points.push((this.center = this.world.createPoint(Complex.create(0, 0), EARTH_MASS)));
 
     this.center.name = 'Earth';
     this.center.isStatic = true;
-    this.center.radius = Earth.RADIUS;
+    this.center.radius = EARTH_MEAN_RADIUS;
     this.center.createGravityForceSource();
   }
 }

@@ -11,9 +11,10 @@ export const libraryInfo = {
 export * from '@core/angle';
 export * from '@core/complex';
 export * from '@core/force';
+export * from '@core/forces/drag';
 export * from '@core/forces/gravity';
-export * from '@core/forces/spring';
-export * from '@core/forces/surface-reaction';
+export * from '@core/forces/reaction-and-friction';
+export * from '@core/forces/spring-and-damper';
 export * from '@core/forces/thrust';
 export * from '@core/line';
 export * from '@core/object-core';
@@ -39,6 +40,7 @@ export * from '@examples/web/example-001';
 export * from '@examples/web/example-002';
 export * from '@examples/web/example-003';
 export * from '@examples/web/example-004';
+export * from '@examples/web/example-005';
 export * from '@examples/web/web-runner';
 
 // ----------------------------------------------------------------------------
@@ -95,4 +97,7 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
   - world will do computation for dataToRender
     - shader will go to world
   - example can provide dataToRender and log values (key, value)
+
+  - https://dzone.com/articles/importing-scripts-web-workers
+  - https://stackoverflow.com/questions/38715001/how-to-make-web-workers-with-typescript-and-webpack
 */

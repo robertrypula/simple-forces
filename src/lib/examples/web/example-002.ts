@@ -1,6 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Apollo, Axis, Earth, format, Iss, Moon } from '@'; // in your code it would be: ... from 'simple-forces'
+import { EARTH_MEAN_RADIUS, MOON_MEAN_RADIUS } from '@core/constants';
 import { ExampleCore } from './example-core';
 
 export class Example002 extends ExampleCore {
@@ -12,11 +13,6 @@ export class Example002 extends ExampleCore {
   public iss: Iss;
 
   public closestMoonApproach: number = Infinity;
-
-  public constructor(ctx: CanvasRenderingContext2D, logElement: HTMLElement) {
-    super(ctx, logElement);
-    this.createScene();
-  }
 
   public createScene(): void {
     this.axis = new Axis(this.world);
@@ -31,9 +27,6 @@ export class Example002 extends ExampleCore {
     this.iss = new Iss(this.world);
     this.iss.orbitAroundEarthAtOrigin(0);
 
-    this.world.refreshGravityAwareness();
-    this.world.refreshSurfaceReactionAwareness();
-
     this.world.internalSteps = 10000;
     this.renderer.camera = this.apollo.center;
 
@@ -44,12 +37,12 @@ export class Example002 extends ExampleCore {
 
   public timeTick(dt: number): void {
     const apolloPosition = this.apollo.center.position;
-    const apolloAltitudeEarth = apolloPosition.getMagnitude() - Earth.RADIUS;
+    const apolloAltitudeEarth = apolloPosition.getMagnitude() - EARTH_MEAN_RADIUS;
     const apolloAltitudeMoon =
       apolloPosition
         .clone()
         .subtract(this.moon.center.position)
-        .getMagnitude() - Moon.RADIUS;
+        .getMagnitude() - MOON_MEAN_RADIUS;
 
     if (apolloAltitudeEarth < 1e6) {
       this.world.timeWarp = 30;
@@ -67,7 +60,7 @@ export class Example002 extends ExampleCore {
     this.log(
       this.timeTickWithLog(dt) +
         'Iss altitude: ' +
-        ((this.iss.center.position.getMagnitude() - Earth.RADIUS) / 1e3).toFixed(2) +
+        ((this.iss.center.position.getMagnitude() - EARTH_MEAN_RADIUS) / 1e3).toFixed(2) +
         ' km\n' +
         'Apollo altitude (Earth): ' +
         format(apolloAltitudeEarth, 3, 1e6) +
