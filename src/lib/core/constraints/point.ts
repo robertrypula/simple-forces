@@ -11,7 +11,13 @@ export class Point {
   public acceleration: Complex = Complex.create();
   public force: Complex = Complex.create();
   public forces: Force[] = [];
-  public isStatic: boolean = false;
+
+  public isStatic = false;
+  public skipCalculationOfDrag = false; // TODO use flags in calculateForce() or at loop that calls it
+  public skipCalculationOfGravity = false; // TODO use flags in calculateForce() or at loop that calls it
+  public skipCalculationOfLiftAndDrag = false; // TODO use flags in calculateForce() or at loop that calls it
+  public skipCalculationOfReactionAndFriction = false; // TODO use flags in calculateForce() or at loop that calls it
+
   public name: string;
   public radius: number = null;
 
@@ -32,7 +38,7 @@ export class Point {
   }
 
   public createDragForceSource(): void {
-    this.dragForceSource = new GravityForceSource(this.world, this);
+    this.dragForceSource = new DragForceSource(this.world, this);
   }
 
   public createGravityForceSource(): void {

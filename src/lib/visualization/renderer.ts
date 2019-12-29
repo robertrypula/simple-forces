@@ -1,8 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Line } from '@core/line';
-import { Point } from '@core/point';
+import { Line } from '@core/constraints/line';
+import { Point } from '@core/constraints/point';
 import { World } from '@core/world';
 
 export class Renderer {

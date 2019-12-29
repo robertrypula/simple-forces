@@ -1,8 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { Point } from '@core/constraints/point';
 import { ForceType } from '@core/models';
-import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/

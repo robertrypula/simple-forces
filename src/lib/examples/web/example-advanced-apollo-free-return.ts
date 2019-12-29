@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 // in your code replace `from '@';` with `from 'simple-forces';`
-import { Apollo, Axis, Earth, EARTH_MEAN_RADIUS, format, Iss, Moon, MOON_MEAN_RADIUS } from '@';
+import { Apollo, Axis, Earth, EARTH_MEAN_RADIUS, formatNumber, Iss, Moon, MOON_MEAN_RADIUS } from '@';
 
 import { AbstractExample } from '@examples/web/abstract-example';
 
@@ -33,7 +33,7 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
 
     setInterval(() => {
       this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
-    }, 2000);
+    }, 500);
   }
 
   public timeTick(dt: number): void {
@@ -64,13 +64,13 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
         ((this.iss.center.position.getMagnitude() - EARTH_MEAN_RADIUS) / 1e3).toFixed(2) +
         ' km\n' +
         'Apollo altitude (Earth): ' +
-        format(apolloAltitudeEarth, 3, 1e6) +
+        formatNumber(apolloAltitudeEarth, 3, 1e6) +
         ' thousands km\n' +
         'Apollo altitude (Moon): ' +
-        format(apolloAltitudeMoon, 3, 1e6) +
+        formatNumber(apolloAltitudeMoon, 3, 1e6) +
         ' thousands km\n' +
         'Apollo closest approach to Moon: ' +
-        format(this.closestMoonApproach, 3, 1e6) +
+        formatNumber(this.closestMoonApproach, 3, 1e6) +
         ' thousands km\n' +
         'Moon/Earth center distance: ' +
         this.moon.center.position.toStringMagnitude(2, 1e6) +

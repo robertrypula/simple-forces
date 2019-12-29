@@ -18,19 +18,19 @@ export const EARTH_MEAN_RADIUS = 6371e3; // https://en.wikipedia.org/wiki/Earth_
 export const MOON_MASS = 7.342e22; // https://en.wikipedia.org/wiki/Moon
 export const MOON_MEAN_RADIUS = 1737.4e3;
 export const MOON_PERIGEE_ALTITUDE = 362.6e6;
-export const MOON_PERIGEE_VELOCITY = 1077.2; // TODO fine-tune orbital velocity
+export const MOON_PERIGEE_VELOCITY = 1077.2; // TODO fine-tune velocity
 
 // -----------------------------------------------------------------------------
 
 // spacecrafts
 
 export const INTERNATIONAL_SPACE_STATION_MASS = 419725; // https://en.wikipedia.org/wiki/International_Space_Station
-export const INTERNATIONAL_SPACE_STATION_PERIGEE_VELOCITY = 7.66e3; // TODO fine tune
-export const INTERNATIONAL_SPACE_STATION_APOGEE_VELOCITY = 7.66e3; // TODO fine tune
+export const INTERNATIONAL_SPACE_STATION_PERIGEE_VELOCITY = 7.66e3; // TODO fine-tune velocity
+export const INTERNATIONAL_SPACE_STATION_APOGEE_VELOCITY = 7.66e3; // TODO fine-tune velocity
 export const INTERNATIONAL_SPACE_STATION_PERIGEE_ALTITUDE = 408e3;
 export const INTERNATIONAL_SPACE_STATION_APOGEE_ALTITUDE = 410e3;
 
 export const APOLLO_MASS = 5621 + 23250; // https://en.wikipedia.org/wiki/Apollo_8
 export const APOLLO_PERIGEE_ALTITUDE = 184.4e3;
-export const APOLLO_PERIGEE_VELOCITY = 7.793e3; // wiki says 7.6e3 m/s
-export const APOLLO_PERIGEE_TLI_VELOCITY = 10.944605e3; // wiki says 10.8e3 m/s
+export const APOLLO_PERIGEE_VELOCITY = 7.793e3; // TODO fine-tune velocity, wiki says 7.6e3 m/s
+export const APOLLO_PERIGEE_TLI_VELOCITY = 10.944605e3; // TODO fine-tune velocity, wiki says 10.8e3 m/s

@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { Line } from '@core/constraints/line';
+import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
-import { Line } from '@core/line';
 import { ForceType } from '@core/models';
-import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/
@@ -78,11 +78,12 @@ export class ReactionAndFrictionForceSource extends ForceSource {
 
   public constructor(world: World, public line: Line) {
     super(world);
+
     // NOTE: this is needed as points that defines the surface also 'feels' the force of collision with the surface
     line.pointA.forces.push((this.pointAForce = new ReactionAndFrictionForce(this)));
     line.pointB.forces.push((this.pointBForce = new ReactionAndFrictionForce(this)));
 
-    // remember to call refreshSurfaceReactionAwareness after adding all objects to the world
+    // IMPORTANT: call world.refreshReactionAndFrictionAwareness or world.refreshAwareness when the scene is ready
   }
 
   public refreshAwareness(): void {

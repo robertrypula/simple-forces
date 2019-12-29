@@ -2,9 +2,9 @@
 
 import { Complex } from '@core/complex';
 import { GRAVITATIONAL_CONSTANT } from '@core/constants';
+import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
-import { Point } from '@core/point';
 import { World } from '@core/world';
 
 /*tslint:disable:max-classes-per-file*/
@@ -38,7 +38,8 @@ export class GravityForceSource extends ForceSource {
 
   public constructor(world: World, public point: Point) {
     super(world);
-    // remember to call refreshGravityAwareness after adding all objects to the world
+
+    // IMPORTANT: call world.refreshGravityAwareness or world.refreshAwareness when the scene is ready
   }
 
   public refreshAwareness(): void {

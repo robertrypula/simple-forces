@@ -7,8 +7,8 @@ import {
   INTERNATIONAL_SPACE_STATION_PERIGEE_ALTITUDE,
   INTERNATIONAL_SPACE_STATION_PERIGEE_VELOCITY
 } from '@core/constants';
+import { Point } from '@core/constraints/point';
 import { ObjectCore } from '@core/object-core';
-import { Point } from '@core/point';
 import { World } from '@core/world';
 
 export class Iss extends ObjectCore {

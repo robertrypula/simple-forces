@@ -1,11 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 // in your code replace `from '@';` with `from 'simple-forces';`
-import { format, getTime, Renderer, World } from '@';
+import { formatNumber, formatTime, getTime, Renderer, World } from '@';
 
 export abstract class AbstractExample {
-  public world: World;
   public renderer: Renderer;
+  public world: World;
 
   protected constructor(public ctx: CanvasRenderingContext2D, public logElement: HTMLElement) {
     this.world = new World();
@@ -25,18 +25,34 @@ export abstract class AbstractExample {
   }
 
   protected timeTickWithLog(dt: number): string {
-    const timeBefore = getTime();
+    let timePhysicsBefore: number;
+    let timePhysics: number;
+    let timeRenderBefore: number;
+    let timeRender: number;
 
-    this.world.calculatePhysics(dt);
+    timePhysicsBefore = getTime();
+    this.world.animationFrame(dt);
+    timePhysics = getTime() - timePhysicsBefore;
+
+    timeRenderBefore = getTime();
     this.renderer.render();
+    timeRender = getTime() - timeRenderBefore;
 
     return (
-      'Diff between frames: ' +
-      format(dt, 3) +
-      ' s\n' +
+      'Simulation time: ' +
+      formatTime(this.world.time) +
+      '\n' +
+      'Simulation time between frames: ' +
+      formatTime(this.world.timeWarp * dt) +
+      '\n' +
+      'Time between frames: ' +
+      formatNumber(dt, 3) +
+      's\n' +
       'Physics/render time: ' +
-      format(getTime() - timeBefore, 3) +
-      ' s\n'
+      formatNumber(timePhysics, 3) +
+      's ' +
+      formatNumber(timeRender, 3) +
+      's\n'
     );
   }
 }

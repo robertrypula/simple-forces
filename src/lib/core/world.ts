@@ -1,25 +1,22 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Angle } from '@core/angle';
 import { Complex } from '@core/complex';
+import { Angle } from '@core/constraints/angle';
+import { Line } from '@core/constraints/line';
+import { Point } from '@core/constraints/point';
 import { Force } from '@core/force';
-import { Line } from '@core/line';
-import { Point } from '@core/point';
 
 export class World {
-  public points: Point[] = [];
-  public lines: Line[] = [];
   public angles: Angle[] = [];
+  public lines: Line[] = [];
+  public points: Point[] = [];
 
-  public timeWarp: number = 1;
-  public internalSteps: number = 100;
+  public internalSteps = 100;
+  public time = 0;
+  public timeWarp = 1;
 
-  public calculatePhysics(dt: number): void {
-    dt *= this.timeWarp;
-
-    for (let i = 0; i < this.internalSteps; i++) {
-      this.calculatePhysicsInternal(dt / this.internalSteps);
-    }
+  public animationFrame(dt: number): void {
+    this.calculatePhysics(dt);
   }
 
   public createAngle(lineA: Line, lineB: Line): Angle {
@@ -49,6 +46,7 @@ export class World {
   public refreshAwareness(): void {
     this.refreshDragAwareness();
     this.refreshGravityAwareness();
+    this.refreshLiftAndDragAwareness();
     this.refreshReactionAndFrictionAwareness();
   }
 
@@ -64,29 +62,54 @@ export class World {
       .forEach((point: Point) => point.gravityForceSource.refreshAwareness());
   }
 
+  public refreshLiftAndDragAwareness(): void {
+    this.lines
+      .filter((line: Line) => line.liftAndDragForceSource)
+      .forEach((line: Line) => line.liftAndDragForceSource.refreshAwareness());
+  }
+
   public refreshReactionAndFrictionAwareness(): void {
     this.lines
       .filter((line: Line) => line.reactionAndFrictionForceSource)
       .forEach((line: Line) => line.reactionAndFrictionForceSource.refreshAwareness());
   }
 
-  protected calculatePhysicsInternal(dt: number): void {
-    this.points
-      .filter((point: Point) => !point.isStatic)
-      .forEach((point: Point) => {
-        point.forces.forEach((force: Force) => {
-          force.calculateForce(point, dt);
-        });
-      });
+  protected calculatePhysics(dt: number): void {
+    let firstStaticPointIndex: number;
 
-    this.points
-      .filter((point: Point) => !point.isStatic)
-      .forEach((point: Point) => {
+    dt *= this.timeWarp;
+    this.time += dt;
+
+    this.points.sort((a: Point, b: Point): number => (a.isStatic === b.isStatic ? 0 : a.isStatic ? 1 : -1));
+    firstStaticPointIndex = this.points.findIndex(a => a.isStatic);
+    firstStaticPointIndex = firstStaticPointIndex === -1 ? this.points.length : firstStaticPointIndex;
+
+    for (let i = 0; i < this.internalSteps; i++) {
+      this.calculatePhysicsInternal(dt / this.internalSteps, firstStaticPointIndex);
+    }
+  }
+
+  protected calculatePhysicsInternal(dt: number, firstStaticPointIndex: number): void {
+    let point: Point;
+
+    for (let i = 0; i < firstStaticPointIndex; i++) {
+      point = this.points[i];
+
+      if (!point.isStatic) {
+        for (let j = 0; j < point.forces.length; j++) {
+          point.forces[j].calculateForce(point, dt);
+        }
+      }
+    }
+
+    for (let i = 0; i < firstStaticPointIndex; i++) {
+      point = this.points[i];
+
+      if (!point.isStatic) {
         point.force.reset();
-        point.forces.forEach(force => {
-          point.force.add(force.vector);
-        });
-
+        for (let j = 0; j < point.forces.length; j++) {
+          point.force.add(point.forces[j].vector);
+        }
         point.acceleration = point.force.clone().divideScalar(point.mass);
 
         // TODO double check formulas with 'Velocity Verlet' (probably velocity is calculated incorrectly)
@@ -95,6 +118,7 @@ export class World {
           .add(point.velocity.clone().multiplyScalar(dt))
           .add(point.acceleration.clone().multiplyScalar((dt * dt) / 2));
         point.velocity.add(point.acceleration.clone().multiplyScalar(dt));
-      });
+      }
+    }
   }
 }

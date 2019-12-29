@@ -8,19 +8,21 @@ export const libraryInfo = {
 
 // ----------------------------------------------------------------------------
 
-export * from '@core/angle';
 export * from '@core/complex';
 export * from '@core/constants';
+export * from '@core/constraints/angle';
+export * from '@core/constraints/line';
+export * from '@core/constraints/point';
 export * from '@core/force';
 export * from '@core/forces/drag';
 export * from '@core/forces/gravity';
+export * from '@core/forces/joint-and-torque';
+export * from '@core/forces/lift-and-drag';
 export * from '@core/forces/reaction-and-friction';
 export * from '@core/forces/spring-and-damper';
 export * from '@core/forces/thrust';
-export * from '@core/line';
 export * from '@core/models';
 export * from '@core/object-core';
-export * from '@core/point';
 export * from '@core/simple-point';
 export * from '@core/world';
 export * from '@objects/apollo';
@@ -30,6 +32,7 @@ export * from '@objects/iss';
 export * from '@objects/moon';
 export * from '@objects/spacecraft';
 export * from '@objects/wheel';
+export * from '@shared/environment-utils';
 export * from '@shared/tools';
 export * from '@visualization/renderer';
 

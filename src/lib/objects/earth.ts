@@ -2,8 +2,8 @@
 
 import { Complex } from '@core/complex';
 import { EARTH_MASS, EARTH_MEAN_RADIUS } from '@core/constants';
+import { Point } from '@core/constraints/point';
 import { ObjectCore } from '@core/object-core';
-import { Point } from '@core/point';
 import { World } from '@core/world';
 
 export class Earth extends ObjectCore {
