@@ -48,13 +48,13 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
 
     if (apolloAltitudeEarth < 1e6) {
       this.world.physics.timeWarp = 30;
-      this.world.viewport.zoom = 100 * 136 / 1e10;
+      this.world.viewport.zoom = (100 * 136) / 1e10;
     } else if (apolloAltitudeMoon < 10e6) {
       this.world.physics.timeWarp = 60 * 10;
-      this.world.viewport.zoom = 10 * 136 / 1e10;
+      this.world.viewport.zoom = (10 * 136) / 1e10;
     } else {
       this.world.physics.timeWarp = 3600 * 2;
-      this.world.viewport.zoom = 1.2 * 136 / 1e10;
+      this.world.viewport.zoom = (1.2 * 136) / 1e10;
     }
 
     this.closestMoonApproach = Math.min(this.closestMoonApproach, apolloAltitudeMoon);
