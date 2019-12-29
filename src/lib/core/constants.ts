@@ -1,6 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+// internal
+
 export const DEFAULT_ATMOSPHERE_END_ALTITUDE = 100e3;
+export const POINT_DEFAULT_SCREEN_RADIUS = 1;
 
 // -----------------------------------------------------------------------------
 

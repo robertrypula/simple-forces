@@ -20,8 +20,8 @@ export class CanvasRenderer {
 
   protected renderLines(): void {
     this.world.lines.forEach((line: Line) => {
-      const pA = line.pointA.positionToRender;
-      const pB = line.pointB.positionToRender;
+      const pA = line.pointA.rendererData.position;
+      const pB = line.pointB.rendererData.position;
 
       this.ctx.beginPath();
       this.ctx.moveTo(pA.x, pA.y);
@@ -33,9 +33,9 @@ export class CanvasRenderer {
 
   protected renderPoints(): void {
     this.world.points.forEach((point: Point) => {
-      const p = point.positionToRender;
-      const radius = point.radius !== null ? point.radius * this.world.viewport.scale : 2;
-      const color = point.radius !== null ? '#ad8f2d' : '#1f775e';
+      const p = point.rendererData.position;
+      const radius = point.rendererData.radius;
+      const color = '#ad8f2d';
 
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);

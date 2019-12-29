@@ -1,5 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+import { Complex } from '@core/complex';
 import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
 
@@ -24,6 +25,16 @@ export enum ForceType {
 
   // adds local thrust vector to the line's reference frame
   Thrust = 'Thrust'
+}
+
+export enum RadiusType {
+  Real = 'Real',
+  Screen = 'Screen'
+}
+
+export interface RendererData {
+  radius: number;
+  position: Complex;
 }
 
 export type NotYetAwarePointHandler = (point: Point) => void;

@@ -103,7 +103,7 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
   TODO 2019.12
   + move actual rendering on Canvas to web-runner
   + move log to web-runner
-  - 1 unit of zoom is filling viewport width
+  + 1 unit of zoom is filling viewport width (UPDATE: meterPerWidth)
   + timeTick will be refactored as animationFrame
   - point will have 'viewportPoint' member with:
     - radius

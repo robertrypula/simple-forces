@@ -5,6 +5,7 @@ import { MOON_MASS, MOON_MEAN_RADIUS, MOON_PERIGEE_ALTITUDE, MOON_PERIGEE_VELOCI
 import { Point } from '@core/constraints/point';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
+import { RadiusType } from '@core/models';
 
 export class Moon extends ObjectCore {
   public center: Point;
@@ -29,6 +30,7 @@ export class Moon extends ObjectCore {
     this.center.name = 'Moon';
     this.center.isStatic = true;
     this.center.radius = MOON_MEAN_RADIUS;
+    this.center.radiusType = RadiusType.Real;
     this.center.createGravityForceSource();
   }
 }

@@ -5,6 +5,7 @@ import { EARTH_MASS, EARTH_MEAN_RADIUS } from '@core/constants';
 import { Point } from '@core/constraints/point';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
+import { RadiusType } from '@core/models';
 
 export class Earth extends ObjectCore {
   public center: Point;
@@ -20,6 +21,7 @@ export class Earth extends ObjectCore {
     this.center.name = 'Earth';
     this.center.isStatic = true;
     this.center.radius = EARTH_MEAN_RADIUS;
+    this.center.radiusType = RadiusType.Real;
     this.center.createGravityForceSource();
   }
 }

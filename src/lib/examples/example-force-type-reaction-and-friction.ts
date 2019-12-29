@@ -15,6 +15,7 @@ export class ExampleForceTypeReactionAndFriction extends AbstractExample {
       this.world.createPoint(Complex.create(3, -0.5), 0.5)
     );
     this.lineA.createReactionAndFrictionForceSource();
+    this.lineA.createSpringAndDamperForceSource();
 
     this.pointA = this.world.createPoint(Complex.create(-2, 1), 0.1, Complex.create(1.5, -0.5));
   }

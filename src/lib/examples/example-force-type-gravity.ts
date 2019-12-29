@@ -22,5 +22,6 @@ export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
     this.createEarthSurfaceEnvironment();
 
     this.ball = this.world.createPoint();
+    this.ball.radius = 2;
   }
 }

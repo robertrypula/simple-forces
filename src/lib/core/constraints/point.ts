@@ -1,10 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { POINT_DEFAULT_SCREEN_RADIUS } from '@core/constants';
 import { Force } from '@core/force';
 import { DragForceSource } from '@core/forces/drag';
 import { GravityForceSource } from '@core/forces/gravity';
 import { LiftAndDragForceSource } from '@core/forces/lift-and-drag';
+import { RadiusType, RendererData } from '@core/models';
 import { SimplePoint } from '@core/simple-point';
 import { World } from '@core/world';
 
@@ -20,9 +22,14 @@ export class Point {
   public isNotAffectedByReactionAndFriction = false; // TODO use flag in calculateForce() or at loop that calls it
 
   public name: string;
-  public radius: number = null;
+  public radius: number = POINT_DEFAULT_SCREEN_RADIUS;
+  public radiusType: RadiusType = RadiusType.Screen;
 
-  public positionToRender: Complex;
+  public rendererData: RendererData = {
+    // colorIndex: 0,
+    position: Complex.create(),
+    radius: 0
+  };
 
   public dragForceSource: DragForceSource;
   public gravityForceSource: GravityForceSource;
