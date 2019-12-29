@@ -14,27 +14,6 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
 
   public closestMoonApproach: number = Infinity;
 
-  public createScene(): void {
-    this.earth = new Earth(this.world);
-
-    this.moon = new Moon(this.world);
-    this.moon.orbitAroundEarthAtOrigin(-53.5);
-
-    this.apollo = new Apollo(this.world);
-    this.apollo.translunarInjectionWithEarthAtOrigin(180);
-
-    this.iss = new Iss(this.world);
-    this.iss.orbitAroundEarthAtOrigin(180);
-
-    this.world.physics.internalSteps = 10000;
-    this.world.viewport.camera = this.apollo.center;
-
-    setInterval(() => {
-      this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
-      this.world.createPoint(this.moon.center.position.clone()).isStatic = true;
-    }, 500);
-  }
-
   public animationFrame(dt: number): void {
     super.animationFrame(dt);
 
@@ -67,5 +46,26 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
       ['Apollo closest approach to Moon', formatNumber(this.closestMoonApproach, 3, 1e6) + ' thousands km'],
       ['Moon/Earth center distance', this.moon.center.position.toStringMagnitude(2, 1e6) + ' thousands km']
     ];
+  }
+
+  public createScene(): void {
+    this.earth = new Earth(this.world);
+
+    this.moon = new Moon(this.world);
+    this.moon.orbitAroundEarthAtOrigin(-53.5);
+
+    this.apollo = new Apollo(this.world);
+    this.apollo.translunarInjectionWithEarthAtOrigin(180);
+
+    this.iss = new Iss(this.world);
+    this.iss.orbitAroundEarthAtOrigin(180);
+
+    this.world.physics.internalSteps = 10000;
+    this.world.viewport.camera = this.apollo.center;
+
+    setInterval(() => {
+      this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
+      this.world.createPoint(this.moon.center.position.clone()).isStatic = true;
+    }, 500);
   }
 }

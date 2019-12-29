@@ -10,10 +10,11 @@ export class ExampleForceTypeThrust extends AbstractExample {
 
   public createScene(): void {
     this.line = this.world.createLine(
-      this.world.createPoint(Complex.create(-1, 0)),
-      this.world.createPoint(Complex.create(1, 0))
+      this.world.createPoint(Complex.create(-1, 0), 0.1),
+      this.world.createPoint(Complex.create(1, 0), 0.1)
     );
 
     this.line.createThrustForceSource();
+    this.line.createSpringAndDamperForceSource();
   }
 }

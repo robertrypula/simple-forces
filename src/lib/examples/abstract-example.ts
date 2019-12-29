@@ -15,6 +15,15 @@ export abstract class AbstractExample {
 
   public abstract createScene(): void;
 
+  public keyboardEvent(key: string, isPressed: boolean): void {
+    switch (key) {
+      case 'z':
+        break;
+      case 'x':
+        break;
+    }
+  }
+
   public animationFrame(dt: number): void {
     let timeStart: number;
     let time: number;

@@ -12,7 +12,7 @@
       <div>
         <h4>Advanced examples</h4>
         <p>
-          Apollo Earth/Moon/Earth free return trajectory
+          Apollo Earth/Moon/Earth free return trajectory (ISS only for orbits comparison)
           <button type="button" onclick="runExample('ExampleAdvancedApolloFreeReturn')">Run</button>
         </p>
 
@@ -24,14 +24,35 @@
 
       <div>
         <h4>Force types examples</h4>
+
+        <p>
+          Drag - simple mass trowed in air (atmosphere enabled)
+          <button type="button" onclick="runExample('ExampleForceTypeDrag')">Run</button>
+        </p>
+
         <p>
           Gravity - simple mass falling on Earth
           <button type="button" onclick="runExample('ExampleForceTypeGravity')">Run</button>
         </p>
 
         <p>
+          Angle join & torque - falling V shape
+          <button type="button" onclick="runExample('ExampleForceTypeJointAndTorque')">Run</button>
+        </p>
+
+        <p>
+          Lift & drag - wing and parachute test (atmosphere enabled)
+          <button type="button" onclick="runExample('ExampleForceTypeLiftAndDrag')">Run</button>
+        </p>
+
+        <p>
           Surface reaction & friction - simple collisions
           <button type="button" onclick="runExample('ExampleForceTypeReactionAndFriction')">Run</button>
+        </p>
+
+        <p>
+          Spring and damper - simple oscillations and point distance keeping
+          <button type="button" onclick="runExample('ExampleForceTypeSpringAndDamper')">Run</button>
         </p>
 
         <p>

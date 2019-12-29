@@ -8,13 +8,6 @@ import { AbstractEarthSurfaceExample } from '@examples/abstract-example-earth-su
 export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
   public ball: Point;
 
-  public createScene(): void {
-    this.createEarthSurfaceEnvironment();
-    this.earth.center.radius = null; // due to rounding error the Earth surface is wrongly displayed at that high zoom
-
-    this.ball = this.world.createPoint();
-  }
-
   public animationFrame(dt: number): void {
     super.animationFrame(dt);
     this.log = [
@@ -23,5 +16,11 @@ export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
       ['Ball velocity', this.ball.velocity.toStringXY()],
       ['Ball acceleration', this.ball.acceleration.toStringXY(3)]
     ];
+  }
+
+  public createScene(): void {
+    this.createEarthSurfaceEnvironment();
+
+    this.ball = this.world.createPoint();
   }
 }

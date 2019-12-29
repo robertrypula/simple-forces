@@ -11,6 +11,7 @@ export abstract class AbstractEarthSurfaceExample extends AbstractExample {
 
   public createEarthSurfaceEnvironment(): void {
     this.earth = new Earth(this.world);
+    this.earth.center.radius = null; // due to rounding error the Earth surface is wrongly displayed at that high zoom
     this.earth.translate(Complex.create(0, -EARTH_MEAN_RADIUS)); // move earth below the world's origin
 
     this.earthSurface = this.world.createLine(

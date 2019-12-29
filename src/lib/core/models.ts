@@ -1,5 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+import { Line } from '@core/constraints/line';
+import { Point } from '@core/constraints/point';
+
 export enum ForceType {
   // adds 'atmosphere' area that affects points above the 'source' point
   Drag = 'Drag',
@@ -22,3 +25,6 @@ export enum ForceType {
   // adds local thrust vector to the line's reference frame
   Thrust = 'Thrust'
 }
+
+export type NotYetAwarePointHandler = (point: Point) => void;
+export type NotYetAwareLineHandler = (line: Line) => void;

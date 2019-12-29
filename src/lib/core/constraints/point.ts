@@ -4,6 +4,7 @@ import { Complex } from '@core/complex';
 import { Force } from '@core/force';
 import { DragForceSource } from '@core/forces/drag';
 import { GravityForceSource } from '@core/forces/gravity';
+import { LiftAndDragForceSource } from '@core/forces/lift-and-drag';
 import { SimplePoint } from '@core/simple-point';
 import { World } from '@core/world';
 
@@ -25,6 +26,7 @@ export class Point {
 
   public dragForceSource: DragForceSource;
   public gravityForceSource: GravityForceSource;
+  public liftAndDragForceSource: LiftAndDragForceSource;
 
   public constructor(
     public world: World,
@@ -37,11 +39,21 @@ export class Point {
     return new SimplePoint(this.position.clone(), this.velocity.clone());
   }
 
-  public createDragForceSource(): void {
+  public createDragForceSource(): Point {
     this.dragForceSource = new DragForceSource(this.world, this);
+
+    return this;
   }
 
-  public createGravityForceSource(): void {
+  public createGravityForceSource(): Point {
     this.gravityForceSource = new GravityForceSource(this.world, this);
+
+    return this;
+  }
+
+  public createLiftAndDragForceSource(): Point {
+    this.liftAndDragForceSource = new LiftAndDragForceSource(this.world, this);
+
+    return this;
   }
 }

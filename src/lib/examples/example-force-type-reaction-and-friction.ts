@@ -11,11 +11,11 @@ export class ExampleForceTypeReactionAndFriction extends AbstractExample {
 
   public createScene(): void {
     this.lineA = this.world.createLine(
-      this.world.createPoint(Complex.create(-1, -1), 0.1),
-      this.world.createPoint(Complex.create(1, -1), 0.1)
+      this.world.createPoint(Complex.create(-3, -0.5), 0.5),
+      this.world.createPoint(Complex.create(3, -0.5), 0.5)
     );
     this.lineA.createReactionAndFrictionForceSource();
 
-    this.pointA = this.world.createPoint(Complex.create(0.9, 0), 0.1, Complex.create(0, -1));
+    this.pointA = this.world.createPoint(Complex.create(-2, 1), 0.1, Complex.create(1.5, -0.5));
   }
 }

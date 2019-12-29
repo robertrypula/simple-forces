@@ -1,5 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+export const DEFAULT_ATMOSPHERE_END_ALTITUDE = 100e3;
+
+// -----------------------------------------------------------------------------
+
 // nature constants
 
 export const GRAVITATIONAL_CONSTANT = 6.674e-11; // https://en.wikipedia.org/wiki/Gravitational_constant

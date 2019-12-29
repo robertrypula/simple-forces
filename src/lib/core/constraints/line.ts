@@ -2,7 +2,7 @@
 
 import { Complex } from '@core/complex';
 import { Point } from '@core/constraints/point';
-import { LiftAndDragForceSource } from '@core/forces/lift-and-drag';
+import { ForceSource } from '@core/force';
 import { ReactionAndFrictionForceSource } from '@core/forces/reaction-and-friction';
 import { SpringAndDamperForceSource } from '@core/forces/spring-and-damper';
 import { ThrustForceSource } from '@core/forces/thrust';
@@ -12,7 +12,8 @@ export class Line {
   public length: number;
   public name: string;
 
-  public liftAndDragForceSource: LiftAndDragForceSource;
+  public forceSources: ForceSource[] = []; // NOTE: currently only to mark presence of lift & drag
+
   public reactionAndFrictionForceSource: ReactionAndFrictionForceSource;
   public springAndDamperForceSource: SpringAndDamperForceSource;
   public thrustForceSource: ThrustForceSource;
@@ -22,12 +23,6 @@ export class Line {
       .clone()
       .subtract(pointA.position)
       .getMagnitude();
-  }
-
-  public createLiftAndDragForceSource(): Line {
-    this.liftAndDragForceSource = new LiftAndDragForceSource(this.world, this);
-
-    return this;
   }
 
   public createReactionAndFrictionForceSource(): Line {

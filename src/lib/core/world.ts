@@ -69,9 +69,9 @@ export class World {
   }
 
   public refreshLiftAndDragAwareness(): void {
-    this.lines
-      .filter((line: Line) => line.liftAndDragForceSource)
-      .forEach((line: Line) => line.liftAndDragForceSource.refreshAwareness());
+    this.points
+      .filter((point: Point) => point.liftAndDragForceSource)
+      .forEach((point: Point) => point.liftAndDragForceSource.refreshAwareness());
   }
 
   public refreshReactionAndFrictionAwareness(): void {
