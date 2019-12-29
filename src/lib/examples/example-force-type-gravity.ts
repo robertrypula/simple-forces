@@ -3,7 +3,7 @@
 // in your code replace `from '@';` with `from 'simple-forces';`
 import { Point } from '@';
 
-import { AbstractEarthSurfaceExample } from '@examples/web/abstract-example-earth-surface';
+import { AbstractEarthSurfaceExample } from '@examples/abstract-example-earth-surface';
 
 export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
   public ball: Point;

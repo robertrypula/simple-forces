@@ -4,7 +4,7 @@ import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
 import { World } from '@core/world';
 
-export class Renderer {
+export class CanvasRenderer {
   public constructor(protected ctx: CanvasRenderingContext2D, protected world: World) {
     this.world.viewport.width = this.ctx.canvas.clientWidth;
     this.world.viewport.height = this.ctx.canvas.clientHeight;

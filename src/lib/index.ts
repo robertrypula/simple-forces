@@ -34,23 +34,23 @@ export * from '@objects/iss';
 export * from '@objects/moon';
 export * from '@objects/spacecraft';
 export * from '@objects/wheel';
+export * from '@renderers/canvas-renderer';
 export * from '@shared/environment-utils';
 export * from '@shared/tools';
-export * from '@visualization/renderer';
 
 // ----------------------------------------------------------------------------
 
 import '@examples/web/web-runner.scss';
 
+export * from '@examples/abstract-example';
+export * from '@examples/abstract-example-earth-surface';
+export * from '@examples/example-advanced-apollo-free-return';
+export * from '@examples/example-advanced-wheel';
+export * from '@examples/example-force-type-gravity';
+export * from '@examples/example-force-type-reaction-and-friction';
+export * from '@examples/example-force-type-thrust';
 export * from '@examples/node/cli';
-export * from '@examples/web/abstract-example';
-export * from '@examples/web/abstract-example-earth-surface';
 export * from '@examples/web/dom-utils';
-export * from '@examples/web/example-advanced-apollo-free-return';
-export * from '@examples/web/example-advanced-wheel';
-export * from '@examples/web/example-force-type-gravity';
-export * from '@examples/web/example-force-type-reaction-and-friction';
-export * from '@examples/web/example-force-type-thrust';
 export * from '@examples/web/web-runner';
 
 // ----------------------------------------------------------------------------

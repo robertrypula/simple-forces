@@ -3,7 +3,7 @@
 // in your code replace `from '@';` with `from 'simple-forces';`
 import { Complex, Line, Point } from '@';
 
-import { AbstractExample } from '@examples/web/abstract-example';
+import { AbstractExample } from '@examples/abstract-example';
 
 export class ExampleForceTypeReactionAndFriction extends AbstractExample {
   public lineA: Line;

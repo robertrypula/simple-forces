@@ -1,23 +1,23 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 // in your code replace `from '@';` with `from 'simple-forces';`
-import { Renderer, getTime } from '@';
+import { CanvasRenderer, getTime } from '@';
 
-import { AbstractExample } from '@examples/web/abstract-example';
+import { AbstractExample } from '@examples/abstract-example';
 import * as domUtils from '@examples/web/dom-utils';
 
 export class WebRunner {
   protected example: AbstractExample;
   protected logElement: HTMLElement;
   protected previousTime: number = null;
-  protected renderer: Renderer;
+  protected canvasRenderer: CanvasRenderer;
 
   public constructor(protected exampleFactory: new () => AbstractExample) {
     domUtils.getByTagName('html').classList.add('web-runner');
     domUtils.getById('simple-forces-root').innerHTML = require('./web-runner.html');
 
     this.example = new exampleFactory();
-    this.renderer = new Renderer(domUtils.getContext2dById('canvas'), this.example.world);
+    this.canvasRenderer = new CanvasRenderer(domUtils.getContext2dById('canvas'), this.example.world);
     this.logElement = domUtils.getById('log');
 
     this.animationFrame();
@@ -29,7 +29,7 @@ export class WebRunner {
 
     dt = 0.016; // TODO only in development, constant delta between animation frames
     this.example.animationFrame(dt);
-    this.renderer.render();
+    this.canvasRenderer.render();
     this.log();
 
     this.previousTime = currentTime;

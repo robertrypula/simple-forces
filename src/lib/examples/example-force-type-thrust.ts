@@ -3,7 +3,7 @@
 // in your code replace `from '@';` with `from 'simple-forces';`
 import { Complex, Line } from '@';
 
-import { AbstractExample } from '@examples/web/abstract-example';
+import { AbstractExample } from '@examples/abstract-example';
 
 export class ExampleForceTypeThrust extends AbstractExample {
   public line: Line;

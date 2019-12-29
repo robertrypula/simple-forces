@@ -1,12 +1,11 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 // in your code replace `from '@';` with `from 'simple-forces';`
-import { Apollo, Axis, Earth, EARTH_MEAN_RADIUS, formatNumber, Iss, Moon, MOON_MEAN_RADIUS } from '@';
+import { Apollo, Earth, EARTH_MEAN_RADIUS, formatNumber, Iss, Moon, MOON_MEAN_RADIUS } from '@';
 
-import { AbstractExample } from '@examples/web/abstract-example';
+import { AbstractExample } from '@examples/abstract-example';
 
 export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
-  public axis: Axis;
   public earth: Earth;
   public moon: Moon;
 
@@ -16,7 +15,6 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
   public closestMoonApproach: number = Infinity;
 
   public createScene(): void {
-    this.axis = new Axis(this.world);
     this.earth = new Earth(this.world);
 
     this.moon = new Moon(this.world);
@@ -26,13 +24,14 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
     this.apollo.translunarInjectionWithEarthAtOrigin(180);
 
     this.iss = new Iss(this.world);
-    this.iss.orbitAroundEarthAtOrigin(0);
+    this.iss.orbitAroundEarthAtOrigin(180);
 
     this.world.physics.internalSteps = 10000;
     this.world.viewport.camera = this.apollo.center;
 
     setInterval(() => {
       this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
+      this.world.createPoint(this.moon.center.position.clone()).isStatic = true;
     }, 500);
   }
 
@@ -49,13 +48,13 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
 
     if (apolloAltitudeEarth < 1e6) {
       this.world.physics.timeWarp = 30;
-      this.world.viewport.zoom = (0.0001 * 1.5) / 110;
+      this.world.viewport.zoom = 100 * 136 / 1e10;
     } else if (apolloAltitudeMoon < 10e6) {
       this.world.physics.timeWarp = 60 * 10;
-      this.world.viewport.zoom = (0.00001 * 1.5) / 110;
+      this.world.viewport.zoom = 10 * 136 / 1e10;
     } else {
       this.world.physics.timeWarp = 3600 * 2;
-      this.world.viewport.zoom = (0.000001 * 1.5) / 110;
+      this.world.viewport.zoom = 1.2 * 136 / 1e10;
     }
 
     this.closestMoonApproach = Math.min(this.closestMoonApproach, apolloAltitudeMoon);

@@ -24,10 +24,10 @@ export abstract class AbstractExample {
     time = getTime() - timeStart;
 
     this.log = [
-      ['Simulation total time', formatTime(this.world.physics.time)],
-      ['Simulation time per frame', formatTime(this.world.physics.timeWarp * dt)],
-      ['Animation frame - full frame delta', formatNumber(dt, 3) + 's'],
-      ['Animation frame - physics/viewport times', formatNumber(time, 3) + 's']
+      ['Simulation time', formatTime(this.world.physics.time)],
+      ['Simulation delta', formatNumber(this.world.physics.timeWarp * dt, 3) + 's'],
+      ['Animation frame delta', formatNumber(dt, 3) + 's'],
+      ['Animation frame physics/viewport', formatNumber(time, 3) + 's']
     ];
   }
 }
