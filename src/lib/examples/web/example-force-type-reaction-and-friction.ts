@@ -18,8 +18,4 @@ export class ExampleForceTypeReactionAndFriction extends AbstractExample {
 
     this.pointA = this.world.createPoint(Complex.create(0.9, 0), 0.1, Complex.create(0, -1));
   }
-
-  public timeTick(dt: number): void {
-    this.log(this.timeTickWithLog(dt));
-  }
 }

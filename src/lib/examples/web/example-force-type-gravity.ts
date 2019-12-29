@@ -13,22 +13,15 @@ export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
     this.earth.center.radius = null; // due to rounding error the Earth surface is wrongly displayed at that high zoom
 
     this.ball = this.world.createPoint();
-
-    // this.world.timeWarp = 0.1;
-    // this.renderer.zoom = 0.01;
   }
 
-  public timeTick(dt: number): void {
-    this.log(
-      this.timeTickWithLog(dt) +
-        'Ball position: ' +
-        this.ball.position.toStringXY() +
-        '\n' +
-        'Ball velocity: ' +
-        this.ball.velocity.toStringXY() +
-        '\n' +
-        'Ball acceleration: ' +
-        this.ball.acceleration.toStringXY(3)
-    );
+  public animationFrame(dt: number): void {
+    super.animationFrame(dt);
+    this.log = [
+      ...this.log,
+      ['Ball position', this.ball.position.toStringXY()],
+      ['Ball velocity', this.ball.velocity.toStringXY()],
+      ['Ball acceleration', this.ball.acceleration.toStringXY(3)]
+    ];
   }
 }

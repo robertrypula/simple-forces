@@ -13,10 +13,10 @@ export class Point {
   public forces: Force[] = [];
 
   public isStatic = false;
-  public skipCalculationOfDrag = false; // TODO use flags in calculateForce() or at loop that calls it
-  public skipCalculationOfGravity = false; // TODO use flags in calculateForce() or at loop that calls it
-  public skipCalculationOfLiftAndDrag = false; // TODO use flags in calculateForce() or at loop that calls it
-  public skipCalculationOfReactionAndFriction = false; // TODO use flags in calculateForce() or at loop that calls it
+  public isNotAffectedByDrag = false; // TODO use flag in calculateForce() or at loop that calls it
+  public isNotAffectedByGravity = false; // TODO use flag in calculateForce() or at loop that calls it
+  public isNotAffectedByLiftAndDrag = false; // TODO use flag in calculateForce() or at loop that calls it
+  public isNotAffectedByReactionAndFriction = false; // TODO use flag in calculateForce() or at loop that calls it
 
   public name: string;
   public radius: number = null;

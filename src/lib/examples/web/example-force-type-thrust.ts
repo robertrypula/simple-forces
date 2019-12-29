@@ -16,8 +16,4 @@ export class ExampleForceTypeThrust extends AbstractExample {
 
     this.line.createThrustForceSource();
   }
-
-  public timeTick(dt: number): void {
-    this.log(this.timeTickWithLog(dt));
-  }
 }

@@ -33,8 +33,4 @@ export class ExampleAdvancedWheel extends AbstractEarthSurfaceExample {
 
     // this.world.timeWarp = 0.2;
   }
-
-  public timeTick(dt: number): void {
-    this.log(this.timeTickWithLog(dt));
-  }
 }

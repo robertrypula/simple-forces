@@ -4,19 +4,25 @@ import { Complex } from '@core/complex';
 import { Angle } from '@core/constraints/angle';
 import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
-import { Force } from '@core/force';
+import { Physics } from '@core/physics';
+import { Viewport } from '@core/viewport';
 
 export class World {
   public angles: Angle[] = [];
   public lines: Line[] = [];
   public points: Point[] = [];
 
-  public internalSteps = 100;
-  public time = 0;
-  public timeWarp = 1;
+  public physics: Physics;
+  public viewport: Viewport;
+
+  public constructor() {
+    this.viewport = new Viewport(this.points);
+    this.physics = new Physics(this.points);
+  }
 
   public animationFrame(dt: number): void {
-    this.calculatePhysics(dt);
+    this.physics.calculate(dt);
+    this.viewport.calculate();
   }
 
   public createAngle(lineA: Line, lineB: Line): Angle {
@@ -72,53 +78,5 @@ export class World {
     this.lines
       .filter((line: Line) => line.reactionAndFrictionForceSource)
       .forEach((line: Line) => line.reactionAndFrictionForceSource.refreshAwareness());
-  }
-
-  protected calculatePhysics(dt: number): void {
-    let firstStaticPointIndex: number;
-
-    dt *= this.timeWarp;
-    this.time += dt;
-
-    this.points.sort((a: Point, b: Point): number => (a.isStatic === b.isStatic ? 0 : a.isStatic ? 1 : -1));
-    firstStaticPointIndex = this.points.findIndex(a => a.isStatic);
-    firstStaticPointIndex = firstStaticPointIndex === -1 ? this.points.length : firstStaticPointIndex;
-
-    for (let i = 0; i < this.internalSteps; i++) {
-      this.calculatePhysicsInternal(dt / this.internalSteps, firstStaticPointIndex);
-    }
-  }
-
-  protected calculatePhysicsInternal(dt: number, firstStaticPointIndex: number): void {
-    let point: Point;
-
-    for (let i = 0; i < firstStaticPointIndex; i++) {
-      point = this.points[i];
-
-      if (!point.isStatic) {
-        for (let j = 0; j < point.forces.length; j++) {
-          point.forces[j].calculateForce(point, dt);
-        }
-      }
-    }
-
-    for (let i = 0; i < firstStaticPointIndex; i++) {
-      point = this.points[i];
-
-      if (!point.isStatic) {
-        point.force.reset();
-        for (let j = 0; j < point.forces.length; j++) {
-          point.force.add(point.forces[j].vector);
-        }
-        point.acceleration = point.force.clone().divideScalar(point.mass);
-
-        // TODO double check formulas with 'Velocity Verlet' (probably velocity is calculated incorrectly)
-        // https://en.wikipedia.org/wiki/Verlet_integration
-        point.position
-          .add(point.velocity.clone().multiplyScalar(dt))
-          .add(point.acceleration.clone().multiplyScalar((dt * dt) / 2));
-        point.velocity.add(point.acceleration.clone().multiplyScalar(dt));
-      }
-    }
   }
 }

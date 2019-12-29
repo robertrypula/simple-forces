@@ -23,7 +23,9 @@ export * from '@core/forces/spring-and-damper';
 export * from '@core/forces/thrust';
 export * from '@core/models';
 export * from '@core/object-core';
+export * from '@core/physics';
 export * from '@core/simple-point';
+export * from '@core/viewport';
 export * from '@core/world';
 export * from '@objects/apollo';
 export * from '@objects/axis';
@@ -95,16 +97,16 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
   - platforms: terminal, browser
 
   TODO 2019.12
-  - move actual rendering on Canvas to web-runner
-  - move log to web-runner
+  + move actual rendering on Canvas to web-runner
+  + move log to web-runner
   - 1 unit of zoom is filling viewport width
-  - timeTick will be refactored as animationFrame(dt, width, aspectRatio)
+  + timeTick will be refactored as animationFrame
   - point will have 'viewportPoint' member with:
     - radius
     - position
-  - world will do computation for dataToRender
-    - shader will go to world
-  - example can provide dataToRender and log values (key, value)
+  +/- world will do computation for dataToRender
+    + shader will go to world
+  +/- example can provide dataToRender and log values (key, value)
 
   - https://dzone.com/articles/importing-scripts-web-workers
   - https://stackoverflow.com/questions/38715001/how-to-make-web-workers-with-typescript-and-webpack
