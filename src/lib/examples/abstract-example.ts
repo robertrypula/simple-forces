@@ -34,10 +34,10 @@ export abstract class AbstractExample {
   public keyboardEvent(key: string, isPressed: boolean): void {
     switch (key) {
       case 'KeyZ':
-        console.log(`zoom+ ${isPressed ? 'pressed' : 'released'}`);
+        // console.log(`zoom+ ${isPressed ? 'pressed' : 'released'}`);
         break;
       case 'KeyX':
-        console.log(`zoom- ${isPressed ? 'pressed' : 'released'}`);
+        // console.log(`zoom- ${isPressed ? 'pressed' : 'released'}`);
         break;
     }
   }

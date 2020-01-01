@@ -6,7 +6,6 @@ import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';
-import { ReactionAndFrictionForce } from '@core/forces/reaction-and-friction';
 
 /*tslint:disable:max-classes-per-file*/
 
@@ -49,8 +48,8 @@ export class ThrustForceSource extends ForceSource {
   public constructor(world: World, public line: Line) {
     super(world);
 
-    line.pointA.forces.push(this.pointAForce = new ThrustForce(this));
-    line.pointB.forces.push(this.pointBForce = new ThrustForce(this));
+    line.pointA.forces.push((this.pointAForce = new ThrustForce(this)));
+    line.pointB.forces.push((this.pointBForce = new ThrustForce(this)));
 
     // NOTE: no world's refreshAwareness method is needed - thrust force interacts only with two 'self' points
   }
