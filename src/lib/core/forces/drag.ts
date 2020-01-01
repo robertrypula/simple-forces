@@ -18,7 +18,7 @@ export class DragForce extends Force {
   }
 
   public getStaticPressure(point: Point): number {
-    return 101325;
+    return 101325; // TODO implement and move constants to constants.ts
   }
 }
 

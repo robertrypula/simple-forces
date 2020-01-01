@@ -22,5 +22,6 @@ export class ExampleForceTypeDrag extends AbstractEarthSurfaceExample {
     this.createEarthSurfaceEnvironment();
 
     this.ball = this.world.createPoint(Complex.create(-4, 0), 0.1, Complex.create(4, 4));
+    this.ball.radius = 3;
   }
 }

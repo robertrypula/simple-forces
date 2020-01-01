@@ -20,7 +20,7 @@ export class ThrustForce extends Force {
     }
 
     if (this.forceSource.pointAForce !== this) {
-      throw new Error('WTF');
+      throw new Error('Problem to investigate'); // TODO remove it after tests on more complex objects with thrust
     }
 
     this.vector = this.forceSource.localVectorA

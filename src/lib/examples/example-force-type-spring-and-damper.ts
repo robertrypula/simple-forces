@@ -15,5 +15,6 @@ export class ExampleForceTypeSpringAndDamper extends AbstractExample {
     );
 
     this.line.createSpringAndDamperForceSource();
+    this.line.springAndDamperForceSource.includeMass = false;
   }
 }

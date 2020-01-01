@@ -1,6 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { DEFAULT_SPRING_AND_DAMPER_B_COEFFICIENT, DEFAULT_SPRING_AND_DAMPER_K_COEFFICIENT } from '@core/constants';
 import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
@@ -23,7 +24,9 @@ export class SpringAndDamperForce extends Force {
     const v: number = velocity.multiply(Complex.createPolar(-direction.getUnitAngle())).x;
     const springForce: number = x * this.forceSource.k;
     const dampingForce: number = v * this.forceSource.b;
-    const finalForce: number = springForce + dampingForce;
+    let finalForce: number = springForce + dampingForce;
+
+    this.forceSource.includeMass && (finalForce *= point.mass);
 
     this.vector = direction.normalize().multiplyScalar(-finalForce);
 
@@ -37,8 +40,9 @@ export class SpringAndDamperForce extends Force {
 // ----------------------------------------------------------------
 
 export class SpringAndDamperForceSource extends ForceSource {
-  public k: number = 200;
-  public b: number = 1;
+  public b: number = DEFAULT_SPRING_AND_DAMPER_B_COEFFICIENT;
+  public k: number = DEFAULT_SPRING_AND_DAMPER_K_COEFFICIENT;
+  public includeMass = true;
 
   public constructor(world: World, public line: Line) {
     super(world);

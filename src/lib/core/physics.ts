@@ -1,9 +1,10 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
+import { DEFAULT_PHYSICS_INTERNAL_STEPS } from '@core/constants';
 import { Point } from '@core/constraints/point';
 
 export class Physics {
-  public internalSteps = 100;
+  public internalSteps = DEFAULT_PHYSICS_INTERNAL_STEPS;
   public time = 0;
   public timeWarp = 1;
 

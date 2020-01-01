@@ -6,31 +6,31 @@ import { Complex, Point } from '@';
 import { AbstractEarthSurfaceExample } from '@examples/abstract-example-earth-surface';
 
 export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
-  public ballA: Point;
-  public ballB: Point;
-  public ballC: Point;
+  public ballLeft: Point;
+  public ballMiddle: Point;
+  public ballRight: Point;
 
   public animationFrame(dt: number): void {
     super.animationFrame(dt);
     this.log = [
       ...this.log,
-      ['Ball A position', this.ballA.position.toStringXY()],
-      ['Ball A velocity', this.ballA.velocity.toStringXY()],
-      ['Ball A acceleration', this.ballA.acceleration.toStringXY(3)],
-      ['Ball A force', this.ballA.forces.map(force => force.vector.toStringXY(3)).join(' | ')]
+      ['Middle ball position', this.ballMiddle.position.toStringXY()],
+      ['Middle ball velocity', this.ballMiddle.velocity.toStringXY()],
+      ['Middle ball acceleration', this.ballMiddle.acceleration.toStringXY(3)],
+      ['Middle ball forces', this.ballMiddle.forces.map(force => force.vector.toStringXY(3)).join(' | ')]
     ];
   }
 
   public createScene(): void {
     this.createEarthSurfaceEnvironment();
 
-    this.ballA = this.world.createPoint(Complex.create(-1, 0), 0.1);
-    this.ballA.radius = 2;
+    this.ballLeft = this.world.createPoint(Complex.create(-1, 0), 0.1);
+    this.ballLeft.radius = 3;
 
-    this.ballB = this.world.createPoint(Complex.create(0, 0), 1);
-    this.ballB.radius = 2;
+    this.ballMiddle = this.world.createPoint(Complex.create(0, 0), 1);
+    this.ballMiddle.radius = 3;
 
-    this.ballC = this.world.createPoint(Complex.create(1, 0), 10);
-    this.ballC.radius = 2;
+    this.ballRight = this.world.createPoint(Complex.create(1, 0), 10);
+    this.ballRight.radius = 3;
   }
 }

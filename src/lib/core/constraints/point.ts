@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { POINT_DEFAULT_SCREEN_RADIUS } from '@core/constants';
+import { DEFAULT_POINT_MASS, DEFAULT_POINT_SCREEN_RADIUS } from '@core/constants';
 import { Force } from '@core/force';
 import { DragForceSource } from '@core/forces/drag';
 import { GravityForceSource } from '@core/forces/gravity';
@@ -22,7 +22,7 @@ export class Point {
   public isNotAffectedByReactionAndFriction = false; // TODO use flag in calculateForce() or at loop that calls it
 
   public name: string;
-  public radius: number = POINT_DEFAULT_SCREEN_RADIUS;
+  public radius: number = DEFAULT_POINT_SCREEN_RADIUS;
   public radiusType: RadiusType = RadiusType.Screen;
 
   public rendererData: RendererData = {
@@ -38,7 +38,7 @@ export class Point {
   public constructor(
     public world: World,
     public position: Complex = Complex.create(),
-    public mass: number = 1,
+    public mass: number = DEFAULT_POINT_MASS,
     public velocity: Complex = Complex.create()
   ) {}
 

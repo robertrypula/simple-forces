@@ -3,7 +3,21 @@
 // internal
 
 export const DEFAULT_ATMOSPHERE_END_ALTITUDE = 100e3;
-export const POINT_DEFAULT_SCREEN_RADIUS = 1;
+
+export const DEFAULT_PHYSICS_INTERNAL_STEPS = 100;
+
+export const DEFAULT_POINT_MASS = 1;
+export const DEFAULT_POINT_SCREEN_RADIUS = 1;
+
+export const DEFAULT_SPRING_AND_DAMPER_B_COEFFICIENT = 20; // 1;
+export const DEFAULT_SPRING_AND_DAMPER_K_COEFFICIENT = 10000; // 200;
+
+export const DEFAULT_SURFACE_BOUNDING_BOX = 0.35;
+export const DEFAULT_SURFACE_FRICTION_B_COEFFICIENT = 0.2;
+export const DEFAULT_SURFACE_REACTION_B_COEFFICIENT = 20;
+export const DEFAULT_SURFACE_REACTION_K_COEFFICIENT = 10000;
+
+export const DEFAULT_VIEWPORT_METERS_PER_WIDTH = 15;
 
 // -----------------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import { DEFAULT_VIEWPORT_METERS_PER_WIDTH } from '@core/constants';
 import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
 import { RadiusType } from '@core/models';
@@ -10,7 +11,7 @@ export class Viewport {
   public height = 1;
   public width = 1;
   public zoom = 1;
-  public metersPerWidth: number = 15; // unit: m / pix
+  public metersPerWidth: number = DEFAULT_VIEWPORT_METERS_PER_WIDTH;
 
   public constructor(protected points: Point[]) {}
 

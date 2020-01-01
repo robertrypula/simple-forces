@@ -22,5 +22,9 @@ export class ExampleForceTypeJointAndTorque extends AbstractEarthSurfaceExample 
     this.angleA.createJointAndTorqueForceSource();
     this.angleA.lineA.createSpringAndDamperForceSource();
     this.angleA.lineB.createSpringAndDamperForceSource();
+
+    this.middlePoint.radius = 3;
+    this.angleA.lineA.pointB.radius = 3;
+    this.angleA.lineB.pointB.radius = 3;
   }
 }

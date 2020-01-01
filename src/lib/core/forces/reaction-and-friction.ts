@@ -1,6 +1,12 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
+import {
+  DEFAULT_SURFACE_BOUNDING_BOX,
+  DEFAULT_SURFACE_FRICTION_B_COEFFICIENT,
+  DEFAULT_SURFACE_REACTION_B_COEFFICIENT,
+  DEFAULT_SURFACE_REACTION_K_COEFFICIENT
+} from '@core/constants';
 import { Line } from '@core/constraints/line';
 import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
@@ -29,10 +35,10 @@ export class ReactionAndFrictionForce extends Force {
 
     if (this.isInsideCollisionArea(simplePoint, simplePointLineB)) {
       const collisionUnitX: number = simplePoint.position.x / simplePointLineB.position.x;
-      const reactionSpringForce: number = -simplePoint.position.y * this.forceSource.kReaction;
-      const reactionDampingForce: number = -simplePoint.velocity.y * this.forceSource.bReaction;
+      const reactionSpringForce: number = -simplePoint.position.y * this.forceSource.reactionK;
+      const reactionDampingForce: number = -simplePoint.velocity.y * this.forceSource.reactionB;
       let reactionForce: number = reactionSpringForce + reactionDampingForce;
-      let frictionForce: number = reactionForce * this.forceSource.bFriction * (simplePoint.velocity.x > 0 ? -1 : 1);
+      let frictionForce: number = reactionForce * this.forceSource.frictionB * (simplePoint.velocity.x > 0 ? -1 : 1);
 
       reactionForce *= point.mass;
       frictionForce *= point.mass;
@@ -84,10 +90,11 @@ export class ReactionAndFrictionForce extends Force {
 // ----------------------------------------------------------------
 
 export class ReactionAndFrictionForceSource extends ForceSource {
-  public kReaction: number = 10000.0;
-  public bReaction: number = 20;
-  public bFriction: number = 0.2;
-  public boundingBoxMargin = 0.35;
+  public frictionB: number = DEFAULT_SURFACE_FRICTION_B_COEFFICIENT;
+  public reactionB: number = DEFAULT_SURFACE_REACTION_B_COEFFICIENT;
+  public reactionK: number = DEFAULT_SURFACE_REACTION_K_COEFFICIENT;
+
+  public boundingBoxMargin: number = DEFAULT_SURFACE_BOUNDING_BOX;
   public pointAForce: ReactionAndFrictionForce; // NOTE: caching references to force speeds up access to it as each
   public pointBForce: ReactionAndFrictionForce; // point have array of forces and we would need to use slower find()
 

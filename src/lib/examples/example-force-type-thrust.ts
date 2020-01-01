@@ -10,7 +10,7 @@ export class ExampleForceTypeThrust extends AbstractExample {
 
   public animationFrame(dt: number): void {
     super.animationFrame(dt);
-    this.log = [...this.log, ['', ''], ['Keyboard keys', 'Use WSAD and QE to move the line']];
+    this.log = [...this.log, [': ', ':'], ['Keyboard keys', 'Use WSAD and QE to move the line']];
   }
 
   public createScene(): void {
