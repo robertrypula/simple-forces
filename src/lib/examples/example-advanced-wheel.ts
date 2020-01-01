@@ -29,5 +29,7 @@ export class ExampleAdvancedWheel extends AbstractEarthSurfaceExample {
     );
     this.lineLeft.setIsStatic(true);
     this.lineLeft.createReactionAndFrictionForceSource();
+
+    // this.world.physics.timeWarp = 0.2;
   }
 }

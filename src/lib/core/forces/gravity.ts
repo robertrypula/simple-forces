@@ -26,7 +26,7 @@ export class GravityForce extends Force {
       const forceMagnitude = (this.forceSource.G * this.forceSource.point.mass * point.mass) / Math.pow(r, 2);
       this.vector = sourceDirection.normalize().multiplyScalar(forceMagnitude);
     } else {
-      this.vector = Complex.create();
+      this.vector.reset();
     }
   }
 }
