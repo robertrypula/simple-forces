@@ -59,7 +59,7 @@ export class ReactionAndFrictionForce extends Force {
   }
 
   protected isDefiningSurface(point: Point): boolean {
-    // we skip points that define the surface as they will be handled by point that collides with the surface
+    // skip points that define the surface as they will be handled by point that collides with the surface
     return point === this.forceSource.line.pointA || point === this.forceSource.line.pointB;
   }
 

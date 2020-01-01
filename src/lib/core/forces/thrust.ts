@@ -23,16 +23,14 @@ export class ThrustForce extends Force {
       throw new Error('Problem to investigate'); // TODO remove it after tests on more complex objects with thrust
     }
 
-    this.vector = this.forceSource.localVectorA
-      .clone()
-      .multiply(Complex.createPolar(this.forceSource.line.getUnitAngle()));
+    const lineDirection: Complex = Complex.createPolar(this.forceSource.line.getUnitAngle());
 
-    this.forceSource.pointBForce.vector = this.forceSource.localVectorB
-      .clone()
-      .multiply(Complex.createPolar(this.forceSource.line.getUnitAngle()));
+    this.vector = this.forceSource.localVectorA.clone().multiply(lineDirection);
+    this.forceSource.pointBForce.vector = this.forceSource.localVectorB.clone().multiply(lineDirection);
   }
 
   protected isEndOfLine(point: Point): boolean {
+    // skip end of line point as it will be handled by the beginning of the line point
     return this.forceSource.line.pointB === point;
   }
 }
