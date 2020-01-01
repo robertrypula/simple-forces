@@ -20,6 +20,9 @@ export class WebRunner {
     this.canvasRenderer = new CanvasRenderer(domUtils.getContext2dById('canvas'), this.example.world);
     this.logElement = domUtils.getById('log');
 
+    document.addEventListener('keydown', (event: KeyboardEvent): void => this.example.keyboardEvent(event.code, true));
+    document.addEventListener('keyup', (event: KeyboardEvent): void => this.example.keyboardEvent(event.code, false));
+
     this.animationFrame();
   }
 

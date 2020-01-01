@@ -3,9 +3,9 @@
 import { Complex } from '@core/complex';
 import { MOON_MASS, MOON_MEAN_RADIUS, MOON_PERIGEE_ALTITUDE, MOON_PERIGEE_VELOCITY } from '@core/constants';
 import { Point } from '@core/constraints/point';
+import { RadiusType } from '@core/models';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
-import { RadiusType } from '@core/models';
 
 export class Moon extends ObjectCore {
   public center: Point;

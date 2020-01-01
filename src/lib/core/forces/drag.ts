@@ -14,6 +14,11 @@ export class DragForce extends Force {
 
   public calculateForce(point: Point): void {
     // TODO implement
+    // point.velocity.clone().normalize().multiplyScalar(-());
+  }
+
+  public getStaticPressure(point: Point): number {
+    return 101325;
   }
 }
 

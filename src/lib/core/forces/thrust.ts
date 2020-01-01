@@ -6,6 +6,7 @@ import { Point } from '@core/constraints/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';
+import { ReactionAndFrictionForce } from '@core/forces/reaction-and-friction';
 
 /*tslint:disable:max-classes-per-file*/
 
@@ -15,22 +16,41 @@ export class ThrustForce extends Force {
   }
 
   public calculateForce(point: Point): void {
-    this.vector = this.forceSource.localVector
+    if (this.isEndOfLine(point)) {
+      return;
+    }
+
+    if (this.forceSource.pointAForce !== this) {
+      throw new Error('WTF');
+    }
+
+    this.vector = this.forceSource.localVectorA
       .clone()
       .multiply(Complex.createPolar(this.forceSource.line.getUnitAngle()));
+
+    this.forceSource.pointBForce.vector = this.forceSource.localVectorB
+      .clone()
+      .multiply(Complex.createPolar(this.forceSource.line.getUnitAngle()));
+  }
+
+  protected isEndOfLine(point: Point): boolean {
+    return this.forceSource.line.pointB === point;
   }
 }
 
 // ----------------------------------------------------------------
 
 export class ThrustForceSource extends ForceSource {
-  public localVector = Complex.create();
+  public localVectorA = Complex.create();
+  public localVectorB = Complex.create();
+  public pointAForce: ThrustForce; // NOTE: caching references to force speeds up access to it as each
+  public pointBForce: ThrustForce; // point have array of forces and we would need to use slower find()
 
   public constructor(world: World, public line: Line) {
     super(world);
 
-    line.pointA.forces.push(new ThrustForce(this));
-    line.pointB.forces.push(new ThrustForce(this));
+    line.pointA.forces.push(this.pointAForce = new ThrustForce(this));
+    line.pointB.forces.push(this.pointBForce = new ThrustForce(this));
 
     // NOTE: no world's refreshAwareness method is needed - thrust force interacts only with two 'self' points
   }

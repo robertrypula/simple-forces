@@ -13,17 +13,6 @@ export abstract class AbstractExample {
     this.world.refreshAwareness();
   }
 
-  public abstract createScene(): void;
-
-  public keyboardEvent(key: string, isPressed: boolean): void {
-    switch (key) {
-      case 'z':
-        break;
-      case 'x':
-        break;
-    }
-  }
-
   public animationFrame(dt: number): void {
     let timeStart: number;
     let time: number;
@@ -38,5 +27,18 @@ export abstract class AbstractExample {
       ['Animation frame delta', formatNumber(dt, 3) + 's'],
       ['Animation frame physics/viewport', formatNumber(time, 3) + 's']
     ];
+  }
+
+  public abstract createScene(): void;
+
+  public keyboardEvent(key: string, isPressed: boolean): void {
+    switch (key) {
+      case 'KeyZ':
+        console.log(`zoom+ ${isPressed ? 'pressed' : 'released'}`);
+        break;
+      case 'KeyX':
+        console.log(`zoom- ${isPressed ? 'pressed' : 'released'}`);
+        break;
+    }
   }
 }
