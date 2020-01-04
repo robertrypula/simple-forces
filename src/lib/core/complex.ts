@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2020 Robert Rypuła - https://github.com/robertrypula
 
 export class Complex {
   public static create(x: number = 0, y: number = 0): Complex {

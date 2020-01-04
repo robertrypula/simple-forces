@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
+// Copyright (c) 2018-2020 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
 import { Point } from '@core/constraints-hosts/point';
