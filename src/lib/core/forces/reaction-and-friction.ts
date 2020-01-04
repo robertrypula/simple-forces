@@ -7,8 +7,8 @@ import {
   DEFAULT_SURFACE_REACTION_B_COEFFICIENT,
   DEFAULT_SURFACE_REACTION_K_COEFFICIENT
 } from '@core/constants';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { SimplePoint } from '@core/simple-point';

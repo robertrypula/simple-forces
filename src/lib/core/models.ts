@@ -1,8 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 
 export enum ForceType {
   // adds 'atmosphere' area that affects points above the 'source' point
@@ -23,7 +23,7 @@ export enum ForceType {
   // adds force that keeps the distance between two points
   SpringAndDamper = 'SpringAndDamper',
 
-  // adds local thrust vector to the line's reference frame
+  // adds local thrust vectors to the line's reference frame
   Thrust = 'Thrust'
 }
 

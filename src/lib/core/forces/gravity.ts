@@ -2,7 +2,7 @@
 
 import { Complex } from '@core/complex';
 import { GRAVITATIONAL_CONSTANT } from '@core/constants';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';

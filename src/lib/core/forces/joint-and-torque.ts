@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Angle } from '@core/constraints/angle';
-import { Point } from '@core/constraints/point';
+import { Angle } from '@core/constraints-hosts/angle';
+import { Point } from '@core/constraints-hosts/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';

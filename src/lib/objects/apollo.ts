@@ -2,7 +2,7 @@
 
 import { Complex } from '@core/complex';
 import { APOLLO_MASS, APOLLO_PERIGEE_ALTITUDE, APOLLO_PERIGEE_TLI_VELOCITY, EARTH_MEAN_RADIUS } from '@core/constants';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
 

@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 import { ForceSource } from '@core/force';
 import { ReactionAndFrictionForceSource } from '@core/forces/reaction-and-friction';
 import { SpringAndDamperForceSource } from '@core/forces/spring-and-damper';

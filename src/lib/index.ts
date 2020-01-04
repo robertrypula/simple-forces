@@ -10,9 +10,9 @@ export const libraryInfo = {
 
 export * from '@core/complex';
 export * from '@core/constants';
-export * from '@core/constraints/angle';
-export * from '@core/constraints/line';
-export * from '@core/constraints/point';
+export * from '@core/constraints-hosts/angle';
+export * from '@core/constraints-hosts/line';
+export * from '@core/constraints-hosts/point';
 export * from '@core/force';
 export * from '@core/forces/drag';
 export * from '@core/forces/gravity';

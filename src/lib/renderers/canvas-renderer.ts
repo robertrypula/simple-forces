@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { World } from '@core/world';
 
 export class CanvasRenderer {

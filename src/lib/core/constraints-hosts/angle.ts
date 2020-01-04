@@ -1,6 +1,6 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
-import { Line } from '@core/constraints/line';
+import { Line } from '@core/constraints-hosts/line';
 import { JointAndTorqueForceSource } from '@core/forces/joint-and-torque';
 import { World } from '@core/world';
 

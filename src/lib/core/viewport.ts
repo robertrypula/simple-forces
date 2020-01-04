@@ -2,8 +2,8 @@
 
 import { Complex } from '@core/complex';
 import { DEFAULT_VIEWPORT_METERS_PER_WIDTH } from '@core/constants';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { RadiusType } from '@core/models';
 
 export class Viewport {

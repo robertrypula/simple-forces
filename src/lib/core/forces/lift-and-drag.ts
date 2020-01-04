@@ -1,8 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { DEFAULT_ATMOSPHERE_END_ALTITUDE } from '@core/constants';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';

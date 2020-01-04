@@ -1,9 +1,9 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Angle } from '@core/constraints/angle';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Angle } from '@core/constraints-hosts/angle';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { Physics } from '@core/physics';
 import { Viewport } from '@core/viewport';
 

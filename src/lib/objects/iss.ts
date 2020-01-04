@@ -7,7 +7,7 @@ import {
   INTERNATIONAL_SPACE_STATION_PERIGEE_ALTITUDE,
   INTERNATIONAL_SPACE_STATION_PERIGEE_VELOCITY
 } from '@core/constants';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';
 

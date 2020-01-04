@@ -1,8 +1,8 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { Complex } from '@core/complex';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { ForceType, NotYetAwareLineHandler, NotYetAwarePointHandler } from '@core/models';
 import { World } from '@core/world';
 

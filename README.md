@@ -13,9 +13,11 @@ Project is still in alpha state but you can check the latest versions here:
 
 [All versions](https://cdn.rypula.pl/simple-forces/)
 
-## Want to check this project in development mode?
+[![Wheel](https://cdn.rypula.pl/simple-forces/wheel-example.gif)](https://cdn.rypula.pl/simple-forces/wheel-example.gif)
 
-In order to do that just run commands below.
+## Development
+
+In order to play with the code on your local machine just run commands below:
 
 ```
 git clone https://github.com/robertrypula/simple-forces.git
@@ -25,7 +27,7 @@ yarn
 yarn start
 ```
 
-You can also work directly in the terminal - just run
+You can also try the terminal version:
 
 ```
 yarn start:node

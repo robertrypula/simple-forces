@@ -2,7 +2,7 @@
 
 import { Complex } from '@core/complex';
 import { EARTH_MASS, EARTH_MEAN_RADIUS } from '@core/constants';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 import { RadiusType } from '@core/models';
 import { ObjectCore } from '@core/object-core';
 import { World } from '@core/world';

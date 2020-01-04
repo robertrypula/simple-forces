@@ -2,8 +2,8 @@
 
 import { Complex } from '@core/complex';
 import { DEFAULT_SPRING_AND_DAMPER_B_COEFFICIENT, DEFAULT_SPRING_AND_DAMPER_K_COEFFICIENT } from '@core/constants';
-import { Line } from '@core/constraints/line';
-import { Point } from '@core/constraints/point';
+import { Line } from '@core/constraints-hosts/line';
+import { Point } from '@core/constraints-hosts/point';
 import { Force, ForceSource } from '@core/force';
 import { ForceType } from '@core/models';
 import { World } from '@core/world';
@@ -42,7 +42,7 @@ export class SpringAndDamperForce extends Force {
 export class SpringAndDamperForceSource extends ForceSource {
   public b: number = DEFAULT_SPRING_AND_DAMPER_B_COEFFICIENT;
   public k: number = DEFAULT_SPRING_AND_DAMPER_K_COEFFICIENT;
-  public includeMass = true;
+  public includeMass = true; // TODO move to constants
 
   public constructor(world: World, public line: Line) {
     super(world);

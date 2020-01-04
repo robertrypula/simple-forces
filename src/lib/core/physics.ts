@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2019 Robert Rypuła - https://github.com/robertrypula
 
 import { DEFAULT_PHYSICS_INTERNAL_STEPS } from '@core/constants';
-import { Point } from '@core/constraints/point';
+import { Point } from '@core/constraints-hosts/point';
 
 export class Physics {
   public internalSteps = DEFAULT_PHYSICS_INTERNAL_STEPS;
