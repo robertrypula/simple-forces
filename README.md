@@ -14,9 +14,11 @@ Project is still in alpha state but you can check the latest versions here:
 [All versions](https://cdn.rypula.pl/simple-forces/)
 
 Wheel simulation
+
 [![Wheel](https://cdn.rypula.pl/simple-forces/wheel-example.gif)](https://cdn.rypula.pl/simple-forces/wheel-example.gif)
 
 Apollo's [free-return trajectory](https://en.wikipedia.org/wiki/Free-return_trajectory) simulation
+
 [![Wheel](https://cdn.rypula.pl/simple-forces/apollo-free-return-example.gif)](https://cdn.rypula.pl/simple-forces/apollo-free-return-example.gif)
 
 ## Development
