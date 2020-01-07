@@ -7,7 +7,7 @@ export abstract class AbstractExample {
   public log: Array<[string, string]> = [];
   public world: World;
 
-  protected constructor() {
+  public constructor() {
     this.world = new World();
     this.createScene();
     this.world.refreshAwareness();

@@ -20,7 +20,8 @@ export class ThrustForce extends Force {
     }
 
     if (this.forceSource.pointAForce !== this) {
-      throw new Error('Problem to investigate'); // TODO remove it after tests on more complex objects with thrust
+      // TODO remove it after tests on more complex objects with thrust
+      throw new Error('Problem to investigate - this should never happen');
     }
 
     const lineDirection: Complex = Complex.createPolar(this.forceSource.line.getUnitAngle());
