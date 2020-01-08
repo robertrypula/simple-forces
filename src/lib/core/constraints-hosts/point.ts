@@ -26,9 +26,9 @@ export class Point {
   public radiusType: RadiusType = RadiusType.Screen;
 
   public rendererData: RendererData = {
-    // colorIndex: 0,
     position: Complex.create(),
-    radius: 0
+    radius: 0,
+    radiusType: null
   };
 
   public dragForceSource: DragForceSource;

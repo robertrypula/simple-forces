@@ -13,7 +13,7 @@ export const formatNumber = (value: number, toFixed: number = 3, factor: number 
 export const formatTime = (seconds: number): string => {
   const result: string[] = [];
   const fractionMultiplier = Math.pow(1e3, 3);
-  const ranges = [
+  const ranges: Array<[number, number, string, string, boolean]> = [
     [365 * 24 * 60 * 60, 0, ' year', ' years', false],
     [24 * 60 * 60, 3, ' day', ' days', false],
     [60 * 60, 2, 'h', 'h', false],
@@ -30,13 +30,13 @@ export const formatTime = (seconds: number): string => {
     let value: number;
 
     if (range[4]) {
-      value = Math.floor(fractionPartMultiplied / +range[0]);
-      fractionPartMultiplied -= value * +range[0];
+      value = Math.floor(fractionPartMultiplied / range[0]);
+      fractionPartMultiplied -= value * range[0];
     } else {
-      value = Math.floor(integerPart / +range[0]);
-      integerPart -= value * +range[0];
+      value = Math.floor(integerPart / range[0]);
+      integerPart -= value * range[0];
     }
-    result.push(`${padStart(value, 10, +range[1])}${value === 1 ? range[2] : range[3]}`);
+    result.push(`${padStart(value, 10, range[1])}${value === 1 ? range[2] : range[3]}`);
   });
 
   return result.join(' ');

@@ -31,6 +31,6 @@ export class ExampleAdvancedWheel extends AbstractEarthSurfaceExample {
     this.lineLeft.createReactionAndFrictionForceSource();
 
     // this.world.physics.timeWarp *= 100.01;
-    // this.world.physics.internalSteps *= 100.01;
+    // this.world.physics.internalSteps *= 0.3;
   }
 }

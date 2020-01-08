@@ -44,6 +44,8 @@ export class Viewport {
           break;
       }
 
+      point.rendererData.radiusType = point.radiusType;
+
       point.rendererData.position = viewportCenter.clone().add(
         point.position
           .clone()

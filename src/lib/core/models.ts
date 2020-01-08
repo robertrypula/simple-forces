@@ -33,8 +33,9 @@ export enum RadiusType {
 }
 
 export interface RendererData {
-  radius: number;
   position: Complex;
+  radius: number;
+  radiusType: RadiusType;
 }
 
 export type NotYetAwarePointHandler = (point: Point) => void;
