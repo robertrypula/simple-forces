@@ -44,6 +44,7 @@ import '@examples/web/web-runner.scss';
 
 export * from '@examples/abstract-example';
 export * from '@examples/abstract-example-earth-surface';
+export * from '@examples/constants';
 export * from '@examples/example-advanced-apollo-free-return';
 export * from '@examples/example-advanced-wheel';
 export * from '@examples/example-force-type-drag';
@@ -53,7 +54,9 @@ export * from '@examples/example-force-type-lift-and-drag';
 export * from '@examples/example-force-type-reaction-and-friction';
 export * from '@examples/example-force-type-spring-and-damper';
 export * from '@examples/example-force-type-thrust';
+export * from '@examples/models';
 export * from '@examples/node/cli';
+export * from '@examples/tools';
 export * from '@examples/web/dom-utils';
 export * from '@examples/web/web-runner';
 
@@ -96,9 +99,9 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
     - car
 
   - ability to switch active vessel, it should also switch the camera
-  - fix for not calculating the same force twice (for example gravity between moon and earth)
-  - wrapper for context2d i and log
-  - platforms: terminal, browser
+  +/- fix for not calculating the same force twice (for example gravity between moon and earth)
+  + wrapper for context2d i and log UPDATE not needed anymore
+  +/- platforms: terminal, browser
 
   TODO 2019.12
   + move actual rendering on Canvas to web-runner
@@ -111,6 +114,7 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
   +/- world will do computation for dataToRender
     + shader will go to world
   +/- example can provide dataToRender and log values (key, value)
+  - rename example core to scene core
 
   - https://dzone.com/articles/importing-scripts-web-workers
   - https://stackoverflow.com/questions/38715001/how-to-make-web-workers-with-typescript-and-webpack
