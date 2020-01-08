@@ -24,6 +24,7 @@ export class LiftAndDragForce extends Force {
 export class LiftAndDragForceSource extends ForceSource {
   public atmosphereEndAltitude = DEFAULT_ATMOSPHERE_END_ALTITUDE;
 
+  // https://en.wikipedia.org/wiki/International_Standard_Atmosphere
   // https://en.wikipedia.org/wiki/Barometric_formula
   // https://cdn.britannica.com/56/97256-050-4D739762/layers-atmosphere-Earth-yellow-line-height-response.jpg
   // https://www.eoas.ubc.ca/courses/atsc113/flying/met_concepts/02-met_concepts/02a-std_atmos-P/index.html

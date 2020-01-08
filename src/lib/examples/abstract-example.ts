@@ -7,6 +7,8 @@ export abstract class AbstractExample {
   public log: Array<[string, string]> = [];
   public world: World;
 
+  protected loadHistory: number[] = [];
+
   public constructor() {
     this.world = new World();
     this.createScene();
@@ -16,16 +18,25 @@ export abstract class AbstractExample {
   public animationFrame(dt: number): void {
     let timeStart: number;
     let time: number;
+    let loadAverage: number;
 
     timeStart = getTime();
     this.world.animationFrame(dt);
     time = getTime() - timeStart;
 
+    this.loadHistory.length === 30 && this.loadHistory.pop();
+    this.loadHistory.push(time / dt);
+    loadAverage = this.loadHistory.reduce((p: number, c: number): number => p + c, 0) / this.loadHistory.length;
+
     this.log = [
       ['Simulation time', formatTime(this.world.physics.time)],
-      ['Simulation delta', formatNumber(this.world.physics.timeWarp * dt, 3) + 's'],
+      ['Simulation time warp', formatNumber(this.world.physics.timeWarp, 3) + 's per second'],
+      [
+        'Simulation smallest step delta',
+        formatNumber((this.world.physics.timeWarp * dt) / this.world.physics.internalSteps, 6) + 's'
+      ],
       ['Animation frame delta', formatNumber(dt, 3) + 's'],
-      ['Animation frame physics/viewport', formatNumber(time, 3) + 's']
+      ['Animation frame physics/viewport', formatNumber(time, 3) + 's (load ' + formatNumber(loadAverage, 2) + ')']
     ];
   }
 

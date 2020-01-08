@@ -34,6 +34,8 @@ export class ReactionAndFrictionForce extends Force {
     const simplePointLineB: SimplePoint = line.pointB.cloneAsSimplePoint().transform(origin, unitAngle, false);
 
     // NOTES:
+    // - kinetic friction implementation assumes dry surface
+    //   https://physics.stackexchange.com/questions/48534/does-kinetic-friction-increase-as-speed-increases
     // - there is no static friction (yet ;])
     // - reaction force damping ignores the Y velocity of the line point B
     //   (it may cause issues when one end of line is in high speed and hits the point)
@@ -45,17 +47,17 @@ export class ReactionAndFrictionForce extends Force {
       const reactionSpringForce: number = -simplePoint.position.y * this.forceSource.reactionK;
       const reactionDampingForce: number = -simplePoint.velocity.y * this.forceSource.reactionB;
       let reactionForce: number = reactionSpringForce + reactionDampingForce;
-      let frictionForce: number = reactionForce * this.forceSource.frictionB * -velocityUnitX;
+      let kineticFrictionForce: number = reactionForce * this.forceSource.frictionB * -velocityUnitX;
 
       reactionForce *= point.mass;
-      frictionForce *= point.mass;
+      kineticFrictionForce *= point.mass;
 
-      simplePoint.force = Complex.create(frictionForce, reactionForce);
+      simplePoint.force = Complex.create(kineticFrictionForce, reactionForce);
       this.vector = simplePoint.transformBackOnlyForce(unitAngle).force;
 
       // apply force of collision to the points that define the surface as well
-      simplePointLineA.force = Complex.create(-frictionForce, -(reactionForce * (1 - collisionUnitX)));
-      simplePointLineB.force = Complex.create(-frictionForce, -(reactionForce * collisionUnitX));
+      simplePointLineA.force = Complex.create(-kineticFrictionForce, -(reactionForce * (1 - collisionUnitX)));
+      simplePointLineB.force = Complex.create(-kineticFrictionForce, -(reactionForce * collisionUnitX));
       this.forceSource.pointAForce.vector = simplePointLineA.transformBackOnlyForce(unitAngle).force;
       this.forceSource.pointBForce.vector = simplePointLineB.transformBackOnlyForce(unitAngle).force;
     } else {
