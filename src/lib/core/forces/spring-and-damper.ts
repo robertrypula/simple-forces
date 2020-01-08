@@ -30,7 +30,7 @@ export class SpringAndDamperForce extends Force {
     const finalForce: number = (springForce + dampingForce) * (this.forceSource.includeMass ? point.mass : 1);
 
     simplePointLineB.force = Complex.create(finalForce, 0);
-    this.forceSource.pointBForce.vector = simplePointLineB.transformBackOnlyForce(origin, unitAngle).force;
+    this.forceSource.pointBForce.vector = simplePointLineB.transformBackOnlyForce(unitAngle).force;
     this.vector = simplePointLineB.force.clone().multiplyScalar(-1);
   }
 

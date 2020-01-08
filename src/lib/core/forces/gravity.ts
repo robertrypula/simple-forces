@@ -15,29 +15,50 @@ export class GravityForce extends Force {
   }
 
   public calculateForce(point: Point): void {
-    const sourceDirection = this.forceSource.point.position.clone().subtract(point.position);
-    const r = sourceDirection.getMagnitude();
+    if (this.isOwnGravitySource(point)) {
+      return;
+    }
+
+    const sourceDirection: Complex = this.forceSource.point.position.clone().subtract(point.position);
+    const r: number = sourceDirection.getMagnitude();
 
     // TODO known issue:
     //  - magnitude of force is calculated twice
     //    (Moon-Earth acts on each other with the same force but opposite direction)
+    //    NOTE: not an issue when there is only one gravity source
 
-    if (r !== 0) {
-      const forceMagnitude = (this.forceSource.G * this.forceSource.point.mass * point.mass) / Math.pow(r, 2);
-      this.vector = sourceDirection.normalize().multiplyScalar(forceMagnitude);
-    } else {
-      this.vector.reset();
-    }
+    const gravityForce: number = (this.forceSource.standardGravitationalParameter * point.mass) / Math.pow(r, 2);
+    this.vector = sourceDirection.normalize().multiplyScalar(gravityForce);
+
+    /*
+    // alternative solution as accurate as original - unfortunately slower (3.0 seconds vs 3.5 seconds)
+
+    const unitAngle: number = point.position.clone().subtract(this.forceSource.point.position).getUnitAngle();
+    const origin: SimplePoint = this.forceSource.point.cloneAsSimplePoint();
+    const simplePoint: SimplePoint = point.cloneAsSimplePoint().transform(origin, unitAngle, false);
+    const gravityForce: number =
+      (this.forceSource.standardGravitationalParameter * point.mass) / Math.pow(simplePoint.position.x, 2);
+
+    simplePoint.force = Complex.create(-gravityForce, 0);
+    this.vector = simplePoint.transformBackOnlyForce(unitAngle).force;
+    */
+  }
+
+  protected isOwnGravitySource(point: Point): boolean {
+    return point === this.forceSource.point;
   }
 }
 
 // ----------------------------------------------------------------
 
 export class GravityForceSource extends ForceSource {
-  public G = GRAVITATIONAL_CONSTANT;
+  public g = GRAVITATIONAL_CONSTANT;
+  public standardGravitationalParameter: number; // https://en.wikipedia.org/wiki/Standard_gravitational_parameter
 
   public constructor(world: World, public point: Point) {
     super(world);
+
+    this.standardGravitationalParameter = this.g * point.mass;
 
     // IMPORTANT: call world.refreshGravityAwareness or world.refreshAwareness when the scene is ready
   }

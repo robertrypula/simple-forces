@@ -7,16 +7,16 @@ export class SimplePoint {
 
   public constructor(public position: Complex, public velocity: Complex) {}
 
-  public transform(origin: SimplePoint, unitAngle: number): SimplePoint {
+  public transform(origin: SimplePoint, unitAngle: number, withVelocity = true): SimplePoint {
     const rotation = Complex.createPolar(-unitAngle);
 
     this.position.subtract(origin.position).multiply(rotation);
-    this.velocity.subtract(origin.velocity).multiply(rotation);
+    withVelocity && this.velocity.subtract(origin.velocity).multiply(rotation);
 
     return this;
   }
 
-  public transformBackOnlyForce(origin: SimplePoint, unitAngle: number): SimplePoint {
+  public transformBackOnlyForce(unitAngle: number): SimplePoint {
     this.force.multiply(Complex.createPolar(unitAngle));
 
     return this;

@@ -12,7 +12,6 @@ import * as domUtils from '@examples/web/dom-utils';
 export class WebRunner {
   protected example: AbstractExample;
   protected logElement: HTMLElement;
-  protected previousTime: number = null;
   protected canvasRenderer: CanvasRenderer;
 
   public constructor(protected exampleFactory: ExampleFactory) {
@@ -30,15 +29,12 @@ export class WebRunner {
   }
 
   public animationFrame(): void {
-    const currentTime: number = getTime();
-    let dt: number = this.previousTime === null ? 0 : currentTime - this.previousTime;
+    const dt: number = 1 / DEFAULT_EXAMPLE_FPS; // const dt in order to keep simulation stable even on slower machines
 
-    dt = 1 / DEFAULT_EXAMPLE_FPS; // TODO check it, probably it would be better to keep constant dt between frames
     this.example.animationFrame(dt);
     this.canvasRenderer.render();
     this.log();
 
-    this.previousTime = currentTime;
     window.requestAnimationFrame(this.animationFrame.bind(this));
   }
 
