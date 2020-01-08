@@ -25,36 +25,13 @@ export class SpringAndDamperForce extends Force {
     const unitAngle: number = line.getUnitAngle();
     const origin: SimplePoint = line.pointA.cloneAsSimplePoint();
     const simplePointLineB: SimplePoint = line.pointB.cloneAsSimplePoint().transform(origin, unitAngle);
-
-    const springForce: number = -(line.length - simplePointLineB.position.x) * this.forceSource.k;
-    const dampingForce: number = simplePointLineB.velocity.x * this.forceSource.b;
-    let finalForce: number = springForce + dampingForce;
-
-    this.forceSource.includeMass && (finalForce *= point.mass);
+    const springForce: number = -(simplePointLineB.position.x - line.length) * this.forceSource.k;
+    const dampingForce: number = -simplePointLineB.velocity.x * this.forceSource.b;
+    const finalForce: number = (springForce + dampingForce) * (this.forceSource.includeMass ? point.mass : 1);
 
     simplePointLineB.force = Complex.create(finalForce, 0);
-    this.vector = simplePointLineB.transformBack(origin, unitAngle).force;
-    this.forceSource.pointBForce.vector = simplePointLineB.force.clone().multiplyScalar(-1);
-
-    /*
-    const springMountingPoint: Point =
-      this.forceSource.line.pointA === point ? this.forceSource.line.pointB : this.forceSource.line.pointA;
-    const direction: Complex = point.position.clone().subtract(springMountingPoint.position);
-    const velocity: Complex = point.velocity.clone().subtract(springMountingPoint.velocity);
-    const x: number = direction.getMagnitude() - this.forceSource.line.length;
-    const v: number = velocity.multiply(Complex.createPolar(-direction.getUnitAngle())).x;
-    const springForce: number = x * this.forceSource.k;
-    const dampingForce: number = v * this.forceSource.b;
-    let finalForce: number = springForce + dampingForce;
-
-    this.forceSource.includeMass && (finalForce *= point.mass);
-
-    this.vector = direction.normalize().multiplyScalar(-finalForce);
-    */
-    // TODO known issue:
-    //  - magnitude of force is calculated twice
-    //    (ends of the spring acts on each other with the same force but opposite direction)
-    //    solution: ignore the second end of the line and calculate everything in the first end
+    this.forceSource.pointBForce.vector = simplePointLineB.transformBackOnlyForce(origin, unitAngle).force;
+    this.vector = simplePointLineB.force.clone().multiplyScalar(-1);
   }
 
   protected isSecondEnd(point: Point): boolean {

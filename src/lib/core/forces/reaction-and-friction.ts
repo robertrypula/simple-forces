@@ -35,22 +35,23 @@ export class ReactionAndFrictionForce extends Force {
 
     if (this.isInsideCollisionArea(simplePoint, simplePointLineB)) {
       const collisionUnitX: number = simplePoint.position.x / simplePointLineB.position.x;
+      const velocityUnitX: number = simplePoint.velocity.x === 0 ? 0 : simplePoint.velocity.x > 0 ? 1 : -1;
       const reactionSpringForce: number = -simplePoint.position.y * this.forceSource.reactionK;
       const reactionDampingForce: number = -simplePoint.velocity.y * this.forceSource.reactionB;
       let reactionForce: number = reactionSpringForce + reactionDampingForce;
-      let frictionForce: number = reactionForce * this.forceSource.frictionB * (simplePoint.velocity.x > 0 ? -1 : 1);
+      let frictionForce: number = reactionForce * this.forceSource.frictionB * -velocityUnitX;
 
       reactionForce *= point.mass;
       frictionForce *= point.mass;
 
       simplePoint.force = Complex.create(frictionForce, reactionForce);
-      this.vector = simplePoint.transformBack(origin, unitAngle).force;
+      this.vector = simplePoint.transformBackOnlyForce(origin, unitAngle).force;
 
       // apply force of collision to the points that define the surface as well
       simplePointLineA.force = Complex.create(-frictionForce, -(reactionForce * (1 - collisionUnitX)));
       simplePointLineB.force = Complex.create(-frictionForce, -(reactionForce * collisionUnitX));
-      this.forceSource.pointAForce.vector = simplePointLineA.transformBack(origin, unitAngle).force;
-      this.forceSource.pointBForce.vector = simplePointLineB.transformBack(origin, unitAngle).force;
+      this.forceSource.pointAForce.vector = simplePointLineA.transformBackOnlyForce(origin, unitAngle).force;
+      this.forceSource.pointBForce.vector = simplePointLineB.transformBackOnlyForce(origin, unitAngle).force;
     } else {
       this.vector.reset();
       this.forceSource.pointAForce.vector.reset();
