@@ -20,10 +20,7 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
     const apolloPosition = this.apollo.center.position;
     const apolloAltitudeEarth = apolloPosition.getMagnitude() - EARTH_MEAN_RADIUS;
     const apolloAltitudeMoon =
-      apolloPosition
-        .clone()
-        .subtract(this.moon.center.position)
-        .getMagnitude() - MOON_MEAN_RADIUS;
+      apolloPosition.clone().subtract(this.moon.center.position).getMagnitude() - MOON_MEAN_RADIUS;
 
     if (apolloAltitudeEarth < 1e6) {
       this.world.physics.timeWarp = 30;
@@ -63,7 +60,7 @@ export class ExampleAdvancedApolloFreeReturn extends AbstractExample {
     this.world.physics.internalSteps = 10000;
     this.world.viewport.camera = this.apollo.center;
 
-    setInterval(() => {
+    setInterval((): void => {
       this.world.createPoint(this.apollo.center.position.clone()).isStatic = true;
       this.world.createPoint(this.moon.center.position.clone()).isStatic = true;
     }, 500);

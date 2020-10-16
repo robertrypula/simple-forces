@@ -34,7 +34,7 @@ export class Viewport {
       rotation = Complex.createPolar();
     }
 
-    this.points.forEach((point: Point) => {
+    this.points.forEach((point: Point): void => {
       switch (point.radiusType) {
         case RadiusType.Real:
           point.rendererData.radius = point.radius * scale;
@@ -46,14 +46,9 @@ export class Viewport {
 
       point.rendererData.radiusType = point.radiusType;
 
-      point.rendererData.position = viewportCenter.clone().add(
-        point.position
-          .clone()
-          .subtract(cameraPosition)
-          .multiply(rotation)
-          .multiplyScalar(scale)
-          .conjugate()
-      );
+      point.rendererData.position = viewportCenter
+        .clone()
+        .add(point.position.clone().subtract(cameraPosition).multiply(rotation).multiplyScalar(scale).conjugate());
     });
   }
 }

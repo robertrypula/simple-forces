@@ -118,7 +118,7 @@ export class ReactionAndFrictionForceSource extends ForceSource {
   }
 
   public refreshAwareness(): void {
-    this.forEachWorldPointNotYetAwareAboutTheSource((point: Point) => {
+    this.forEachWorldPointNotYetAwareAboutTheSource((point: Point): void => {
       point.forces.push(new ReactionAndFrictionForce(this));
     });
   }

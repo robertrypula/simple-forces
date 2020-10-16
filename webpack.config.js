@@ -7,15 +7,15 @@ const packageJson = require('./package.json');
 const libraryName = packageJson.name
   .toLowerCase()
   .split('-')
-  .map(chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+  .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
   .join('');
 
 const relativePaths = () => {
   const paths = require('./tsconfig').compilerOptions.paths;
-  const getFullPath = lastPart => path.join(__dirname, 'src/lib', lastPart);
+  const getFullPath = (lastPart) => path.join(__dirname, 'src/lib', lastPart);
   const result = {};
 
-  Object.keys(paths).forEach(key =>
+  Object.keys(paths).forEach((key) =>
     key === '@'
       ? (result['@'] = getFullPath('index'))
       : (result[key.replace('/*', '')] = getFullPath(paths[key][0].replace('/*', '')))
@@ -100,7 +100,7 @@ function fillProd(config, env) {
   env.ANALYZER && config.plugins.push(new BundleAnalyzerPlugin());
 }
 
-module.exports = env => {
+module.exports = (env) => {
   const config = getConfig(env);
 
   if (env.DEVELOPMENT === true) {

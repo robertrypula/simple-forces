@@ -17,7 +17,7 @@ export class Physics {
     this.time += dt;
 
     this.points.sort((a: Point, b: Point): number => (a.isStatic === b.isStatic ? 0 : a.isStatic ? 1 : -1));
-    firstStaticPointIndex = this.points.findIndex(a => a.isStatic);
+    firstStaticPointIndex = this.points.findIndex((a: Point) => a.isStatic);
     firstStaticPointIndex = firstStaticPointIndex === -1 ? this.points.length : firstStaticPointIndex;
 
     for (let i = 0; i < this.internalSteps; i++) {

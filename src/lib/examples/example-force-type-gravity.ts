@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2020 Robert Rypuła - https://github.com/robertrypula
 
 // in your code replace `from '@';` with `from 'simple-forces';`
-import { Complex, Point } from '@';
+import { Complex, Force, Point } from '@';
 
 import { AbstractEarthSurfaceExample } from '@examples/abstract-example-earth-surface';
 
@@ -17,7 +17,10 @@ export class ExampleForceTypeGravity extends AbstractEarthSurfaceExample {
       ['Middle ball position', this.ballMiddle.position.toStringXY()],
       ['Middle ball velocity', this.ballMiddle.velocity.toStringXY()],
       ['Middle ball acceleration', this.ballMiddle.acceleration.toStringXY(3)],
-      ['Middle ball forces', this.ballMiddle.forces.map(force => force.vector.toStringXY(3)).join(' | ')]
+      [
+        'Middle ball forces',
+        this.ballMiddle.forces.map((force: Force): string => force.vector.toStringXY(3)).join(' | ')
+      ]
     ];
   }
 

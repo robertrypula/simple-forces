@@ -19,10 +19,7 @@ export class Line {
   public thrustForceSource: ThrustForceSource;
 
   public constructor(public world: World, public pointA: Point, public pointB: Point) {
-    this.length = pointB.position
-      .clone()
-      .subtract(pointA.position)
-      .getMagnitude();
+    this.length = pointB.position.clone().subtract(pointA.position).getMagnitude();
   }
 
   public createReactionAndFrictionForceSource(): Line {

@@ -23,7 +23,9 @@ export abstract class ForceSource {
 
   protected forEachWorldLineNotYetAwareAboutTheSource(handler: NotYetAwareLineHandler) {
     this.world.lines.forEach((line: Line): void => {
-      const lineNotYetAwareAboutTheSource: boolean = !line.forceSources.some(forceSource => forceSource === this);
+      const lineNotYetAwareAboutTheSource: boolean = !line.forceSources.some(
+        (forceSource: ForceSource): boolean => forceSource === this
+      );
 
       lineNotYetAwareAboutTheSource && handler(line);
     });
@@ -31,7 +33,9 @@ export abstract class ForceSource {
 
   protected forEachWorldPointNotYetAwareAboutTheSource(handler: NotYetAwarePointHandler) {
     this.world.points.forEach((point: Point): void => {
-      const pointNotYetAwareAboutTheSource: boolean = !point.forces.some(force => force.forceSource === this);
+      const pointNotYetAwareAboutTheSource: boolean = !point.forces.some(
+        (force: Force): boolean => force.forceSource === this
+      );
 
       pointNotYetAwareAboutTheSource && handler(point);
     });

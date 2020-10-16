@@ -89,6 +89,17 @@ if (isNode && argc >= 3 && argv[2] === 'simpleForces.run.nodeExample') {
     - change vessel: UO
     - zoom: ZX
     - camera move: TGFH and R reference (world, vessel and vesselInRelationToPoint)
+        UPDATE 2020.10.15:
+          world                   no points
+          vessel                  two points from vessel which create axis
+          vesselInRelationToPoint one point from vessel and one point from world
+
+          in general two points are required
+            vessel might have main point and secondary point
+            world points might be mapped as "beeing secondary" and list of these point could be tracked
+            -> purpose of secondary points is to provide required rotation!!!!!!!
+            -> purpose of primary point is to only translate camera to that location
+
     - timeWrap: ?
 
   - ability to generate objects:

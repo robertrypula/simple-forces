@@ -13,16 +13,12 @@
         <h4>Advanced examples</h4>
         <p>
           Apollo Earth/Moon/Earth free return trajectory (ISS only for orbits comparison)
-          <button type="button" onclick="runExample('ExampleAdvancedApolloFreeReturn')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleAdvancedApolloFreeReturn')">Run</button>
         </p>
 
         <p>
           Wheel - complex object falling on earth
-          <button type="button" onclick="runExample('ExampleAdvancedWheel')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleAdvancedWheel')">Run</button>
         </p>
       </div>
 
@@ -31,16 +27,12 @@
 
         <p>
           Drag - simple mass trowed in air (atmosphere enabled)
-          <button type="button" onclick="runExample('ExampleForceTypeDrag')">
-            Run (not fully implemented)
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeDrag')">Run (not fully implemented)</button>
         </p>
 
         <p>
           Gravity - simple mass falling on Earth
-          <button type="button" onclick="runExample('ExampleForceTypeGravity')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeGravity')">Run</button>
         </p>
 
         <p>
@@ -52,30 +44,22 @@
 
         <p>
           Lift & drag - wing and parachute test (atmosphere enabled)
-          <button type="button" onclick="runExample('ExampleForceTypeLiftAndDrag')">
-            Run (not fully implemented)
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeLiftAndDrag')">Run (not fully implemented)</button>
         </p>
 
         <p>
           Surface reaction & friction - simple collisions (static friction missing)
-          <button type="button" onclick="runExample('ExampleForceTypeReactionAndFriction')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeReactionAndFriction')">Run</button>
         </p>
 
         <p>
           Spring & damper - simple oscillations and keeping distance between points
-          <button type="button" onclick="runExample('ExampleForceTypeSpringAndDamper')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeSpringAndDamper')">Run</button>
         </p>
 
         <p>
           Thrust - basic 'line' object movements
-          <button type="button" onclick="runExample('ExampleForceTypeThrust')">
-            Run
-          </button>
+          <button type="button" onclick="runExample('ExampleForceTypeThrust')">Run</button>
         </p>
       </div>
     </div>
@@ -87,7 +71,7 @@
 
     <script>
       let webRunner;
-      const runExample = name => {
+      const runExample = (name) => {
         const WebRunner = SimpleForces && SimpleForces.WebRunner;
         const Example = SimpleForces && SimpleForces[name];
 

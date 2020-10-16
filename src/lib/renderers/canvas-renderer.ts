@@ -28,7 +28,7 @@ export class CanvasRenderer {
 
   protected renderLines(): void {
     this.ctx.lineWidth = this.pixelRatio;
-    this.world.lines.forEach((line: Line) => {
+    this.world.lines.forEach((line: Line): void => {
       const pA: Complex = line.pointA.rendererData.position;
       const pB: Complex = line.pointB.rendererData.position;
 
@@ -41,7 +41,7 @@ export class CanvasRenderer {
   }
 
   protected renderPoints(): void {
-    this.world.points.forEach((point: Point) => {
+    this.world.points.forEach((point: Point): void => {
       const p: Complex = point.rendererData.position;
       const radius: number =
         point.rendererData.radiusType === RadiusType.Screen

@@ -45,7 +45,9 @@ export class WebRunner {
 
   protected log(): void {
     if (this.logElement) {
-      this.logElement.innerHTML = this.example.log.map(logItem => logItem.join(': ')).join('\n');
+      this.logElement.innerHTML = this.example.log
+        .map((logItem: [string, string]): string => logItem.join(': '))
+        .join('\n');
     }
   }
 }

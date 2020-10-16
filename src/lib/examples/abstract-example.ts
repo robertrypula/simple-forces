@@ -4,7 +4,7 @@
 import { formatNumber, formatTime, getTime, World } from '@';
 
 export abstract class AbstractExample {
-  public log: Array<[string, string]> = [];
+  public log: [string, string][] = [];
   public world: World;
 
   protected loadHistory: number[] = [];

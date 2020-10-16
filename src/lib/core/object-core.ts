@@ -12,7 +12,7 @@ export abstract class ObjectCore {
   protected constructor(public world: World) {}
 
   public translate(amount: Complex): ObjectCore {
-    this.points.forEach((point: Point) => {
+    this.points.forEach((point: Point): void => {
       point.position.add(amount);
     });
 
@@ -20,7 +20,7 @@ export abstract class ObjectCore {
   }
 
   public rotate(amount: Complex): ObjectCore {
-    this.points.forEach((point: Point) => {
+    this.points.forEach((point: Point): void => {
       point.position.multiply(amount);
       point.velocity.multiply(amount);
     });
@@ -29,7 +29,7 @@ export abstract class ObjectCore {
   }
 
   public setIsStatic(isStatic: boolean): ObjectCore {
-    this.points.forEach((point: Point) => {
+    this.points.forEach((point: Point): void => {
       point.isStatic = isStatic;
     });
 

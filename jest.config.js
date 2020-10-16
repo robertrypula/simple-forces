@@ -3,7 +3,7 @@ const relativePaths = () => {
   const paths = require('./tsconfig').compilerOptions.paths;
   const result = {};
 
-  Object.keys(paths).forEach(key =>
+  Object.keys(paths).forEach((key) =>
     key === '@'
       ? (result['^@$'] = basePath + 'index')
       : (result[key.replace('@', '^@').replace('/*', '(.*)$')] = basePath + paths[key][0].replace('/*', '$1'))

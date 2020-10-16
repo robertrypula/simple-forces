@@ -58,25 +58,25 @@ export class World {
 
   public refreshDragAwareness(): void {
     this.points
-      .filter((point: Point) => point.dragForceSource)
-      .forEach((point: Point) => point.dragForceSource.refreshAwareness());
+      .filter((point: Point): boolean => !!point.dragForceSource)
+      .forEach((point: Point): void => point.dragForceSource.refreshAwareness());
   }
 
   public refreshGravityAwareness(): void {
     this.points
-      .filter((point: Point) => point.gravityForceSource)
-      .forEach((point: Point) => point.gravityForceSource.refreshAwareness());
+      .filter((point: Point): boolean => !!point.gravityForceSource)
+      .forEach((point: Point): void => point.gravityForceSource.refreshAwareness());
   }
 
   public refreshLiftAndDragAwareness(): void {
     this.points
-      .filter((point: Point) => point.liftAndDragForceSource)
-      .forEach((point: Point) => point.liftAndDragForceSource.refreshAwareness());
+      .filter((point: Point): boolean => !!point.liftAndDragForceSource)
+      .forEach((point: Point): void => point.liftAndDragForceSource.refreshAwareness());
   }
 
   public refreshReactionAndFrictionAwareness(): void {
     this.lines
-      .filter((line: Line) => line.reactionAndFrictionForceSource)
-      .forEach((line: Line) => line.reactionAndFrictionForceSource.refreshAwareness());
+      .filter((line: Line): boolean => !!line.reactionAndFrictionForceSource)
+      .forEach((line: Line): void => line.reactionAndFrictionForceSource.refreshAwareness());
   }
 }
